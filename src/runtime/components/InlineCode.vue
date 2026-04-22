@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
-import { createHighlighter } from 'shiki'
+import { ref, onMounted, watch } from 'vue'
+import { useShiki } from '../composables/useShiki'
 
 const props = defineProps({
   code: { type: String, default: '' },
@@ -29,27 +29,15 @@ const props = defineProps({
 
 const copied = ref(false)
 const highlighted = ref('')
-let highlighterInstance = null
+const { highlight: shikiHighlight, currentTheme } = useShiki()
 
-async function highlight() {
+async function doHighlight() {
   if (!props.lang) {
     highlighted.value = props.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')
     return
   }
   try {
-    if (!highlighterInstance) {
-      highlighterInstance = await createHighlighter({
-        themes: ['github-dark-default'],
-        langs: [props.lang],
-      })
-    }
-    try { await highlighterInstance.loadLanguage(props.lang) } catch { /* loaded */ }
-
-    const html = highlighterInstance.codeToHtml(props.code, {
-      lang: props.lang,
-      theme: 'github-dark-default',
-    })
-    // Extract just the inner spans, strip the wrapping pre/code
+    const html = await shikiHighlight(props.code, props.lang)
     const match = html.match(/<code[^>]*>([\s\S]*?)<\/code>/)
     highlighted.value = match ? match[1].trim() : props.code
   } catch {
@@ -57,8 +45,9 @@ async function highlight() {
   }
 }
 
-onMounted(highlight)
-watch(() => [props.code, props.lang], highlight)
+onMounted(doHighlight)
+watch(() => [props.code, props.lang], doHighlight)
+watch(currentTheme, doHighlight)
 
 function copy() {
   navigator.clipboard.writeText(props.code)

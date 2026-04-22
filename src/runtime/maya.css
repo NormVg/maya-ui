@@ -65,6 +65,7 @@
       transparent 6px);
   --maya-skeleton-base: rgba(255, 255, 255, 0.04);
   --maya-skeleton-shimmer: rgba(255, 255, 255, 0.08);
+  --maya-code-bg: #0a0a0a;
 
   /* Btn surfaces */
   --maya-btn-primary-bg: #ededed;
@@ -175,6 +176,7 @@
       transparent 6px);
   --maya-skeleton-base: rgba(0, 0, 0, 0.04);
   --maya-skeleton-shimmer: rgba(0, 0, 0, 0.08);
+  --maya-code-bg: #f5f5f5;
 
   /* Btn surfaces */
   --maya-btn-primary-bg: #171717;

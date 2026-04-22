@@ -21,8 +21,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
-import { createHighlighter } from 'shiki'
+import { ref, onMounted, watch } from 'vue'
+import { useShiki } from '../composables/useShiki'
 
 const props = defineProps({
   code: { type: String, default: '' },
@@ -32,33 +32,19 @@ const props = defineProps({
 
 const copied = ref(false)
 const highlighted = ref('')
-let highlighterInstance = null
+const { highlight: shikiHighlight, currentTheme } = useShiki()
 
-async function highlight() {
+async function doHighlight() {
   try {
-    if (!highlighterInstance) {
-      highlighterInstance = await createHighlighter({
-        themes: ['github-dark-default'],
-        langs: [props.lang === 'text' ? 'plaintext' : props.lang],
-      })
-    }
-    // Ensure the language is loaded
-    const langId = props.lang === 'text' ? 'plaintext' : props.lang
-    try {
-      await highlighterInstance.loadLanguage(langId)
-    } catch { /* already loaded */ }
-
-    highlighted.value = highlighterInstance.codeToHtml(props.code, {
-      lang: langId,
-      theme: 'github-dark-default',
-    })
+    highlighted.value = await shikiHighlight(props.code, props.lang)
   } catch {
     highlighted.value = `<pre><code>${props.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
   }
 }
 
-onMounted(highlight)
-watch(() => [props.code, props.lang], highlight)
+onMounted(doHighlight)
+watch(() => [props.code, props.lang], doHighlight)
+watch(currentTheme, doHighlight)
 
 function copy() {
   navigator.clipboard.writeText(props.code)
@@ -125,7 +111,7 @@ function copy() {
 }
 
 .maya-codeblock-body {
-  background: #0a0a0a;
+  background: var(--maya-code-bg);
   overflow-x: auto;
 }
 

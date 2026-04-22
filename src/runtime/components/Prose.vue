@@ -4,27 +4,17 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { createHighlighter } from 'shiki'
+import { useShiki } from '../composables/useShiki'
 
 const props = defineProps({
   content: { type: String, default: '' },
 })
 
 const rendered = ref('')
-let highlighterInstance = null
+const { highlight: shikiHighlight, currentTheme } = useShiki()
 
 function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-}
-
-async function getHighlighter() {
-  if (!highlighterInstance) {
-    highlighterInstance = await createHighlighter({
-      themes: ['github-dark-default'],
-      langs: ['javascript', 'typescript', 'html', 'css', 'vue', 'bash', 'json', 'plaintext'],
-    })
-  }
-  return highlighterInstance
 }
 
 async function render() {
@@ -47,9 +37,7 @@ async function render() {
       i++ // skip closing ```
       const code = codeLines.join('\n')
       try {
-        const hl = await getHighlighter()
-        try { await hl.loadLanguage(lang) } catch { /* ok */ }
-        const html = hl.codeToHtml(code, { lang, theme: 'github-dark-default' })
+        const html = await shikiHighlight(code, lang)
         parts.push(`<div class="maya-prose-codeblock">${html}</div>`)
       } catch {
         parts.push(`<div class="maya-prose-codeblock"><pre><code>${escapeHtml(code)}</code></pre></div>`)
@@ -130,6 +118,7 @@ function inlineFormat(text) {
 
 onMounted(render)
 watch(() => props.content, render)
+watch(currentTheme, render)
 </script>
 
 <style scoped>
@@ -232,7 +221,7 @@ watch(() => props.content, render)
 .maya-prose :deep(.maya-prose-codeblock pre) {
   margin: 0;
   padding: 16px 20px;
-  background: #0a0a0a !important;
+  background: var(--maya-code-bg) !important;
   font-family: var(--maya-font-mono);
   font-size: 0.8125rem;
   line-height: 1.65;
