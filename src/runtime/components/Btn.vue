@@ -2,6 +2,7 @@
   <button class="maya-btn" :class="[
     `maya-btn--${variant}`,
     `maya-btn--${size}`,
+    intent !== 'default' ? `maya-btn--intent-${intent}` : '',
     { 'maya-btn--disabled': disabled }
   ]" :disabled="disabled" @click="$emit('click', $event)">
     <slot />
@@ -20,6 +21,11 @@ defineProps({
     default: 'md',
     validator: (v) => ['sm', 'md', 'lg'].includes(v),
   },
+  intent: {
+    type: String,
+    default: 'default',
+    validator: (v) => ['default', 'success', 'warning', 'danger', 'info'].includes(v),
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -35,6 +41,7 @@ defineEmits(['click'])
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   font-weight: 500;
   border: none;
   cursor: pointer;
@@ -42,6 +49,7 @@ defineEmits(['click'])
   border-radius: var(--maya-radius-md);
   line-height: 1;
   white-space: nowrap;
+  font-family: var(--maya-font-sans);
 }
 
 .maya-btn::after {
@@ -72,7 +80,7 @@ defineEmits(['click'])
   font-size: 0.875rem;
 }
 
-/* Primary */
+/* ─── Primary ─── */
 .maya-btn--primary {
   background: var(--maya-btn-primary-bg) var(--maya-btn-primary-gradient);
   color: var(--maya-btn-primary-text);
@@ -83,7 +91,7 @@ defineEmits(['click'])
   background: var(--maya-btn-primary-bg-hover) var(--maya-btn-primary-gradient);
 }
 
-/* Secondary */
+/* ─── Secondary ─── */
 .maya-btn--secondary {
   background-color: var(--maya-btn-secondary-bg);
   color: var(--maya-btn-secondary-text);
@@ -96,7 +104,7 @@ defineEmits(['click'])
   border-color: var(--maya-border-hover);
 }
 
-/* Ghost */
+/* ─── Ghost ─── */
 .maya-btn--ghost {
   background-color: var(--maya-btn-ghost-bg);
   color: var(--maya-btn-ghost-text);
@@ -107,7 +115,126 @@ defineEmits(['click'])
   color: var(--maya-btn-ghost-text-hover);
 }
 
-/* Disabled */
+/* ═══ Intent variants (override color on primary/secondary) ══ */
+
+/* Success */
+.maya-btn--primary.maya-btn--intent-success {
+  background: var(--maya-success);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.maya-btn--primary.maya-btn--intent-success:hover {
+  background: var(--maya-success-hover);
+}
+
+.maya-btn--secondary.maya-btn--intent-success {
+  background: var(--maya-success-muted);
+  color: var(--maya-success-text);
+  border-color: var(--maya-success-border);
+}
+
+.maya-btn--secondary.maya-btn--intent-success:hover {
+  background: var(--maya-success-muted);
+  filter: brightness(1.1);
+}
+
+.maya-btn--ghost.maya-btn--intent-success {
+  color: var(--maya-success-text);
+}
+
+.maya-btn--ghost.maya-btn--intent-success:hover {
+  background: var(--maya-success-muted);
+}
+
+/* Warning */
+.maya-btn--primary.maya-btn--intent-warning {
+  background: var(--maya-warning);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.maya-btn--primary.maya-btn--intent-warning:hover {
+  background: var(--maya-warning-hover);
+}
+
+.maya-btn--secondary.maya-btn--intent-warning {
+  background: var(--maya-warning-muted);
+  color: var(--maya-warning-text);
+  border-color: var(--maya-warning-border);
+}
+
+.maya-btn--secondary.maya-btn--intent-warning:hover {
+  filter: brightness(1.1);
+}
+
+.maya-btn--ghost.maya-btn--intent-warning {
+  color: var(--maya-warning-text);
+}
+
+.maya-btn--ghost.maya-btn--intent-warning:hover {
+  background: var(--maya-warning-muted);
+}
+
+/* Danger */
+.maya-btn--primary.maya-btn--intent-danger {
+  background: var(--maya-danger);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.maya-btn--primary.maya-btn--intent-danger:hover {
+  background: var(--maya-danger-hover);
+}
+
+.maya-btn--secondary.maya-btn--intent-danger {
+  background: var(--maya-danger-muted);
+  color: var(--maya-danger-text);
+  border-color: var(--maya-danger-border);
+}
+
+.maya-btn--secondary.maya-btn--intent-danger:hover {
+  filter: brightness(1.1);
+}
+
+.maya-btn--ghost.maya-btn--intent-danger {
+  color: var(--maya-danger-text);
+}
+
+.maya-btn--ghost.maya-btn--intent-danger:hover {
+  background: var(--maya-danger-muted);
+}
+
+/* Info */
+.maya-btn--primary.maya-btn--intent-info {
+  background: var(--maya-info);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.maya-btn--primary.maya-btn--intent-info:hover {
+  background: var(--maya-info-hover);
+}
+
+.maya-btn--secondary.maya-btn--intent-info {
+  background: var(--maya-info-muted);
+  color: var(--maya-info-text);
+  border-color: var(--maya-info-border);
+}
+
+.maya-btn--secondary.maya-btn--intent-info:hover {
+  filter: brightness(1.1);
+}
+
+.maya-btn--ghost.maya-btn--intent-info {
+  color: var(--maya-info-text);
+}
+
+.maya-btn--ghost.maya-btn--intent-info:hover {
+  background: var(--maya-info-muted);
+}
+
+/* ─── Disabled ─── */
 .maya-btn--disabled {
   opacity: 0.4;
   cursor: not-allowed;
