@@ -36,37 +36,34 @@
   z-index: 1;
 }
 
-/* First child gets left side rounded, remove negative margin */
+/* Base reset for inner elements to strip ALL radii by default */
+.maya-input-group> :deep(*) .maya-input,
+.maya-input-group> :deep(*) .maya-btn,
+.maya-input-group> :deep(*.maya-btn) {
+  border-radius: 0 !important;
+}
+
+/* First child gets left side rounded ONLY */
 .maya-input-group> :deep(*:first-child) {
-  border-top-left-radius: var(--maya-radius-md);
-  border-bottom-left-radius: var(--maya-radius-md);
   margin-left: 0;
 }
 
-/* Last child gets right side rounded */
-.maya-input-group> :deep(*:last-child) {
-  border-top-right-radius: var(--maya-radius-md);
-  border-bottom-right-radius: var(--maya-radius-md);
-}
-
-/* If the child itself is a wrapper (like our components often are), pass the border radius down */
-.maya-input-group> :deep(*:first-child)>input,
-.maya-input-group> :deep(*:first-child)>button,
+.maya-input-group> :deep(*:first-child) .maya-input,
+.maya-input-group> :deep(*:first-child) .maya-btn,
 .maya-input-group> :deep(*:first-child.maya-btn) {
-  border-top-left-radius: var(--maya-radius-md);
-  border-bottom-left-radius: var(--maya-radius-md);
+  border-top-left-radius: var(--maya-radius-md) !important;
+  border-bottom-left-radius: var(--maya-radius-md) !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 
-.maya-input-group> :deep(*:last-child)>input,
-.maya-input-group> :deep(*:last-child)>button,
+/* Last child gets right side rounded ONLY */
+.maya-input-group> :deep(*:last-child) .maya-input,
+.maya-input-group> :deep(*:last-child) .maya-btn,
 .maya-input-group> :deep(*:last-child.maya-btn) {
-  border-top-right-radius: var(--maya-radius-md);
-  border-bottom-right-radius: var(--maya-radius-md);
-}
-
-.maya-input-group> :deep(:not(:first-child):not(:last-child))>input,
-.maya-input-group> :deep(:not(:first-child):not(:last-child))>button,
-.maya-input-group> :deep(:not(:first-child):not(:last-child).maya-btn) {
-  border-radius: 0;
+  border-top-right-radius: var(--maya-radius-md) !important;
+  border-bottom-right-radius: var(--maya-radius-md) !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 </style>
