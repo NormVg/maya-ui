@@ -28,7 +28,19 @@
           <div class="nav-group-title">Inputs</div>
           <NuxtLink to="/components/input" class="nav-item" active-class="active">Input</NuxtLink>
           <NuxtLink to="/components/textarea" class="nav-item" active-class="active">Textarea</NuxtLink>
+          <NuxtLink to="/components/number-field" class="nav-item" active-class="active">Number Field</NuxtLink>
           <NuxtLink to="/components/checkbox" class="nav-item" active-class="active">Checkbox</NuxtLink>
+          <NuxtLink to="/components/radio" class="nav-item" active-class="active">Radio</NuxtLink>
+          <NuxtLink to="/components/input-otp" class="nav-item" active-class="active">Input OTP</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Selectors</div>
+          <NuxtLink to="/components/select" class="nav-item" active-class="active">Select & Combobox</NuxtLink>
+          <NuxtLink to="/components/date-chooser" class="nav-item" active-class="active">Date Chooser</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Form Structure</div>
+          <NuxtLink to="/components/field" class="nav-item" active-class="active">Field & Form</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Containers</div>
