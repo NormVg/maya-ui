@@ -17,14 +17,17 @@
     <Transition name="maya-date-chooser-dropdown">
       <div v-if="isOpen" class="maya-date-chooser-popover" role="dialog" tabindex="-1">
         <div class="maya-calendar-header">
-          <button type="button" class="maya-calendar-nav" @click="prevMonth" aria-label="Previous month">
+          <button type="button" class="maya-calendar-nav" @click="prevPage" aria-label="Previous">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
-          <div class="maya-calendar-title">{{ currentMonthName }} {{ currentYear }}</div>
-          <button type="button" class="maya-calendar-nav" @click="nextMonth" aria-label="Next month">
+          <button type="button" class="maya-calendar-title-btn" @click="toggleViewMode">
+            <template v-if="viewMode === 'date'">{{ currentMonthName }} {{ currentYear }}</template>
+            <template v-else>{{ yearRangeStart + 1 }} - {{ yearRangeStart + 10 }}</template>
+          </button>
+          <button type="button" class="maya-calendar-nav" @click="nextPage" aria-label="Next">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6" />
@@ -32,7 +35,7 @@
           </button>
         </div>
 
-        <div class="maya-calendar-grid">
+        <div v-if="viewMode === 'date'" class="maya-calendar-grid">
           <!-- Days of Week -->
           <div v-for="day in daysOfWeek" :key="day" class="maya-calendar-dow">
             {{ day }}
@@ -45,6 +48,16 @@
             'is-other-month': !dateObj.isCurrentMonth
           }" @click="selectDate(dateObj.date)">
             {{ dateObj.day }}
+          </button>
+        </div>
+
+        <div v-else-if="viewMode === 'year'" class="maya-year-grid">
+          <!-- Year Selection -->
+          <button v-for="(year, index) in visibleYears" :key="year" type="button" class="maya-year-item" :class="{
+            'is-other-decade': index === 0 || index === 11,
+            'is-current': year === currentYear
+          }" @click="selectYear(year)">
+            {{ year }}
           </button>
         </div>
       </div>
@@ -68,6 +81,8 @@ const container = ref(null)
 
 // Current view state
 const currentViewDate = ref(new Date())
+const viewMode = ref('date') // 'date' | 'year'
+const yearPage = ref(new Date().getFullYear())
 
 // Initialize view to modelValue if present
 watch(() => props.modelValue, (val) => {
@@ -75,6 +90,7 @@ watch(() => props.modelValue, (val) => {
     const d = new Date(val)
     if (!isNaN(d.valueOf())) {
       currentViewDate.value = new Date(d.getFullYear(), d.getMonth(), 1)
+      yearPage.value = d.getFullYear()
     }
   }
 }, { immediate: true })
@@ -138,6 +154,15 @@ const calendarDays = computed(() => {
   return days
 })
 
+const yearRangeStart = computed(() => {
+  return yearPage.value - (yearPage.value % 10) - 1
+})
+
+const visibleYears = computed(() => {
+  const start = yearRangeStart.value
+  return Array.from({ length: 12 }, (_, i) => start + i)
+})
+
 function isToday(date) {
   const today = new Date()
   return date.getDate() === today.getDate() &&
@@ -154,12 +179,34 @@ function isSelected(date) {
     date.getFullYear() === selected.getFullYear()
 }
 
-function prevMonth() {
-  currentViewDate.value = new Date(currentYear.value, currentMonth.value - 1, 1)
+function prevPage() {
+  if (viewMode.value === 'date') {
+    currentViewDate.value = new Date(currentYear.value, currentMonth.value - 1, 1)
+  } else {
+    yearPage.value -= 10
+  }
 }
 
-function nextMonth() {
-  currentViewDate.value = new Date(currentYear.value, currentMonth.value + 1, 1)
+function nextPage() {
+  if (viewMode.value === 'date') {
+    currentViewDate.value = new Date(currentYear.value, currentMonth.value + 1, 1)
+  } else {
+    yearPage.value += 10
+  }
+}
+
+function toggleViewMode() {
+  if (viewMode.value === 'date') {
+    yearPage.value = currentYear.value
+    viewMode.value = 'year'
+  } else {
+    viewMode.value = 'date'
+  }
+}
+
+function selectYear(year) {
+  currentViewDate.value = new Date(year, currentMonth.value, 1)
+  viewMode.value = 'date'
 }
 
 function selectDate(date) {
@@ -264,11 +311,21 @@ onUnmounted(() => {
   margin-bottom: 16px;
 }
 
-.maya-calendar-title {
+.maya-calendar-title-btn {
   font-size: 0.875rem;
   font-family: var(--maya-font-sans);
   font-weight: 500;
   color: var(--maya-text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--maya-radius-sm);
+  transition: all var(--maya-duration) var(--maya-ease);
+}
+
+.maya-calendar-title-btn:hover {
+  background: var(--maya-bg-root);
 }
 
 .maya-calendar-nav {
@@ -362,5 +419,42 @@ onUnmounted(() => {
 
 .maya-date-chooser-dropdown-leave-to {
   opacity: 0;
+}
+
+.maya-year-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.maya-year-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 2/1;
+  border: none;
+  background: transparent;
+  border-radius: var(--maya-radius-sm);
+  font-family: var(--maya-font-sans);
+  font-size: 0.875rem;
+  color: var(--maya-text-primary);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.maya-year-item.is-other-decade {
+  color: var(--maya-text-muted);
+  opacity: 0.5;
+}
+
+.maya-year-item:hover {
+  background: var(--maya-bg-root);
+}
+
+.maya-year-item.is-current {
+  background: var(--maya-text-primary);
+  color: var(--maya-text-inverse);
+  font-weight: 500;
 }
 </style>
