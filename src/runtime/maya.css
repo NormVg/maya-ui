@@ -83,13 +83,13 @@
   --maya-btn-ghost-text-hover: #ededed;
 
   /* Input surfaces */
-  --maya-input-bg: rgba(255, 255, 255, 0.02);
+  --maya-input-bg: #121212;
   --maya-input-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
   --maya-input-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
   --maya-input-focus-border: rgba(255, 255, 255, 0.3);
 
   /* Checkbox */
-  --maya-checkbox-bg: rgba(255, 255, 255, 0.02);
+  --maya-checkbox-bg: #121212;
   --maya-checkbox-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
   --maya-checkbox-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
   --maya-checkbox-checked-bg: #ededed;
