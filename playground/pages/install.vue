@@ -2,71 +2,94 @@
   <div>
     <div class="component-header">
       <h2 class="component-title">Installation</h2>
-      <p class="component-desc">Get up and running with Maya UI.</p>
+      <p class="component-desc">Get up and running with Maya UI in under a minute.</p>
     </div>
 
-    <div class="install-steps">
-      <div class="step">
-        <h3>1. Install the package</h3>
-        <div class="code-block">
-          <code>pnpm add -D maya-ui</code>
-        </div>
-      </div>
-
-      <div class="step">
-        <h3>2. Add to nuxt.config.ts</h3>
-        <div class="code-block">
-          <pre><code>export default defineNuxtConfig({
-  modules: ['maya-ui']
-})</code></pre>
-        </div>
-      </div>
-
-      <div class="step">
-        <h3>3. Use components</h3>
-        <p>All Maya UI components are auto-imported. Start using them directly in your templates.</p>
-      </div>
-    </div>
+    <MayaProse :content="installContent" />
   </div>
 </template>
 
-<style scoped>
-.install-steps {
-  max-width: 560px;
-}
+<script setup>
+const installContent = `## 1. Install the package
 
-.step {
-  margin-bottom: 32px;
-}
+\`\`\`bash
+pnpm add -D maya-ui
+\`\`\`
 
-.step h3 {
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
+Or use your preferred package manager:
 
-.step p {
-  color: var(--text-secondary);
-  font-size: 0.8125rem;
-  line-height: 1.6;
-}
+\`\`\`bash
+npm install -D maya-ui
+# or
+yarn add -D maya-ui
+\`\`\`
 
-.code-block {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 14px 18px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  overflow-x: auto;
-}
+---
 
-.code-block pre {
-  margin: 0;
-}
+## 2. Register the Nuxt Module
 
-.code-block code {
-  font-family: inherit;
+Add \`maya-ui\` to your \`nuxt.config.ts\`:
+
+\`\`\`typescript
+export default defineNuxtConfig({
+  modules: ['maya-ui'],
+})
+\`\`\`
+
+That's it. All components are now **auto-imported** with the \`Maya\` prefix.
+
+---
+
+## 3. Start Using Components
+
+No manual imports needed. Use any component directly in your templates:
+
+\`\`\`vue
+<template>
+  <MayaBtn variant="primary" intent="success">
+    Save Changes
+  </MayaBtn>
+
+  <MayaSwitch v-model="darkMode" />
+
+  <MayaBadge variant="soft" intent="info">
+    New
+  </MayaBadge>
+</template>
+\`\`\`
+
+---
+
+## 4. Customize Tokens
+
+Maya UI uses CSS custom properties for theming. Override any token in your app's CSS:
+
+\`\`\`css
+:root {
+  /* Change the accent color */
+  --maya-accent: #6366f1;
+  --maya-accent-hover: #818cf8;
+
+  /* Adjust radii */
+  --maya-radius-md: 8px;
+
+  /* Swap the font stack */
+  --maya-font-sans: "Geist", sans-serif;
 }
-</style>
+\`\`\`
+
+---
+
+## 5. Theme Toggle
+
+Drop in the theme toggle component for instant dark/light switching with a View Transition animation:
+
+\`\`\`vue
+<template>
+  <MayaThemeToggle />
+</template>
+\`\`\`
+
+> **Note:** The toggle uses \`document.startViewTransition()\` for a circular reveal effect. Falls back to instant swap on unsupported browsers.
+`
+</script>
