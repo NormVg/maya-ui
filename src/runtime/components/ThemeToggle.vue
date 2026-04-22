@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 const isDark = ref(true)
 
@@ -31,6 +31,9 @@ function toggle(event) {
     return
   }
 
+  // Capture direction BEFORE flipping
+  const switchingToDark = !isDark.value
+
   const x = event.clientX
   const y = event.clientY
   const endRadius = Math.hypot(
@@ -40,9 +43,11 @@ function toggle(event) {
 
   document.documentElement.classList.add('maya-theme-transitioning')
 
-  const transition = document.startViewTransition(async () => {
-    isDark.value = !isDark.value
-    await nextTick()
+  const transition = document.startViewTransition(() => {
+    // Apply theme directly to the DOM — no Vue async, no watcher delay
+    isDark.value = switchingToDark
+    document.documentElement.setAttribute('data-theme', switchingToDark ? 'dark' : 'light')
+    try { localStorage.setItem('maya-theme', switchingToDark ? 'dark' : 'light') } catch { }
   })
 
   transition.ready.then(() => {
@@ -53,12 +58,12 @@ function toggle(event) {
 
     document.documentElement.animate(
       {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath
+        clipPath: switchingToDark ? [...clipPath].reverse() : clipPath
       },
       {
         duration: 400,
         easing: 'ease-in-out',
-        pseudoElement: isDark.value
+        pseudoElement: switchingToDark
           ? '::view-transition-old(root)'
           : '::view-transition-new(root)'
       }
