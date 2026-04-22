@@ -257,6 +257,12 @@
 }
 
 /* ─── Global Resets for Maya Components ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .maya-btn,
 .maya-input,
 .maya-textarea,
