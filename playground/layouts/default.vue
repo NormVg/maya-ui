@@ -17,6 +17,7 @@
         <div class="nav-group">
           <div class="nav-group-title">Base UI</div>
           <NuxtLink to="/components/base-ui" class="nav-item" active-class="active">Label / Separator / Kbd</NuxtLink>
+          <NuxtLink to="/components/code" class="nav-item" active-class="active">Code & Prose</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Buttons & Controls</div>
