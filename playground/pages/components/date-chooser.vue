@@ -11,7 +11,7 @@
       code='<MayaDateChooser v-model="date" />'>
       <template #preview>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <MayaDateChooser v-model="date1" style="max-width: 240px;" />
+          <MayaDateChooser v-model="date1" style="width: 240px;" />
           <div style="font-size: 0.8rem; color: var(--maya-text-muted)">Selected ISO: {{ date1 || 'None' }}</div>
         </div>
       </template>
@@ -20,7 +20,7 @@
     <MayaPreviewCode title="Disabled" description="When date choice is locked out."
       code='<MayaDateChooser v-model="date" disabled />'>
       <template #preview>
-        <MayaDateChooser v-model="date2" disabled style="max-width: 240px;" />
+        <MayaDateChooser v-model="date2" disabled style="width: 240px;" />
       </template>
     </MayaPreviewCode>
 
