@@ -1,7 +1,7 @@
 <template>
   <button class="maya-theme-toggle" :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'" @click="toggle">
-    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg v-if="isDark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
       <path d="M12 20v2" />
@@ -12,75 +12,17 @@
       <path d="m6.34 17.66-1.41 1.41" />
       <path d="m19.07 4.93-1.41 1.41" />
     </svg>
-    <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   </button>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const isDark = ref(true)
-
-function toggle(event) {
-  const isAppearanceTransition = document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (!isAppearanceTransition) {
-    isDark.value = !isDark.value
-    return
-  }
-
-  // Capture direction BEFORE flipping
-  const switchingToDark = !isDark.value
-
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(
-    Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y)
-  )
-
-  document.documentElement.classList.add('maya-theme-transitioning')
-
-  const transition = document.startViewTransition(() => {
-    // Apply theme directly to the DOM — no Vue async, no watcher delay
-    isDark.value = switchingToDark
-    document.documentElement.setAttribute('data-theme', switchingToDark ? 'dark' : 'light')
-    try { localStorage.setItem('maya-theme', switchingToDark ? 'dark' : 'light') } catch { }
-  })
-
-  transition.ready.then(() => {
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`
-    ]
-
-    document.documentElement.animate(
-      {
-        clipPath: switchingToDark ? [...clipPath].reverse() : clipPath
-      },
-      {
-        duration: 400,
-        easing: 'ease-in-out',
-        pseudoElement: switchingToDark
-          ? '::view-transition-old(root)'
-          : '::view-transition-new(root)'
-      }
-    )
-  })
-
-  transition.finished.then(() => {
-    document.documentElement.classList.remove('maya-theme-transitioning')
-  })
-}
-
-function applyTheme(dark) {
-  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
-  try {
-    localStorage.setItem('maya-theme', dark ? 'dark' : 'light')
-  } catch { }
-}
 
 onMounted(() => {
   try {
@@ -90,10 +32,58 @@ onMounted(() => {
       isDark.value = false
     }
   } catch { }
-  applyTheme(isDark.value)
+  applyTheme()
 })
 
-watch(isDark, (v) => applyTheme(v))
+function applyTheme() {
+  const theme = isDark.value ? 'dark' : 'light'
+  document.documentElement.setAttribute('data-theme', theme)
+  try { localStorage.setItem('maya-theme', theme) } catch { }
+}
+
+async function toggle(e) {
+  // If View Transitions not supported or reduced motion, just swap
+  if (
+    !document.startViewTransition ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    isDark.value = !isDark.value
+    applyTheme()
+    return
+  }
+
+  // Get click coordinates for the circle origin
+  const x = e.clientX
+  const y = e.clientY
+  const endRadius = Math.hypot(
+    Math.max(x, innerWidth - x),
+    Math.max(y, innerHeight - y),
+  )
+
+  // Start the view transition
+  const transition = document.startViewTransition(() => {
+    isDark.value = !isDark.value
+    applyTheme()
+  })
+
+  // Wait for the old snapshot to be taken
+  await transition.ready
+
+  // Animate the new view in with a circular clip-path
+  document.documentElement.animate(
+    {
+      clipPath: [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ]
+    },
+    {
+      duration: 500,
+      easing: 'ease-in-out',
+      pseudoElement: '::view-transition-new(root)',
+    },
+  )
+}
 </script>
 
 <style scoped>
