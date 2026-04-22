@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 
 const isDark = ref(true)
 
@@ -40,8 +40,9 @@ function toggle(event) {
 
   document.documentElement.classList.add('maya-theme-transitioning')
 
-  const transition = document.startViewTransition(() => {
+  const transition = document.startViewTransition(async () => {
     isDark.value = !isDark.value
+    await nextTick()
   })
 
   transition.ready.then(() => {
