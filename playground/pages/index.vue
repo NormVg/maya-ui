@@ -10,7 +10,7 @@
       </p>
       <div class="hero-actions">
         <MayaBtn variant="primary" size="md" @click="$router.push('/install')">Get Started</MayaBtn>
-        <MayaBtn variant="secondary" size="md" @click="$router.push('/components/button')">Components</MayaBtn>
+        <MayaBtn variant="secondary" size="md" @click="$router.push('/components/button')">Browse Components</MayaBtn>
       </div>
     </div>
 
@@ -20,7 +20,6 @@
       <div class="feature-grid">
         <MayaCard v-for="feature in features" :key="feature.title">
           <template #header>
-            <span class="feature-icon">{{ feature.icon }}</span>
             <span class="feature-title">{{ feature.title }}</span>
           </template>
           <template #default>
@@ -50,36 +49,32 @@
 </template>
 
 <script setup>
+definePageMeta({ layout: 'landing' })
+
 const features = [
   {
-    icon: '◑',
-    title: 'Dark-First',
+    title: 'Dark-First Design',
     desc: 'Every component is designed for dark mode first, with a polished light mode counterpart.',
   },
   {
-    icon: '◎',
     title: 'Pure CSS Tokens',
     desc: 'No Tailwind, no utility classes — just clean CSS custom properties you can override.',
   },
   {
-    icon: '⊞',
     title: 'Auto-Imported',
-    desc: 'Register the Nuxt module and every component is available globally. No manual imports.',
+    desc: 'Register the Nuxt module and every component is available globally. No manual imports needed.',
   },
   {
-    icon: '◈',
     title: 'Semantic Intent',
     desc: 'Success, warning, danger, info — all components speak the same semantic color language.',
   },
   {
-    icon: '⟡',
     title: 'Bouncy Motion',
     desc: 'Spring-based animations on every interactive element — buttons, toggles, checkboxes.',
   },
   {
-    icon: '⌗',
     title: 'View Transitions',
-    desc: 'Built-in theme toggle with Document View Transition API for cinematic light/dark switches.',
+    desc: 'Built-in theme toggle with Document View Transition API for cinematic dark/light switches.',
   },
 ]
 
@@ -116,28 +111,24 @@ const componentListMd = `### Buttons & Controls
 ### Loaders
 - **MayaSpinner** — SVG animated ring
 - **MayaSkeleton** — Shimmer placeholder
-- **MayaLoadingDots** — Bouncing dots
-
-### System
-- **MayaThemeToggle** — View Transition-powered dark/light switch
-- **MayaPreviewCode** — Documentation preview + code tabs`
+- **MayaLoadingDots** — Bouncing dots`
 </script>
 
 <style scoped>
 .hero {
   text-align: center;
-  padding: 60px 0 48px;
+  padding: 80px 0 56px;
 }
 
 .hero-badge {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
+  letter-spacing: -0.045em;
+  margin-bottom: 14px;
   background: linear-gradient(135deg, var(--maya-text-primary) 0%, var(--maya-text-muted) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -145,11 +136,11 @@ const componentListMd = `### Buttons & Controls
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--maya-text-secondary);
-  max-width: 420px;
-  margin: 0 auto 28px;
-  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
 }
 
 .hero-actions {
@@ -159,18 +150,13 @@ const componentListMd = `### Buttons & Controls
 }
 
 .features {
-  padding: 40px 0;
+  padding: 48px 0;
 }
 
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-}
-
-.feature-icon {
-  font-size: 1rem;
-  opacity: 0.5;
 }
 
 .feature-title {
@@ -181,22 +167,22 @@ const componentListMd = `### Buttons & Controls
 .feature-desc {
   font-size: 0.8125rem;
   color: var(--maya-text-secondary);
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
 .quick-start {
-  padding: 40px 0;
+  padding: 48px 0;
 }
 
 .section-title {
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .component-list {
-  padding: 40px 0;
+  padding: 48px 0 20px;
 }
 </style>
