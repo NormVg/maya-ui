@@ -3,7 +3,7 @@
     <input type="checkbox" class="maya-checkbox-input" :checked="modelValue" :disabled="disabled"
       @change="$emit('update:modelValue', $event.target.checked)" />
     <span class="maya-checkbox-box">
-      <svg v-if="modelValue" viewBox="0 0 12 12" fill="none" class="maya-checkbox-icon">
+      <svg viewBox="0 0 12 12" fill="none" class="maya-checkbox-icon">
         <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
           stroke-linejoin="round" />
       </svg>
@@ -69,6 +69,14 @@ defineEmits(['update:modelValue'])
   width: 10px;
   height: 10px;
   color: var(--maya-checkbox-check-color);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: transform var(--maya-duration-bouncy) var(--maya-ease-bouncy), opacity 150ms ease;
+}
+
+.maya-checkbox-input:checked+.maya-checkbox-box .maya-checkbox-icon {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .maya-checkbox-label {

@@ -26,6 +26,7 @@ defineProps({
   color: var(--maya-text-primary);
   font-family: var(--maya-font-sans);
   line-height: 1.4;
+  letter-spacing: 0.01em;
   cursor: default;
   transition: color var(--maya-duration) var(--maya-ease);
 }

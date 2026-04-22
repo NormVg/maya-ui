@@ -37,7 +37,7 @@ defineProps({
   gap: 5px;
   font-family: var(--maya-font-sans);
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: var(--maya-radius-sm);
   border: 1px solid transparent;
   white-space: nowrap;
   transition: all var(--maya-duration) var(--maya-ease);

@@ -18,9 +18,9 @@ defineProps({
 <style scoped>
 .maya-skeleton {
   background: linear-gradient(90deg,
-      var(--maya-bg-raised) 25%,
-      var(--maya-bg-surface) 50%,
-      var(--maya-bg-raised) 75%);
+      var(--maya-skeleton-base) 25%,
+      var(--maya-skeleton-shimmer) 50%,
+      var(--maya-skeleton-base) 75%);
   background-size: 200% 100%;
   animation: maya-shimmer 1.5s linear infinite;
 }

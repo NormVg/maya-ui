@@ -43,7 +43,8 @@ const view = ref('preview')
 .showcase-label h3 {
   font-size: 0.875rem;
   font-weight: 500;
-  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
 }
 
 .showcase-label p {

@@ -41,7 +41,11 @@ defineEmits(['update:modelValue'])
   border: 1px solid var(--maya-border);
   background: transparent;
   color: var(--maya-text-muted);
-  transition: all var(--maya-duration) var(--maya-ease);
+  transition:
+    transform var(--maya-duration-bouncy) var(--maya-ease-bouncy),
+    background-color var(--maya-duration) var(--maya-ease),
+    color var(--maya-duration) var(--maya-ease),
+    border-color var(--maya-duration) var(--maya-ease);
 }
 
 .maya-toggle::after {

@@ -52,6 +52,7 @@ const computedInitials = computed(() => {
   font-family: var(--maya-font-sans);
   font-weight: 600;
   box-shadow: var(--maya-shadow-sm);
+  transition: transform var(--maya-duration-bouncy) var(--maya-ease-bouncy);
 }
 
 /* Sizes */

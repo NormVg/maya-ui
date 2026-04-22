@@ -35,7 +35,7 @@ const overflow = computed(() => Math.max(0, props.avatars.length - props.max))
   margin-left: -8px;
   border: 2px solid var(--maya-bg-root);
   border-radius: 50%;
-  transition: transform var(--maya-duration) var(--maya-ease);
+  transition: transform var(--maya-duration-bouncy) var(--maya-ease-bouncy);
 }
 
 .maya-avatar-group-item:first-child {
