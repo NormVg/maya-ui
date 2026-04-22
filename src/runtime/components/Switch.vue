@@ -68,15 +68,20 @@ defineEmits(['update:modelValue'])
   background: var(--maya-text-muted);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition:
-    transform 200ms cubic-bezier(0.19, 1, 0.22, 1),
+    transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
     background-color 200ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Thumb sizes */
+/* Thumb sizes & Press logic */
 .maya-switch--sm .maya-switch-thumb {
   width: 10px;
   height: 10px;
   left: 2px;
+}
+
+.maya-switch--sm:active .maya-switch-thumb {
+  width: 14px;
 }
 
 .maya-switch--md .maya-switch-thumb {
@@ -85,10 +90,18 @@ defineEmits(['update:modelValue'])
   left: 2px;
 }
 
+.maya-switch--md:active .maya-switch-thumb {
+  width: 19px;
+}
+
 .maya-switch--lg .maya-switch-thumb {
   width: 18px;
   height: 18px;
   left: 2px;
+}
+
+.maya-switch--lg:active .maya-switch-thumb {
+  width: 24px;
 }
 
 /* Checked state */
@@ -106,12 +119,24 @@ defineEmits(['update:modelValue'])
   transform: translateX(12px);
 }
 
+.maya-switch--sm.maya-switch--checked:active .maya-switch-thumb {
+  transform: translateX(8px);
+}
+
 .maya-switch--md.maya-switch--checked .maya-switch-thumb {
   transform: translateX(16px);
 }
 
+.maya-switch--md.maya-switch--checked:active .maya-switch-thumb {
+  transform: translateX(11px);
+}
+
 .maya-switch--lg.maya-switch--checked .maya-switch-thumb {
   transform: translateX(20px);
+}
+
+.maya-switch--lg.maya-switch--checked:active .maya-switch-thumb {
+  transform: translateX(14px);
 }
 
 .maya-switch--disabled {

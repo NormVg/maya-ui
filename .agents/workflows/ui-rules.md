@@ -5,7 +5,7 @@ description: rules for building good UI — motion, interaction, and design prin
 # Maya UI — Design & Interaction Rules
 
 These rules are distilled from the reference material in `.info2ai/BEST UI`. Follow them when building or modifying any Maya UI component.
-
+Always go and read them first before starting to make UI and the animations
 ---
 
 ## 1. Hit Areas (Fitts's Law)
@@ -213,54 +213,6 @@ Flat UI feels lifeless. Use very subtle shadows and gradients to create layered 
 - Depth should be felt, not seen. If you can obviously spot the gradient, it's too strong.
 - Elevation = importance. Higher shadows on modals/dialogs, minimal on inline elements.
 - Combine with `backdrop-filter: blur()` on overlays for a frosted glass effect.
-
----
-
-## 14. Using Design Tokens (Colors & Surfaces)
-
-Maya UI components MUST consume CSS variables from `maya.css` instead of hardcoded hex values.
-
-### Background Surfaces
-Use the correct background tier depending on the z-axis:
-- `var(--maya-bg-root)`: The deepest background (e.g., body, global canvas).
-- `var(--maya-bg-surface)`: Elevated elements (e.g., panels, toolbars).
-- `var(--maya-bg-raised)`: Floating or interactive elements on surfaces.
-- `var(--maya-pattern-stripes)`: Premium textured background. Stack it on top of a base color (e.g., `background: var(--maya-pattern-stripes), var(--maya-bg-root);`).
-
-### Text Tiers
-- `var(--maya-text-primary)`: Normal body text and dominant labels.
-- `var(--maya-text-secondary)`: Subtitles, path indicators, passive info.
-- `var(--maya-text-muted)`: Barely-there text, section titles.
-
-### Borders & Dividers
-- `var(--maya-border)`: Standard dividers.
-- `var(--maya-border-strong)`: High-contrast borders (e.g., buttons, inputs).
-- **Dashed Utility**: Add class `maya-dash-bottom` to elements needing a refined dotted/dashed separation line.
-
-### Semantic Colors (Emotional Design)
-Use these sparingly and only when the color carries meaning. **Never use them decoratively.**
-
-| Token prefix    | Emotion / Purpose            | When to use |
-|-----------------|------------------------------|-------------|
-| `--maya-success` | Calm, positive, done        | Success states, confirmation, checkmarks |
-| `--maya-warning` | Caution, attention, energy  | Alerts, degraded states, "unsaved" indicators |
-| `--maya-danger`  | Urgency, error, destructive | Error messages, delete buttons, broken states |
-| `--maya-info`    | Neutral, informative, calm  | Tooltips, help text, "new" badges |
-| `--maya-accent`  | Brand, primary CTA          | The one highlighted action on a page |
-
-Each semantic color has 5 slots:
-- `--maya-{color}` — solid fill (buttons, dots)
-- `--maya-{color}-hover` — hover/active variant
-- `--maya-{color}-muted` — transparent background tint (alerts, badges)
-- `--maya-{color}-border` — subtle border matching the color
-- `--maya-{color}-text` — readable text on dark surfaces
-
-**Always pair muted + border + text together for alert chips.** Example:
-```css
-background: var(--maya-success-muted);
-border: 1px solid var(--maya-success-border);
-color: var(--maya-success-text);
-```
 
 ---
 

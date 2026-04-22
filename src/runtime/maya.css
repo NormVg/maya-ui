@@ -107,33 +107,33 @@
   --maya-dash-color: rgba(255, 255, 255, 0.06);
 
   /* ─── Semantic Colors (desaturated to match monochrome palette) ─── */
-  /* Success — muted teal-green */
-  --maya-success: #3ecf8e;
-  --maya-success-hover: #5bdbaa;
-  --maya-success-muted: rgba(62, 207, 142, 0.08);
-  --maya-success-border: rgba(62, 207, 142, 0.16);
-  --maya-success-text: #6ee7b7;
+  /* Success - Emerald */
+  --maya-success: #30A46C;
+  --maya-success-hover: #33B074;
+  --maya-success-muted: rgba(48, 164, 108, 0.15);
+  --maya-success-border: rgba(48, 164, 108, 0.3);
+  --maya-success-text: #4CC38A;
 
-  /* Warning — dusty amber */
-  --maya-warning: #e0a45a;
-  --maya-warning-hover: #eabb7e;
-  --maya-warning-muted: rgba(224, 164, 90, 0.08);
-  --maya-warning-border: rgba(224, 164, 90, 0.16);
-  --maya-warning-text: #f0cea0;
+  /* Warning - Amber */
+  --maya-warning: #F76B15;
+  --maya-warning-hover: #FF761A;
+  --maya-warning-muted: rgba(247, 107, 21, 0.15);
+  --maya-warning-border: rgba(247, 107, 21, 0.3);
+  --maya-warning-text: #FFB073;
 
-  /* Danger — muted rose */
-  --maya-danger: #e5484d;
-  --maya-danger-hover: #ec6b6f;
-  --maya-danger-muted: rgba(229, 72, 77, 0.08);
-  --maya-danger-border: rgba(229, 72, 77, 0.16);
-  --maya-danger-text: #ff9592;
+  /* Danger - Ruby */
+  --maya-danger: #E5484D;
+  --maya-danger-hover: #EC5D5E;
+  --maya-danger-muted: rgba(229, 72, 77, 0.15);
+  --maya-danger-border: rgba(229, 72, 77, 0.3);
+  --maya-danger-text: #FFB2B6;
 
-  /* Info — slate blue */
-  --maya-info: #7b93db;
-  --maya-info-hover: #9baee5;
-  --maya-info-muted: rgba(123, 147, 219, 0.08);
-  --maya-info-border: rgba(123, 147, 219, 0.16);
-  --maya-info-text: #b4c6ef;
+  /* Info - Cobalt */
+  --maya-info: #0090FF;
+  --maya-info-hover: #119BFF;
+  --maya-info-muted: rgba(0, 144, 255, 0.15);
+  --maya-info-border: rgba(0, 144, 255, 0.3);
+  --maya-info-text: #52A9FF;
 
   color-scheme: dark;
 }
@@ -214,34 +214,33 @@
   /* Dashed */
   --maya-dash-color: rgba(0, 0, 0, 0.08);
 
-  /* ─── Semantic Colors (desaturated for light surfaces) ─── */
-  /* Success */
-  --maya-success: #2e9e6e;
-  --maya-success-hover: #257d58;
-  --maya-success-muted: rgba(46, 158, 110, 0.07);
-  --maya-success-border: rgba(46, 158, 110, 0.15);
-  --maya-success-text: #1e7a52;
+  /* Success - Emerald */
+  --maya-success: #30A46C;
+  --maya-success-hover: #298C5A;
+  --maya-success-muted: rgba(48, 164, 108, 0.1);
+  --maya-success-border: rgba(48, 164, 108, 0.2);
+  --maya-success-text: #18794E;
 
-  /* Warning */
-  --maya-warning: #b5872e;
-  --maya-warning-hover: #966d1e;
-  --maya-warning-muted: rgba(181, 135, 46, 0.07);
-  --maya-warning-border: rgba(181, 135, 46, 0.15);
-  --maya-warning-text: #8a6518;
+  /* Warning - Amber */
+  --maya-warning: #F76B15;
+  --maya-warning-hover: #DB5B0F;
+  --maya-warning-muted: rgba(247, 107, 21, 0.1);
+  --maya-warning-border: rgba(247, 107, 21, 0.2);
+  --maya-warning-text: #C25100;
 
-  /* Danger */
-  --maya-danger: #c93b3b;
-  --maya-danger-hover: #a83030;
-  --maya-danger-muted: rgba(201, 59, 59, 0.07);
-  --maya-danger-border: rgba(201, 59, 59, 0.15);
-  --maya-danger-text: #a33030;
+  /* Danger - Ruby */
+  --maya-danger: #E5484D;
+  --maya-danger-hover: #CE3A43;
+  --maya-danger-muted: rgba(229, 72, 77, 0.1);
+  --maya-danger-border: rgba(229, 72, 77, 0.2);
+  --maya-danger-text: #CC1825;
 
-  /* Info */
-  --maya-info: #5a73b5;
-  --maya-info-hover: #485e98;
-  --maya-info-muted: rgba(90, 115, 181, 0.07);
-  --maya-info-border: rgba(90, 115, 181, 0.15);
-  --maya-info-text: #425690;
+  /* Info - Cobalt */
+  --maya-info: #0090FF;
+  --maya-info-hover: #007EE6;
+  --maya-info-muted: rgba(0, 144, 255, 0.1);
+  --maya-info-border: rgba(0, 144, 255, 0.2);
+  --maya-info-text: #0068D6;
 
   color-scheme: light;
 }
