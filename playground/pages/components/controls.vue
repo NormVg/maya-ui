@@ -5,7 +5,7 @@
       <p class="component-desc">On/off controls for settings, filters, and selections.</p>
     </div>
 
-    <Showcase title="Toggle — Intents" description="Single toggle with semantic intent colors.">
+    <MayaPreviewCode title="Toggle — Intents" description="Single toggle with semantic intent colors.">
       <template #preview>
         <div class="row wrap">
           <MayaToggle v-model="t0">Default</MayaToggle>
@@ -15,9 +15,9 @@
           <MayaToggle v-model="t4" intent="info">Info</MayaToggle>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Button Group" description="Joined buttons sharing borders.">
+    <MayaPreviewCode title="Button Group" description="Joined buttons sharing borders.">
       <template #preview>
         <div class="col">
           <MayaBtnGroup>
@@ -32,9 +32,9 @@
           </MayaBtnGroup>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Toggle Group — Single" description="Radio-style selection — one active at a time.">
+    <MayaPreviewCode title="Toggle Group — Single" description="Radio-style selection — one active at a time.">
       <template #preview>
         <MayaToggleGroup v-model="tgSingle" type="single">
           <MayaToggle value="left">Left</MayaToggle>
@@ -42,9 +42,9 @@
           <MayaToggle value="right">Right</MayaToggle>
         </MayaToggleGroup>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Switch" description="Animated toggle switch. Checked state uses success color.">
+    <MayaPreviewCode title="Switch" description="Animated toggle switch. Checked state uses success color.">
       <template #preview>
         <div class="col">
           <div class="row">
@@ -66,7 +66,7 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

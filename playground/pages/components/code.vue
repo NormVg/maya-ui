@@ -3,7 +3,7 @@
     <h2 class="page-title">Components / Code & Prose</h2>
 
     <!-- CodeBlock -->
-    <Showcase title="Code Block" description="Multi-line syntax-highlighted code with copy button.">
+    <MayaPreviewCode title="Code Block" description="Multi-line syntax-highlighted code with copy button.">
       <template #preview>
         <div style="width: 100%;">
           <MayaCodeBlock filename="nuxt.config.ts" lang="typescript" :code="codeBlockExample" />
@@ -12,10 +12,10 @@
       <template #code>
         <pre><code>{{ codeBlockUsage }}</code></pre>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
     <!-- InlineCode -->
-    <Showcase title="Inline Code" description="One-line copyable snippet for commands and imports.">
+    <MayaPreviewCode title="Inline Code" description="One-line copyable snippet for commands and imports.">
       <template #preview>
         <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
           <MayaInlineCode code="npm install maya-ui" lang="bash" />
@@ -26,10 +26,10 @@
       <template #code>
         <pre><code>{{ inlineCodeUsage }}</code></pre>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
     <!-- Prose -->
-    <Showcase title="Prose / Markdown" description="Renders markdown with syntax-highlighted fenced code blocks.">
+    <MayaPreviewCode title="Prose / Markdown" description="Renders markdown with syntax-highlighted fenced code blocks.">
       <template #preview>
         <div style="width: 100%; text-align: left;">
           <MayaProse :content="markdownExample" />
@@ -38,7 +38,7 @@
       <template #code>
         <pre><code>{{ proseUsage }}</code></pre>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

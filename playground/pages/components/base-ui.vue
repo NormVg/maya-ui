@@ -5,7 +5,7 @@
       <p class="component-desc">Foundational building blocks — Label, Separator, and Kbd.</p>
     </div>
 
-    <Showcase title="Label" description="Accessible form label with required indicator and hint text.">
+    <MayaPreviewCode title="Label" description="Accessible form label with required indicator and hint text.">
       <template #preview>
         <div class="col">
           <MayaLabel>Default Label</MayaLabel>
@@ -14,18 +14,18 @@
           <MayaLabel disabled>Disabled Label</MayaLabel>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Separator — Horizontal" description="Dashed horizontal divider with optional center label.">
+    <MayaPreviewCode title="Separator — Horizontal" description="Dashed horizontal divider with optional center label.">
       <template #preview>
         <div style="width: 100%; display: flex; flex-direction: column; gap: 24px;">
           <MayaSeparator />
           <MayaSeparator label="or continue with" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Separator — Vertical" description="Inline vertical divider for toolbars and button rows.">
+    <MayaPreviewCode title="Separator — Vertical" description="Inline vertical divider for toolbars and button rows.">
       <template #preview>
         <div style="display: flex; align-items: center; gap: 12px; height: 32px;">
           <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">File</span>
@@ -35,9 +35,9 @@
           <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">View</span>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Kbd — Keyboard Keys" description="Render keyboard shortcuts with physical key styling.">
+    <MayaPreviewCode title="Kbd — Keyboard Keys" description="Render keyboard shortcuts with physical key styling.">
       <template #preview>
         <div class="row wrap">
           <MayaKbd>⌘</MayaKbd>
@@ -51,7 +51,7 @@
             </MayaKbd> to open command palette</span>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

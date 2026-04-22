@@ -6,7 +6,7 @@
         intents.</p>
     </div>
 
-    <Showcase title="Soft (default)" description="Muted bg + border + text. The standard alert chip pattern.">
+    <MayaPreviewCode title="Soft (default)" description="Muted bg + border + text. The standard alert chip pattern.">
       <template #preview>
         <div class="row wrap">
           <MayaBadge variant="soft">Default</MayaBadge>
@@ -16,9 +16,9 @@
           <MayaBadge variant="soft" intent="info">Info</MayaBadge>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Solid" description="Filled background — use for high-contrast counts or labels.">
+    <MayaPreviewCode title="Solid" description="Filled background — use for high-contrast counts or labels.">
       <template #preview>
         <div class="row wrap">
           <MayaBadge variant="solid">Default</MayaBadge>
@@ -28,9 +28,9 @@
           <MayaBadge variant="solid" intent="info">Info</MayaBadge>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Outline" description="Transparent bg with colored border.">
+    <MayaPreviewCode title="Outline" description="Transparent bg with colored border.">
       <template #preview>
         <div class="row wrap">
           <MayaBadge variant="outline">Default</MayaBadge>
@@ -40,9 +40,9 @@
           <MayaBadge variant="outline" intent="info">Info</MayaBadge>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="With Dot" description="Status dot for live/active indicators.">
+    <MayaPreviewCode title="With Dot" description="Status dot for live/active indicators.">
       <template #preview>
         <div class="row wrap">
           <MayaBadge variant="soft" intent="success" dot>Online</MayaBadge>
@@ -51,7 +51,7 @@
           <MayaBadge variant="soft" dot>Offline</MayaBadge>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

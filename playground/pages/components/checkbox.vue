@@ -5,7 +5,7 @@
       <p class="component-desc">A toggleable checkbox input.</p>
     </div>
 
-    <Showcase
+    <MayaPreviewCode
       title="Default"
       description="Basic checkbox with a label."
       :code="`<MayaCheckbox v-model=&quot;checked&quot; label=&quot;Accept terms&quot; />`"
@@ -13,9 +13,9 @@
       <template #preview>
         <MayaCheckbox v-model="checked" label="Accept terms" />
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase
+    <MayaPreviewCode
       title="Multiple"
       description="Group of checkboxes."
       :code="`<MayaCheckbox v-model=&quot;a&quot; label=&quot;Option A&quot; />\n<MayaCheckbox v-model=&quot;b&quot; label=&quot;Option B&quot; />\n<MayaCheckbox v-model=&quot;c&quot; label=&quot;Option C&quot; />`"
@@ -27,9 +27,9 @@
           <MayaCheckbox v-model="c" label="Option C" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase
+    <MayaPreviewCode
       title="Disabled"
       description="Checkbox in a disabled state."
       :code="`<MayaCheckbox label=&quot;Can't toggle&quot; disabled />`"
@@ -37,7 +37,7 @@
       <template #preview>
         <MayaCheckbox label="Can't toggle" disabled />
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

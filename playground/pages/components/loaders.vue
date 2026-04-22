@@ -5,7 +5,7 @@
       <p class="component-desc">Visual feedback during async operations. Spinner, Skeleton, and Loading Dots.</p>
     </div>
 
-    <Showcase title="Spinner" description="SVG rotating ring. Sizes and semantic intent colors.">
+    <MayaPreviewCode title="Spinner" description="SVG rotating ring. Sizes and semantic intent colors.">
       <template #preview>
         <div class="row wrap align-center">
           <MayaSpinner size="sm" />
@@ -18,9 +18,9 @@
           <MayaSpinner size="md" intent="info" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Skeleton" description="Shimmer placeholder for loading states. Matches real content shape.">
+    <MayaPreviewCode title="Skeleton" description="Shimmer placeholder for loading states. Matches real content shape.">
       <template #preview>
         <div class="col" style="width: 100%; max-width: 340px;">
           <div class="row align-center" style="gap: 12px;">
@@ -34,9 +34,9 @@
           <MayaSkeleton width="40%" height="12px" rounded="md" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Loading Dots" description="Three bouncing dots with staggered timing.">
+    <MayaPreviewCode title="Loading Dots" description="Three bouncing dots with staggered timing.">
       <template #preview>
         <div class="row wrap align-center">
           <MayaLoadingDots size="sm" />
@@ -48,7 +48,7 @@
           </MayaBtn>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

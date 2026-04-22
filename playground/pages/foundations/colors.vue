@@ -6,7 +6,7 @@
         consume these variables.</p>
     </div>
 
-    <Showcase title="Background Tiers"
+    <MayaPreviewCode title="Background Tiers"
       description="Use these in order of z-axis depth. Root = deepest, Raised = floating.">
       <template #preview>
         <div class="token-grid">
@@ -24,9 +24,9 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Striped Texture" description="Premium noise pattern. Stack on top of any background token.">
+    <MayaPreviewCode title="Striped Texture" description="Premium noise pattern. Stack on top of any background token.">
       <template #preview>
         <div
           style="background: var(--maya-pattern-stripes), var(--maya-bg-root); width: 100%; height: 120px; border-radius: var(--maya-radius-lg); border: 1px solid var(--maya-border); display: flex; align-items: center; justify-content: center;">
@@ -34,9 +34,9 @@
             style="color: var(--maya-text-secondary); font-size: 0.8125rem;">var(--maya-pattern-stripes), var(--maya-bg-root)</code>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Typography Scale" description="Three levels of text emphasis.">
+    <MayaPreviewCode title="Typography Scale" description="Three levels of text emphasis.">
       <template #preview>
         <div class="type-list">
           <div style="color: var(--maya-text-primary); font-size: 1.125rem; font-weight: 600;">
@@ -50,9 +50,9 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Borders" description="Three border weights for different contexts.">
+    <MayaPreviewCode title="Borders" description="Three border weights for different contexts.">
       <template #preview>
         <div class="token-grid">
           <div class="border-box" style="border-color: var(--maya-border)">
@@ -73,9 +73,9 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Depth & Elevation" description="Layered shadow system to express z-axis position.">
+    <MayaPreviewCode title="Depth & Elevation" description="Layered shadow system to express z-axis position.">
       <template #preview>
         <div class="token-grid">
           <div class="depth-box" style="box-shadow: var(--maya-shadow-sm)">
@@ -92,9 +92,9 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Semantic Colors"
+    <MayaPreviewCode title="Semantic Colors"
       description="Use sparingly to trigger emotion and communicate state. Each color has 5 variants: solid, hover, muted bg, border, text.">
       <template #preview>
         <div class="semantic-grid">
@@ -143,7 +143,7 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

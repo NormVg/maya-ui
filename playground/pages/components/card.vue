@@ -6,7 +6,7 @@
         alert-style cards.</p>
     </div>
 
-    <Showcase title="Default Card">
+    <MayaPreviewCode title="Default Card">
       <template #preview>
         <div style="width: 300px;">
           <MayaCard>
@@ -28,9 +28,9 @@
           </MayaCard>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Intent Cards" description="Left-edge accent using semantic colors for alert-style usage.">
+    <MayaPreviewCode title="Intent Cards" description="Left-edge accent using semantic colors for alert-style usage.">
       <template #preview>
         <div class="card-grid">
           <MayaCard intent="success">
@@ -48,7 +48,7 @@
           </MayaCard>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

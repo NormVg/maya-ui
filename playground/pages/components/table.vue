@@ -5,7 +5,7 @@
       <p class="component-desc">Data table with columns and rows.</p>
     </div>
 
-    <Showcase
+    <MayaPreviewCode
       title="Basic"
       description="A simple data table."
       :code="`<MayaTable :columns=&quot;columns&quot; :rows=&quot;rows&quot; />`"
@@ -15,9 +15,9 @@
           <MayaTable :columns="columns" :rows="rows" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase
+    <MayaPreviewCode
       title="Empty State"
       description="Table with no data."
       :code="`<MayaTable :columns=&quot;columns&quot; :rows=&quot;[]&quot; />`"
@@ -27,7 +27,7 @@
           <MayaTable :columns="columns" :rows="[]" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

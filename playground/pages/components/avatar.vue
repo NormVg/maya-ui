@@ -6,7 +6,7 @@
         stacked groups.</p>
     </div>
 
-    <Showcase title="Sizes & Initials" description="Four sizes with automatic initials fallback.">
+    <MayaPreviewCode title="Sizes & Initials" description="Four sizes with automatic initials fallback.">
       <template #preview>
         <div class="row align-center">
           <MayaAvatar initials="VN" size="sm" />
@@ -15,9 +15,9 @@
           <MayaAvatar initials="VN" size="xl" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Status Dots" description="Semantic status indicators using design tokens.">
+    <MayaPreviewCode title="Status Dots" description="Semantic status indicators using design tokens.">
       <template #preview>
         <div class="row align-center">
           <div class="col-center">
@@ -38,9 +38,9 @@
           </div>
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase title="Avatar Group" description="Stacked avatars with +N overflow.">
+    <MayaPreviewCode title="Avatar Group" description="Stacked avatars with +N overflow.">
       <template #preview>
         <div class="col">
           <MayaAvatarGroup :avatars="[
@@ -54,7 +54,7 @@
           <MayaAvatarGroup :avatars="[{ initials: 'A' }, { initials: 'B' }, { initials: 'C' }]" :max="4" size="lg" />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

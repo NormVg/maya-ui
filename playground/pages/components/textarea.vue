@@ -5,7 +5,7 @@
       <p class="component-desc">A multi-line text input.</p>
     </div>
 
-    <Showcase
+    <MayaPreviewCode
       title="Default"
       description="Basic textarea."
       :code="`<MayaTextarea v-model=&quot;val&quot; placeholder=&quot;Write something...&quot; />`"
@@ -15,9 +15,9 @@
           <MayaTextarea v-model="val" placeholder="Write something..." />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase
+    <MayaPreviewCode
       title="With Label"
       description="Textarea with an associated label."
       :code="`<MayaTextarea v-model=&quot;val&quot; label=&quot;Message&quot; placeholder=&quot;Your message...&quot; />`"
@@ -27,9 +27,9 @@
           <MayaTextarea v-model="labeled" label="Message" placeholder="Your message..." />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
 
-    <Showcase
+    <MayaPreviewCode
       title="Custom Rows"
       description="Textarea with custom row count."
       :code="`<MayaTextarea v-model=&quot;val&quot; label=&quot;Bio&quot; :rows=&quot;6&quot; placeholder=&quot;Tell us about yourself...&quot; />`"
@@ -39,7 +39,7 @@
           <MayaTextarea v-model="bio" label="Bio" :rows="6" placeholder="Tell us about yourself..." />
         </div>
       </template>
-    </Showcase>
+    </MayaPreviewCode>
   </div>
 </template>
 

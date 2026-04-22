@@ -285,3 +285,22 @@
 .maya-dash-all {
   border: var(--maya-dash-size) dashed var(--maya-dash-color) !important;
 }
+
+/* ─── Icon Swap Transition (bouncy scale + fade) ─── */
+.maya-icon-swap-enter-active {
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.maya-icon-swap-leave-active {
+  transition: all 150ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
+}
+
+.maya-icon-swap-enter-from {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.maya-icon-swap-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
