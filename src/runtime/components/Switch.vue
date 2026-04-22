@@ -68,9 +68,9 @@ defineEmits(['update:modelValue'])
   background: var(--maya-text-muted);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition:
-    transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    width 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    background-color 200ms cubic-bezier(0.19, 1, 0.22, 1);
+    transform var(--maya-duration-bouncy) var(--maya-ease-bouncy),
+    width var(--maya-duration-bouncy) var(--maya-ease-bouncy),
+    background-color var(--maya-duration) var(--maya-ease);
 }
 
 /* Thumb sizes & Press logic */

@@ -19,9 +19,14 @@
   --maya-radius-lg: 8px;
   --maya-radius-xl: 12px;
 
-  /* ─── Timing (Doherty Threshold) ─── */
+  /* ─── Animation ─── */
+  --maya-duration: 150ms;
+  --maya-duration-bouncy: 400ms;
   --maya-ease: cubic-bezier(0.19, 1, 0.22, 1);
-  --maya-duration: 0.15s;
+  --maya-ease-in: cubic-bezier(0.55, 0.05, 0.68, 0.19);
+  --maya-ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --maya-ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --maya-ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ─── Dashed Line Decorators ─── */
   --maya-dash-color: rgba(255, 255, 255, 0.06);

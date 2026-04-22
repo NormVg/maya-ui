@@ -50,19 +50,13 @@ These are NOT interchangeable. Choose based on the role motion plays:
 - **Exits** (ease-in): `cubic-bezier(0.55, 0.05, 0.68, 0.19)` — builds momentum, gets out of the way
 - **Both** (ease-in-out): `cubic-bezier(0.455, 0.03, 0.515, 0.955)` — deliberate transitions
 
-### Use Springs when:
+### Use Springs (or Bouncy Beziers) when:
 - Motion is reacting to user input (drag, flick, press)
-- The interaction can be interrupted mid-animation
-- Velocity/energy of the gesture matters
+- State changes visually jump between two absolutes (Switches, Toggles)
+- The interaction feels playful or heavily physical.
 
-**Starting spring values:**
-```
-stiffness: 500–900
-damping: 30–80
-mass: 1–10
-```
-
-> If duration feels slow, shorten it before tweaking the curve.
+> **Note on Springs in CSS:** True springs aren't natively supported in standard CSS yet. For a perfectly bouncy, spring-like CSS transition, use the standard Maya bouncy ease:
+`cubic-bezier(0.34, 1.56, 0.64, 1)` mapped to `var(--maya-ease-bouncy)`. Duration should be `400ms`.
 
 ---
 
