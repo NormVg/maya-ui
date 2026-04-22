@@ -165,3 +165,30 @@ ul {
   color: var(--maya-text-secondary);
   font-size: 0.875rem;
 }
+
+/* ─── Page Transitions ─── */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ─── Layout Transitions ─── */
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+  opacity: 0;
+}

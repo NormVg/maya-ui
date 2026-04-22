@@ -4,4 +4,8 @@ export default defineNuxtConfig({
   compatibilityDate: 'latest',
   css: ['~/assets/css/main.css'],
   mayaUi: {},
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+  },
 })
