@@ -1,0 +1,39 @@
+We've collectively decided that the web should be mute.
+I've never understood why. Native apps use sound constantly to confirm actions, signal errors, provide notifications and nobody thinks less of them for it. Same goes for games, or any other form of interactive media.
+Yet on the web, sound is rare, often jarring, and frequently maligned as unprofessional or intrusive.
+I think this is because people have probably had bad experiences with sound on the web. I've had my share of autoplaying music, loud error beeps, unnecessary clicks. These are valid complaints, but they miss the point: sound itself isn't the problem; it's how and when it's used.
+Why Sound Matters
+Your ears are faster than your eyes. The auditory cortex processes sound in about 25ms, while visual processing takes nearly ten times longer. When you need immediate feedback sound gets there first.
+This has real consequences for how interfaces feel. A button that clicks feels faster than one that doesn't, even when the visual feedback is identical.
+Click MeClick Me
+The difference is subtle but when you try it without, something feels off.
+Sound bridges the gap between action and response in a way that visual feedback alone cannot. A notification that chimes is present in your room, not just on your display. It crosses the boundary between device and environment in a way that pixels never can.
+The Emotional Layer
+A single tone can communicate success, error, tension, or playfulness. To achieve the same thing visually, you'd need elaborate choreography colors shifting and much more. Researchers call this "auditory dominance in temporal processing."
+In plain English, it's when sight and sound tell slightly different stories, we tend to believe our ears.
+A form submission with a gentle chime feels different than one met with silence. An error with a soft thunk lands differently than a red border alone.
+What Games Get Right
+If you want to understand audio feedback done well, study games. They've been perfecting this for decades.
+Video Game Sound Design - Stryxo
+I'm not saynig you should turn your app into a game, but games have nailed the balance of informative, emotional, and non-intrusive sound. They use sound to reward actions, signal errors, and provide context without overwhelming the player.
+When to Use Sound
+Not every interaction needs audio. That was the mistake the early web made. The goal is to use sound where it adds value.
+Some of the main examples include, confirmations for major actions like payments or uploads, errors and warnings that can't be overlooked, state changes that reinforce transitions, and notifications that interrupt without requiring visual attention. The sound should match the weight of the action and be informative rather than punishing.
+Your session will expire soonSuccessErrorWarning
+Respecting Preferences
+Some users don't want sound, and you should respect that. There's no prefers-reduced-audio media query yet, but prefers-reduced-motion works as a reasonable proxy since users who want less visual stimuli often want less audio stimuli too.
+You should also provide an explicit toggle in settings, letting users opt out entirely or adjust volume independent of system volume.
+The Counter-Arguments
+There are legitimate reasons the web went silent, so let me address them directly.
+"Users will hate it."
+Only if you do it poorly. Aggressive, loud, or unnecessary sounds are annoying; subtle, appropriate, optional sounds are not. The autoplay video backlash was about intrusion, not about sound itself. Context matters.
+"It's inaccessible."
+Sound should complement, not replace. Every audio cue should have a visual equivalent. Users who can't hear, or choose not to, should lose nothing functional. Sound adds a layer; it's never a requirement.
+"It's technically complicated."
+Basic audio playback is straightforward. The Web Audio API offers more power when you need it, but simple Audio objects cover most cases. The implementation burden is genuinely low.
+"It's not professional."
+This is cultural inertia. Native apps use sound constantly and nobody considers it unprofessional. The web's silence is a historical accident, not a design principle.
+Starting Small
+You don't need to audio-design your entire application at once. Pick a single interaction that feels flat: a button that needs emphasis, a confirmation that gets overlooked, an action that would benefit from finality.
+Add a sound, make it subtle, make it optional, and see how it changes the feeling of that moment. If it works, add another. Build the vocabulary gradually, learning what works for your product and your users.
+The goal isn't to fill silence. It's to use sound where it earns its place, where it adds feedback, presence, or emotional resonance that visuals alone can't achieve. The web has been mute for too long. It doesn't have to stay that way.

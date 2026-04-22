@@ -8,7 +8,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "my-module": "latest",
+    "maya-ui": "latest",
     "nuxt": "^4.4.2"
   }
 }

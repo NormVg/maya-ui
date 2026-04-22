@@ -1,0 +1,111 @@
+Motion on the web has come a long way from simple transitions and hover effects. Motion is more than flair; it is communication, guiding users, reassuring them, and delighting them while transforming routine workflows into memorable experiences.
+But not all animation is created equal. The difference between good and great often comes down to intention. Great animation is purposeful, subtle, and rooted in the principles that have guided designers for decades.
+The Principles of Animation
+The 12 Principles of Animation provide a framework for creating more engaging and lifelike animations. In the 1930s, Disney animators codified what they'd learned into twelve principles.1 They were trying to make drawings feel real. We're trying to make pixels feel human. The problems are surprisingly similar.
+Squash and Stretch
+Everything has it's own mass, and the way it moves and deforms is crucial to conveying its weight and personality. Drop a rubber ball. It flattens on impact, then springs back.
+That momentary deformation tells your brain everything about its weight, material, and energy. Digital objects don't have physics so in turn we need to "fake" it.
+FireFireCrownToastFamily's Wallet Icon Picker2
+In this example, the wallet icon appears to squash and stretch on change. It's almost like it's morphing into a different shape. A simple but effective use of this principle.
+It's small and most users won't consciously notice but they'll feel it, and that feeling adds to the overall experience.
+There is a trap here though. Too much squash and stretch turns professional software into a cartoon. The goal is believability, not Looney Tunes (unless that's what you're going for).
+As with all things in life, a balance must be struck.
+Anticipation
+Anticipation is the act of preparing users for what comes next. Before a baseball pitcher throws, they wind up. Before a dancer leaps, they bend their knees.
+In practice, this means giving a clue before a major action occurs. Such cues tap into subconscious expectations.
+RefreshingBookmarkBellPinStar
+Above is a pull-to-refresh interaction. As you drag down, the reveal hint appears from the top to indicate that releasing will trigger a refresh. The pulling down also feels elastic, giving a sense that something will happen on release.
+Reserve anticipation for moments that matter. A notification badge might wiggle to hint at updates. A submit button might compress slightly before sending. But if every micro-interaction has a wind-up, your app will feel sluggish. Save the drama for the dramatic.
+Staging
+If anticipation is about the before, staging is about the during. When a complex panel opens, what should the user look at first? If everything animates simultaneously, the answer is "nothing" their attention scatters.
+Bell 2$57,206Dot Grid 1 X 3 HorizontalCustomize
+Watch the sequence here. Clicking on the image brings the card into focus while dimming the background. The animation guides your eye to the important parts.
+Think of staging as directing a film. You're not just showing information you're manipulating attention.
+Straight Ahead Action & Pose to Pose
+There are two ways to animate. Straight ahead means drawing frame after frame in sequence, letting the animation discover itself. Pose to pose means defining the key moments first, then filling in the gaps.
+On the web, we mostly work pose to pose. We define the keyframes and let the browser interpolate the rest.
+This matters more than it sounds. You don't need to obsess over every frame, you need just need to nail the important ones. Start state. End state. Maybe a midpoint for complex curves.
+AppleChevron DownDividerAppleChevron DownDividerAppleChevron Down
+Why is this important? Because focusing on key poses helps you prioritize what matters. It keeps your animations efficient and purposeful.
+If something doesn't need to be animated, don't animate it (please). Not every key moment needs motion. Sometimes the best animation is none at all.
+For example, consider context menus. Apple's context menus only animate on exit, never on entry. Opening happens instantly. They do this beecause context menus are used constantly, and that entrance animation would compound into irritation.
+Follow Through & Overlapping Action
+When you stop walking, your hair keeps moving. When you start running, your arms take a moment to catch up. Nothing in nature moves as a single rigid unit.
+If you want your animations to feel more alive, you need to embrace this principle.
+Tab EdgeTab EdgeDia's Split Tabs.3
+The above example makes use of springs to make the transitions feel more alive. Springs itself is a whole topic that would need it's own essay to be discussed.
+They add that organic overshoot-and-settle that easing curves can't replicate. Apple's WWDC23 talk on springs is worth your time if you want to go deeper.4
+Knowning this, the maing danger is latency. Too much stagger and your interface feels slow, like it's thinking too hard, so save it for none critical elements.
+Slow In & Slow Out
+Nothing in nature starts or stops instantly. Even light takes time to fade.
+This principle is the cornerstone of smooth, comfortable transitions. In practice, it’s all about easing curves, an element might ease-out as it leaves the screen or ease-in when it appears.
+The result mimics how a car accelerates and brakes, or how a human moves, avoiding the jolt of an abrupt linear motion.
+Easing Curve VisualizationeaseInSineEasing Curve VisualizationeaseOutSineEasing Curve VisualizationeaseInOutSineEasing Curve VisualizationeaseInQuadEasing Curve VisualizationeaseOutQuadEasing Curve VisualizationeaseInOutQuadEasing Curve VisualizationeaseInCubicEasing Curve VisualizationeaseOutCubicEasing Curve VisualizationeaseInOutCubicCommon Easing Functions.5
+This is where easing curves earn their keep. An ease-out makes entrances feel snappy—the element arrives fast and settles gently. An ease-in works for exits, building momentum before departure. ease-in-out suits elements that need to feel deliberate, like a panel sliding across the screen.
+easing.dev is an excellent playground for this.5 I'd reccomend spending some time there, experimenting with different curves to see how they affect the feel of motion.
+Arcs
+Arcs make movement feel organic. Instead of sliding elements in straight lines, a gentle curve adds realism and comfort. Use arcs for larger transitions or playful effects, but keep them subtle unless your app’s personality calls for more.
+Apple's Dynamic Island.6
+Apple's Dynamic Island uses this beautifully. Elements don't just resize, they flow along curved paths that feel inevitable, like water finding its level.
+Arcs are hard to get right in UI. They're most useful for hero moments on landing pages or playful interactions where you want that extra polish. For utilitarian interfaces, straight lines are fine. But when you need magic, reach for a curve.
+Secondary Action
+These are little flourishes that support the main action, adding depth and feedback without stealing the spotlight.
+Secondary actions might be something like a checkmark icon that pops and then does a brief sparkle after a form is successfully submitted. The sparkle isn’t the main message, but it reinforces the feeling of success in a fun way.
+CheckLoading SpinnerBackinged Up! NowFamily's Secure Wallet Button3
+Add secondary actions to inject delight and clarity into moments of user feedback. Sound can also be a secondary action, like a subtle click or whoosh that reinforces the feeling of interaction.
+Think of your favourite games or media, when they want to show impact they often use sound effects and visual effects to enhance the moment. Utilize this frame of thinking.
+Timing
+In animation, timing refers to the speed of an action, pretty self explanatory. Choosing the right duration is what makes interfaces feel snappy or sluggish, deliberate or chaotic.
+A tooltip at 150ms feels responsive. The same tooltip at 400ms feels broken. The information hasn't changed, only the wait. And waiting, even for fractions of a second, erodes trust.
+CyclamenSnappy (120ms)
+My rule: keep interactions under 300ms. Anything longer needs a good reason.
+More importantly, be consistent. If your buttons animate at 200ms, all your buttons should animate at 200ms. Inconsistent timing creates a subconscious sense that something is wrong, even if users can't articulate why. Define your timing scale early. Reuse it everywhere.
+Exaggeration
+Reality is boring. Sometimes you need to push past it.
+Exaggeration means amplifying motion beyond what's physically accurate to make a point land harder. It's theatrical. It's intentional. And in the right moments, it's exactly what you need.
+
+Use exaggeration sparingly for moments when you want the user to feel something strongly or notice something important.
+It’s particularly at home in onboarding sequences, empty states, confirmations, or error notifications. Here a touch of theatrics can increase engagement or clarity.
+Solid Drawing
+Traditional animators obsessed over making 2D drawings feel three-dimensional. They understood that believable volume creates believable characters.
+We work in a different medium, but the principle translates. Shadows suggest depth. Layering implies hierarchy. Perspective hints at space beyond the viewport.
+GlobePauseLinear Orbit7
+CSS perspective is your friend here. It defines how far an object sits from the viewer, giving 3D transforms actual depth instead of flat rotation.
+Another aspect is consistency in how things are drawn and move. If an icon rotates in 3D, it shouldn’t suddenly look flat or inverted incorrectly, paying attention to how things scale or skew maintains the illusion of volume.
+Appeal
+This is the one that ties everything together. Appeal is the difference between software you tolerate and software you love.
+John PhamousGustav EkerotAbhijeet SinghMintXavier (Jack)Henry HeffernanA small scrollable sample of delightful creations on the web.8
+Scroll through these examples. Notice how each one makes you feel something? That's appeal. It's not one technique, it's the sum of all the techniques, applied with care and taste.
+Think about the products you keep coming back to. The ones you recommend to friends. They probably aren't the most feature rich. They're the ones that feel right. The ones where someone clearly gave a damn.
+That's the goal. to make something people love.
+Why This Still Matters
+We live in an age of AI-generated interfaces and ship-fast culture. Polish feels like a luxury. Animation feels like scope creep. But here's the thing, when everything is fast, craft becomes the differentiator. When AI can generate any feature, the feeling of using software becomes the product.
+In the end, great animation is invisible. Users don't think "nice ease-out curve." They think "this feels good." They don't know why. They just know they want to come back. And that's why these principles still matter. Because they help us create experiences that resonate on a human level,
+They help make ui feel human.
+
+
+
+The Illusion of Life: Disney Animation is an amazing book that delves into the principles of animation, including squash and stretch, anticipation, and more. It’s a must-read for anyone serious about mastering animation. ↩
+
+
+The Family Wallet Icon Picker is a great example of how squash and stretch can be used effectively in a user interface. The icon picker uses subtle animations to make the selection process feel more engaging and intuitive. ↩
+
+
+Dia have a very nice example of follow-through in their splitting tabs animation. Check out the browser to see the live version. ↩ ↩2
+
+
+The Animate with Springs talk from WWDC23 is a great resource for learning about how to use springs in animations. It's mainly about SwiftUI, but the concepts apply to any animation framework. ↩
+
+
+Lochie's easing.dev is a great resource for exploring different easing functions and their applications. You can also build your own springs here too. ↩ ↩2
+
+
+Rauno recorded this clip in his Invisible Details of Interaction Design essay. Worth the read. ↩
+
+
+A recreation of the Linear loading animation, made by Emil can be found on their Twitter ↩
+
+
+Some wonderful people building on the web, check out their profiles. John Phamous, Gustav Ekerot, Abhijeet Singh, Mint, Xavier (Jack), Florian, Lochie Axon, Pranathi Peri, Jakub Krehel and Henry Heffernan. ↩
+
+

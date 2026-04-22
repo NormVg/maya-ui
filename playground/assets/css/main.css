@@ -1,0 +1,167 @@
+/* ─── Maya UI Playground Styles ─── */
+
+/* Inherit tokens from maya.css (injected by the module) */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--maya-bg-root);
+  color: var(--maya-text-primary);
+  font-family: var(--maya-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ─── Layout ─── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ─── Sidebar ─── */
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background-color: var(--maya-bg-root);
+  border-right: 1px solid var(--maya-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sidebar-header {
+  height: 52px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--maya-dash-color);
+}
+
+.sidebar-header h1 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sidebar-nav {
+  padding: 16px 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-group {
+  margin-bottom: 20px;
+}
+
+.nav-group-title {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--maya-text-muted);
+  margin-bottom: 4px;
+  padding: 0 8px;
+  font-weight: 500;
+}
+
+.nav-item {
+  display: block;
+  padding: 6px 8px;
+  color: var(--maya-text-secondary);
+  font-size: 0.8125rem;
+  border-radius: var(--maya-radius-sm);
+  transition: color var(--maya-duration) var(--maya-ease);
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: var(--maya-text-primary);
+}
+
+.nav-item.active {
+  color: var(--maya-text-primary);
+  background-color: var(--maya-bg-surface);
+}
+
+/* ─── Main Content ─── */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;
+}
+
+.topbar {
+  height: 52px;
+  border-bottom: 1px dashed var(--maya-dash-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  background-color: var(--maya-bg-root);
+  z-index: 5;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.path {
+  font-size: 0.8125rem;
+  color: var(--maya-text-secondary);
+}
+
+.content-area {
+  flex: 1;
+  padding: 40px;
+  max-width: 860px;
+}
+
+/* ─── Page Content ─── */
+.component-header {
+  margin-bottom: 40px;
+}
+
+.component-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+
+.component-desc {
+  color: var(--maya-text-secondary);
+  font-size: 0.875rem;
+}

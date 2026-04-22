@@ -1,0 +1,34 @@
+
+This is a living document. It will be updated as new pseudo-elements that I find useful are released. For more detailed explanations on how things work, I highly recommend checking out the MDN Pseudo-elements Reference
+
+Most developers know ::before and ::after. They're workhorses, used for decorative elements, clearfixes, and the occasional icon. But CSS has quietly shipped a new generation of pseudo-elements that do far more than add visual flair.
+These newer pseudo-elements give you direct styling hooks into browser-native features. Dialogs, popovers, view transitions, scroll-driven navigation, form pickers. Things that once required JavaScript wrappers or couldn't be styled at all.
+This guide covers the pseudo-elements worth knowing, when to reach for them, and how they change what's possible with CSS alone.
+Before diving into the new, it helps to revisit what we already have. These pseudo-elements have been around for years, but they remain foundational.
+::before & ::after
+These create anonymous inline elements as the first or last child of their parent. They require content to render, even if it's empty.
+The common use cases are decorative layers, icons, separators, and expanding hit targets without adding DOM nodes. They keep your HTML clean while enabling visual complexity.
+One pattern I use constantly is using it for a simple button hover effect.
+::before
+Here I am using ::before to add a subtle background hover scale effect to the button on hover.
+I set the ::before to position: absolute and inset: 0 so it fills the button. Then I set the transform: scale(0.95) and opacity: 0 by default. On hover, I animate it to scale(1) and opacity: 1. This gives a nice tactile feel without extra markup.
+View Transitions
+The View Transitions API lets you animate between DOM states. Click a thumbnail, it morphs into a full-screen image. Navigate between pages, elements glide into their new positions. The API handles the snapshot diffing. You control the animation through pseudo-elements.
+When you call document.startViewTransition(), the browser captures the current state, applies your DOM changes, then generates a tree of pseudo-elements representing both states. You style these to define how elements transition.
+
+The example above shows a simple image lightbox. Clicking a thumbnail opens a dialog with a larger version of the image. The transition animates the image from its thumbnail position to the center of the screen.
+Prior to view transitions, this effect required complex JavaScript libraries or manual cloning of elements. Now, with just a few lines of CSS, you get smooth, performant animations handled natively by the browser.
+It works by using the view-transition-name property. When two elements share the same name across a transition, the browser treats them as the same element and interpolates between their positions, sizes, and styles.
+In this example, we're cloning the thumbnail into a dialog. The original stays in place (hidden with visibility: hidden) so the layout doesn't shift. Before the transition starts, we assign view-transition-name: card to the source image.
+Inside the transition callback, we remove that name and give it to the cloned image in the dialog. The browser sees one "card" disappear and another "card" appear, and morphs between them.
+::view-transition-group(card) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+This pseudo-element targets the group containing both snapshots. We control timing here. The browser handles the position and size interpolation automatically.
+Closing works the same way in reverse. We hand the name back to the source image before closing the dialog, and the browser animates the image back to its original position.
+Wrapping Up
+These modern pseudo-elements unlock powerful new capabilities in CSS.
+From animating view transitions to styling native UI components, they reduce the need for JavaScript and keep your code cleaner.
+As browser support grows, mastering these tools will be essential for building rich, interactive web experiences with CSS.
+Sometimes you don't need to install a library. The browser has you covered.

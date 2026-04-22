@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
-  modules: ['my-module'],
+  modules: ['../src/module'],
   devtools: { enabled: true },
   compatibilityDate: 'latest',
-  myModule: {},
+  css: ['~/assets/css/main.css'],
+  mayaUi: {},
 })

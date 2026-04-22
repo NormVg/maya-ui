@@ -1,19 +1,25 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponentsDir, addPlugin, createResolver } from '@nuxt/kit'
 
-// Module options TypeScript interface definition
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'my-module',
-    configKey: 'myModule',
+    name: 'maya-ui',
+    configKey: 'mayaUi',
   },
-  // Default configuration options of the Nuxt module
   defaults: {},
-  setup(_options, _nuxt) {
+  setup(_options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    // Auto-import all components from runtime/components
+    addComponentsDir({
+      path: resolver.resolve('./runtime/components'),
+      prefix: 'Maya',
+      global: true,
+      watch: true
+    })
+
+    // Inject global CSS tokens
+    nuxt.options.css.push(resolver.resolve('./runtime/maya.css'))
   },
 })
