@@ -16,11 +16,11 @@
   /* ─── Animation ─── */
   --maya-duration: 150ms;
   --maya-duration-bouncy: 400ms;
-  --maya-ease: cubic-bezier(0.19, 1, 0.22, 1);
-  --maya-ease-in: cubic-bezier(0.55, 0.05, 0.68, 0.19);
-  --maya-ease-out: cubic-bezier(0.19, 1, 0.22, 1);
-  --maya-ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  --maya-ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --maya-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --maya-ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --maya-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --maya-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --maya-ease-bouncy: cubic-bezier(0.25, 1, 0.5, 1.2);
 
   /* ─── Dashed Line Decorators ─── */
   --maya-dash-color: rgba(255, 255, 255, 0.06);
@@ -48,9 +48,10 @@
   --maya-border-hover: rgba(255, 255, 255, 0.22);
 
   /* Depth & Patterns */
-  --maya-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --maya-shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
-  --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  --maya-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --maya-shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  /* Crisp outer ring and deep shadow */
+  --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
   --maya-gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
   --maya-pattern-stripes: repeating-linear-gradient(-45deg,
       rgba(255, 255, 255, 0.02),
@@ -85,9 +86,9 @@
   --maya-btn-ghost-text-hover: #ededed;
 
   /* Input surfaces */
-  --maya-input-bg: #121212;
+  --maya-input-bg: rgba(18, 18, 18, 0.6);
   --maya-input-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
-  --maya-input-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --maya-input-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 1px 1px rgba(255, 255, 255, 0.02);
   --maya-input-focus-border: rgba(255, 255, 255, 0.3);
 
   /* Checkbox */
@@ -159,9 +160,10 @@
   --maya-border-hover: rgba(0, 0, 0, 0.22);
 
   /* Depth & Patterns */
-  --maya-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --maya-shadow-md: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
-  --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  --maya-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --maya-shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  /* Premium Vercel drop shadow */
+  --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(0, 0, 0, 0.02);
   --maya-gradient-surface: linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 100%);
   --maya-pattern-stripes: repeating-linear-gradient(-45deg,
       rgba(0, 0, 0, 0.02),
@@ -198,7 +200,7 @@
   /* Input surfaces */
   --maya-input-bg: #ffffff;
   --maya-input-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 100%);
-  --maya-input-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.04);
+  --maya-input-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), inset 0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --maya-input-focus-border: rgba(0, 0, 0, 0.3);
 
   /* Checkbox */

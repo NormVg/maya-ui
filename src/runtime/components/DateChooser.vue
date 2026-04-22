@@ -301,7 +301,7 @@ onUnmounted(() => {
   border-radius: var(--maya-radius-md);
   padding: 16px;
   z-index: 50;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: var(--maya-shadow-md);
 }
 
 .maya-calendar-header {
