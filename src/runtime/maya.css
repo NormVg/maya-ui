@@ -308,6 +308,10 @@
 }
 
 /* ─── View Transition (Theme Toggle) ─── */
+.maya-theme-transitioning * {
+  transition: none !important;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

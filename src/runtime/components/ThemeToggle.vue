@@ -38,6 +38,8 @@ function toggle(event) {
     Math.max(y, innerHeight - y)
   )
 
+  document.documentElement.classList.add('maya-theme-transitioning')
+
   const transition = document.startViewTransition(() => {
     isDark.value = !isDark.value
   })
@@ -60,6 +62,10 @@ function toggle(event) {
           : '::view-transition-new(root)'
       }
     )
+  })
+
+  transition.finished.then(() => {
+    document.documentElement.classList.remove('maya-theme-transitioning')
   })
 }
 
