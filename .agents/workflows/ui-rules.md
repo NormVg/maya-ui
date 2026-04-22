@@ -242,3 +242,52 @@ transition: all 0.15s cubic-bezier(0.19, 1, 0.22, 1);
   transform: scale(1);
 }
 ```
+
+---
+
+## 14. Component & Page Transitions
+
+Every state change the user can see should be animated. Hard cuts feel broken.
+
+### Global Transition Classes (defined in `maya.css`)
+
+| Class Name          | Use Case                          | Enter      | Leave   |
+|---------------------|-----------------------------------|------------|---------|
+| `maya-icon-swap`    | Icon toggling (copy → check)      | 300ms bouncy scale | 150ms ease-in |
+| `maya-panel-fade`   | Tab panel switching (Preview/Code)| 200ms fade + 4px slide-up | 120ms fade |
+| `maya-fade`         | Generic content swap              | 150ms fade | 150ms fade |
+
+### Usage Pattern
+
+Always wrap switchable content in Vue `<Transition>` with `mode="out-in"`:
+
+```vue
+<Transition name="maya-panel-fade" mode="out-in">
+  <div v-if="tab === 'a'" key="a">Panel A</div>
+  <div v-else key="b">Panel B</div>
+</Transition>
+```
+
+### Page Transitions (Nuxt)
+
+Configured in `nuxt.config.ts`:
+
+```typescript
+app: {
+  pageTransition: { name: 'page', mode: 'out-in' },
+  layoutTransition: { name: 'layout', mode: 'out-in' },
+}
+```
+
+| Transition | Enter                       | Leave                        |
+|------------|-----------------------------|------------------------------|
+| `page`     | 200ms fade + 6px slide-up   | 200ms fade + 6px slide-down  |
+| `layout`   | 200ms fade                  | 200ms fade                   |
+
+### Rules
+
+- **Tab panels**: Use `maya-panel-fade` with `mode="out-in"` and `v-if` (not `v-show`)
+- **Icon swaps**: Use `maya-icon-swap` with `mode="out-in"`
+- **Content reveals**: Use `maya-fade` for simple show/hide
+- **Never use `v-show` for animated content** — `<Transition>` requires `v-if` to trigger enter/leave hooks
+- **Always add `key` attributes** on sibling elements inside `<Transition>` so Vue can tell them apart

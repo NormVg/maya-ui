@@ -26,14 +26,15 @@
         </button>
       </div>
 
-      <div v-show="view === 'preview'" class="maya-preview-code-canvas">
-        <slot name="preview" />
-      </div>
-
-      <div v-show="view === 'code'" class="maya-preview-code-source">
-        <div v-if="highlighted" v-html="highlighted" />
-        <slot v-else name="code" />
-      </div>
+      <Transition name="maya-panel-fade" mode="out-in">
+        <div v-if="view === 'preview'" key="preview" class="maya-preview-code-canvas">
+          <slot name="preview" />
+        </div>
+        <div v-else key="code" class="maya-preview-code-source">
+          <div v-if="highlighted" v-html="highlighted" />
+          <slot v-else name="code" />
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
