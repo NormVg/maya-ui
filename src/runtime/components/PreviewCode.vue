@@ -100,7 +100,6 @@ function copyCode() {
 .maya-preview-code-card {
   border: 1px solid var(--maya-border);
   border-radius: var(--maya-radius-lg);
-  overflow: hidden;
   transition: border-color var(--maya-duration) var(--maya-ease);
 }
 
@@ -110,6 +109,8 @@ function copyCode() {
   gap: 0;
   border-bottom: 1px dashed var(--maya-dash-color);
   background: var(--maya-bg-surface);
+  border-top-left-radius: calc(var(--maya-radius-lg) - 1px);
+  border-top-right-radius: calc(var(--maya-radius-lg) - 1px);
   transition: background-color var(--maya-duration) var(--maya-ease);
 }
 
@@ -198,11 +199,15 @@ function copyCode() {
   justify-content: center;
   min-height: 140px;
   background: var(--maya-pattern-stripes), var(--maya-bg-root);
+  border-bottom-left-radius: calc(var(--maya-radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--maya-radius-lg) - 1px);
 }
 
 .maya-preview-code-source {
   background: var(--maya-code-bg);
   overflow-x: auto;
+  border-bottom-left-radius: calc(var(--maya-radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--maya-radius-lg) - 1px);
 }
 
 .maya-preview-code-source :deep(pre) {
