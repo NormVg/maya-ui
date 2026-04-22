@@ -17,9 +17,16 @@
 */
 .maya-input-group> :deep(*) {
   position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
   border-radius: 0;
   margin-left: -1px;
   /* Collapse borders */
+}
+
+/* Let buttons keep their natural width */
+.maya-input-group> :deep(.maya-btn) {
+  flex: 0 0 auto;
 }
 
 /* Fix z-index on hover/focus so the shared border is drawn above siblings */
