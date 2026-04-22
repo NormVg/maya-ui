@@ -26,15 +26,15 @@
         </button>
       </div>
 
-      <div v-show="view === 'preview'" class="maya-preview-code-panel maya-preview-code-canvas"
-        :class="{ active: view === 'preview' }">
-        <slot name="preview" />
-      </div>
+      <div class="maya-preview-code-panels">
+        <div class="maya-preview-code-panel maya-preview-code-canvas" :class="{ active: view === 'preview' }">
+          <slot name="preview" />
+        </div>
 
-      <div v-show="view === 'code'" class="maya-preview-code-panel maya-preview-code-source"
-        :class="{ active: view === 'code' }">
-        <div v-if="highlighted" v-html="highlighted" />
-        <slot v-else name="code" />
+        <div class="maya-preview-code-panel maya-preview-code-source" :class="{ active: view === 'code' }">
+          <div v-if="highlighted" v-html="highlighted" />
+          <slot v-else name="code" />
+        </div>
       </div>
     </div>
   </div>
@@ -175,13 +175,20 @@ function copyCode() {
   transform: scale(0.88);
 }
 
+.maya-preview-code-panels {
+  display: grid;
+}
+
 .maya-preview-code-panel {
+  grid-area: 1 / 1;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 150ms ease;
 }
 
 .maya-preview-code-panel.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .maya-preview-code-canvas {
@@ -191,7 +198,6 @@ function copyCode() {
   justify-content: center;
   min-height: 140px;
   background: var(--maya-pattern-stripes), var(--maya-bg-root);
-  transition: opacity 150ms ease, background-color var(--maya-duration) var(--maya-ease);
 }
 
 .maya-preview-code-source {
