@@ -111,8 +111,7 @@ onUnmounted(() => {
 
 .maya-select-trigger:focus-visible,
 .maya-select-trigger.is-open {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent);
+  border-color: var(--maya-input-focus-border);
 }
 
 .maya-select.disabled .maya-select-trigger {
@@ -184,7 +183,7 @@ onUnmounted(() => {
 }
 
 .maya-select-check {
-  color: var(--maya-accent);
+  color: var(--maya-text-primary);
 }
 
 /* Dropdown Animation - ease curve, not spring */

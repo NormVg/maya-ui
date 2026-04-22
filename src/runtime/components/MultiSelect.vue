@@ -136,8 +136,7 @@ onUnmounted(() => {
 
 .maya-select-trigger:focus-visible,
 .maya-select-trigger.is-open {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent);
+  border-color: var(--maya-input-focus-border);
 }
 
 .maya-select.disabled .maya-select-trigger {
@@ -225,8 +224,8 @@ onUnmounted(() => {
 }
 
 .maya-select-option.selected .maya-select-checkbox {
-  background: var(--maya-accent);
-  border-color: var(--maya-accent);
+  background: var(--maya-checkbox-checked-bg);
+  border-color: var(--maya-checkbox-checked-border);
 }
 
 .maya-select-dropdown-enter-active {

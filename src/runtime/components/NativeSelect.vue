@@ -52,8 +52,7 @@ defineEmits(['update:modelValue'])
 }
 
 .maya-native-select:focus-visible {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent);
+  border-color: var(--maya-input-focus-border);
 }
 
 .maya-native-select-wrapper.disabled .maya-native-select {
@@ -70,6 +69,6 @@ defineEmits(['update:modelValue'])
 }
 
 .maya-native-select:focus-visible~.maya-native-select-icon {
-  color: var(--maya-accent);
+  color: var(--maya-text-primary);
 }
 </style>

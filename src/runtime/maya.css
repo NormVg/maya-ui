@@ -7,12 +7,6 @@
   --maya-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --maya-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* ─── Accent (customizable by consumers) ─── */
-  --maya-accent: #6366f1;
-  --maya-accent-hover: #818cf8;
-  --maya-accent-muted: rgba(99, 102, 241, 0.15);
-  --maya-accent-text: #ffffff;
-
   /* ─── Radii ─── */
   --maya-radius-sm: 5px;
   --maya-radius-md: 6px;

@@ -224,8 +224,7 @@ onUnmounted(() => {
 
 .maya-date-chooser-trigger:focus-visible,
 .maya-date-chooser-trigger.is-open {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent);
+  border-color: var(--maya-input-focus-border);
 }
 
 .maya-date-chooser.disabled .maya-date-chooser-trigger {
@@ -339,13 +338,12 @@ onUnmounted(() => {
 
 .maya-calendar-day.is-today {
   font-weight: 600;
-  color: var(--maya-accent);
+  color: var(--maya-text-primary);
 }
 
 .maya-calendar-day.is-selected {
-  background: var(--maya-accent);
-  color: #fff;
-  /* Enforce white text for contrast on accent */
+  background: var(--maya-text-primary);
+  color: var(--maya-text-inverse);
   font-weight: 500;
 }
 

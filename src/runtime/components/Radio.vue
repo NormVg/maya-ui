@@ -87,8 +87,8 @@ const checked = computed(() => props.modelValue === props.value)
 
 /* Checked State */
 .maya-radio.maya-radio--checked {
-  border-color: var(--maya-accent);
-  background: var(--maya-accent);
+  border-color: var(--maya-checkbox-checked-border);
+  background: var(--maya-checkbox-checked-bg);
 }
 
 /* Inner Dot using bouncy transition */

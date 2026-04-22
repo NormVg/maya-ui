@@ -176,8 +176,7 @@ onUnmounted(() => {
 
 .maya-combobox-trigger:focus-within,
 .maya-combobox-trigger.is-open {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent);
+  border-color: var(--maya-input-focus-border);
 }
 
 .maya-combobox.disabled .maya-combobox-trigger {
@@ -264,7 +263,7 @@ onUnmounted(() => {
 }
 
 .maya-combobox-check {
-  color: var(--maya-accent);
+  color: var(--maya-text-primary);
 }
 
 .maya-combobox-dropdown-enter-active {

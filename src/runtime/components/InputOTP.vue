@@ -123,8 +123,8 @@ function onPaste(e) {
 }
 
 .maya-input-otp-slot:focus-visible {
-  border-color: var(--maya-accent);
-  box-shadow: 0 0 0 1px var(--maya-accent), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-color: var(--maya-input-focus-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .maya-input-otp-slot.is-active {
