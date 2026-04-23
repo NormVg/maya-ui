@@ -17,6 +17,9 @@
         <slot />
       </main>
     </div>
+
+    <!-- Global Toaster for notifications -->
+    <MayaToaster />
   </div>
 </template>
 

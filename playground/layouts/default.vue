@@ -1,8 +1,18 @@
 <template>
-  <div class="layout">
+  <div class="layout" :class="{ 'is-sidebar-open': isSidebarOpen }">
+    <!-- Mobile overlay -->
+    <div v-if="isSidebarOpen" class="sidebar-overlay" @click="isSidebarOpen = false"></div>
+
     <aside class="sidebar">
       <div class="sidebar-header">
         <h1>Maya UI</h1>
+        <!-- Mobile close button -->
+        <button class="mobile-menu-close" @click="isSidebarOpen = false" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-group">
@@ -65,8 +75,21 @@
           <NuxtLink to="/components/sheet" class="nav-item" active-class="active">Sheet / Drawer</NuxtLink>
         </div>
         <div class="nav-group">
+          <div class="nav-group-title">Data Display & States</div>
+          <NuxtLink to="/components/empty-state" class="nav-item" active-class="active">Empty State</NuxtLink>
+        </div>
+        <div class="nav-group">
           <div class="nav-group-title">Loaders</div>
           <NuxtLink to="/components/loaders" class="nav-item" active-class="active">Spinner / Skeleton / Dots</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Feedback & Overlays</div>
+          <NuxtLink to="/components/alert" class="nav-item" active-class="active">Alert</NuxtLink>
+          <NuxtLink to="/components/alert-dialog" class="nav-item" active-class="active">Alert Dialog</NuxtLink>
+          <NuxtLink to="/components/banner" class="nav-item" active-class="active">Banner</NuxtLink>
+          <NuxtLink to="/components/toast" class="nav-item" active-class="active">Toast / Sonner</NuxtLink>
+          <NuxtLink to="/components/status-indicators" class="nav-item" active-class="active">Status Indicators
+          </NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">System</div>
@@ -101,7 +124,16 @@
 
     <main class="main-content">
       <header class="topbar">
-        <span class="path">{{ breadcrumb }}</span>
+        <div class="topbar-left">
+          <button class="mobile-menu-open" @click="isSidebarOpen = true" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <span class="path">{{ breadcrumb }}</span>
+        </div>
         <MayaThemeToggle />
       </header>
 
@@ -109,14 +141,23 @@
         <slot />
       </div>
     </main>
+
+    <!-- Global Toaster for Playground -->
+    <MayaToaster />
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+const isSidebarOpen = ref(false)
+
+// Close sidebar on route change
+watch(() => route.path, () => {
+  isSidebarOpen.value = false
+})
 
 const breadcrumb = computed(() => {
   const segments = route.path.split('/').filter(Boolean)

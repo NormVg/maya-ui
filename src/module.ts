@@ -1,4 +1,4 @@
-import { defineNuxtModule, addComponentsDir, addPlugin, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponentsDir, addImportsDir, createResolver } from '@nuxt/kit'
 
 export interface ModuleOptions {}
 
@@ -18,6 +18,9 @@ export default defineNuxtModule<ModuleOptions>({
       global: true,
       watch: true
     })
+
+    // Auto-import composables
+    addImportsDir(resolver.resolve('./runtime/composables'))
 
     // Inject global CSS tokens
     nuxt.options.css.push(resolver.resolve('./runtime/maya.css'))
