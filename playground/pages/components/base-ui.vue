@@ -38,21 +38,40 @@
     </MayaPreviewCode>
 
     <MayaPreviewCode title="Kbd — Keyboard Keys"
-      description="Render keyboard shortcuts globally. Pass a 'shortcut' prop (e.g. 'meta+j') to natively listen for the hotkey and emit '@trigger'.">
+      description="Physical key styling for shortcuts. Add a 'shortcut' prop to autonomously listen for hotkeys and emit '@trigger'.">
       <template #preview>
-        <div class="row wrap">
-          <MayaKbd>⌘</MayaKbd>
-          <MayaKbd>⌘K</MayaKbd>
-          <MayaKbd>Ctrl</MayaKbd>
-          <MayaKbd>Enter</MayaKbd>
-          <MayaKbd>Shift</MayaKbd>
-          <MayaKbd>Esc</MayaKbd>
-          <MayaKbd>Tab</MayaKbd>
+        <div class="col" style="gap: 24px;">
+          <div class="row wrap">
+            <MayaKbd>⌘</MayaKbd>
+            <MayaKbd>⌘K</MayaKbd>
+            <MayaKbd>Ctrl</MayaKbd>
+            <MayaKbd>Enter</MayaKbd>
+            <MayaKbd>Shift</MayaKbd>
+            <MayaKbd>Esc</MayaKbd>
+            <MayaKbd>Tab</MayaKbd>
+          </div>
+
+          <div
+            style="padding: 16px; border: 1px solid var(--maya-border); border-radius: var(--maya-radius-md); text-align: center;">
+            <p style="color: var(--maya-text-secondary); font-size: 0.8125rem; margin-bottom: 8px;">
+              Press <MayaKbd shortcut="meta+j" @trigger="triggerCount++">⌘J</MayaKbd> anywhere on this page
+            </p>
+            <p
+              style="color: var(--maya-text-primary); font-size: 1.25rem; font-weight: 600; font-variant-numeric: tabular-nums;">
+              {{ triggerCount }}
+            </p>
+          </div>
         </div>
       </template>
     </MayaPreviewCode>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const triggerCount = ref(0)
+</script>
 
 <style scoped>
 .col {
