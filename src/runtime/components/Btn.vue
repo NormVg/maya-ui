@@ -136,7 +136,7 @@ defineEmits(['click'])
   color: #fff;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px var(--maya-success-border),
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 1px 1px rgba(0, 0, 0, 0.1);
@@ -171,7 +171,7 @@ defineEmits(['click'])
   color: #fff;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px var(--maya-warning-border),
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 1px 1px rgba(0, 0, 0, 0.1);
@@ -205,7 +205,7 @@ defineEmits(['click'])
   color: #fff;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px var(--maya-danger-border),
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 1px 1px rgba(0, 0, 0, 0.1);
@@ -239,7 +239,7 @@ defineEmits(['click'])
   color: #fff;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px var(--maya-info-border),
     0 2px 4px rgba(0, 0, 0, 0.15),
     0 1px 1px rgba(0, 0, 0, 0.1);

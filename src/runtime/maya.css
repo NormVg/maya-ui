@@ -66,10 +66,10 @@
   --maya-btn-primary-bg: #ededed;
   --maya-btn-primary-bg-hover: #ffffff;
   --maya-btn-primary-text: #0a0a0a;
-  --maya-btn-primary-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  --maya-btn-primary-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.08) 100%);
   --maya-btn-primary-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(0, 0, 0, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.2);
 
@@ -178,10 +178,10 @@
   --maya-btn-primary-bg: #171717;
   --maya-btn-primary-bg-hover: #303030;
   --maya-btn-primary-text: #ffffff;
-  --maya-btn-primary-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+  --maya-btn-primary-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.15) 100%);
   --maya-btn-primary-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
     0 0 0 1px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.12);
 
