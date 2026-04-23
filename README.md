@@ -52,7 +52,8 @@ Maya UI includes over **40 distinct components** grouped by functionality, all f
 - `MayaDateChooser`
 
 ### Layouts & Containers
-- `MayaCard`, `MayaBadge`, `MayaAvatar`, `MayaTable`
+- `MayaCard`, `MayaPreviewCard`, `MayaCarousel`, `MayaBadge`, `MayaAvatar`, `MayaTable`
+- `MayaAccordion`, `MayaCollapsible`
 - `MayaField`, `MayaLabel`, `MayaFieldset`
 - `MayaScrollArea`, `MayaResizable`, `MayaSheet` (Drawer)
 
@@ -61,7 +62,8 @@ Maya UI includes over **40 distinct components** grouped by functionality, all f
 - `MayaDropdownMenu`, `MayaContextMenu`, `MayaCommand`
 
 ### Feedback & Overlays
-- `MayaAlert`, `MayaAlertDialog`, `MayaBanner`
+- `MayaAlert`, `MayaAlertDialog`, `MayaDialog`, `MayaBanner`
+- `MayaPopover`, `MayaHoverCard`, `MayaTooltip`
 - `MayaToast`, `MayaSonner` (Stackable notifications wrapper)
 - `MayaSpinner`, `MayaSkeleton`, `MayaPixelLoader`, `MayaDotOrbit`
 

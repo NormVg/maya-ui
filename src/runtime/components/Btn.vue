@@ -19,7 +19,7 @@ defineProps({
   size: {
     type: String,
     default: 'md',
-    validator: (v) => ['sm', 'md', 'lg'].includes(v),
+    validator: (v) => ['sm', 'md', 'lg', 'icon'].includes(v),
   },
   intent: {
     type: String,
@@ -78,6 +78,16 @@ defineEmits(['click'])
 .maya-btn--lg {
   padding: 10px 20px;
   font-size: 0.875rem;
+}
+
+.maya-btn--icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--maya-radius-md);
 }
 
 /* ─── Primary ─── */

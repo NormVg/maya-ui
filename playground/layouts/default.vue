@@ -84,12 +84,21 @@
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Feedback & Overlays</div>
+          <NuxtLink to="/components/dialog" class="nav-item" active-class="active">Dialog</NuxtLink>
+          <NuxtLink to="/components/popover" class="nav-item" active-class="active">Popover</NuxtLink>
+          <NuxtLink to="/components/hover-card" class="nav-item" active-class="active">Hover Card</NuxtLink>
+          <NuxtLink to="/components/tooltip" class="nav-item" active-class="active">Tooltip</NuxtLink>
           <NuxtLink to="/components/alert" class="nav-item" active-class="active">Alert</NuxtLink>
           <NuxtLink to="/components/alert-dialog" class="nav-item" active-class="active">Alert Dialog</NuxtLink>
           <NuxtLink to="/components/banner" class="nav-item" active-class="active">Banner</NuxtLink>
           <NuxtLink to="/components/toast" class="nav-item" active-class="active">Toast / Sonner</NuxtLink>
           <NuxtLink to="/components/status-indicators" class="nav-item" active-class="active">Status Indicators
           </NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Expand & Panels</div>
+          <NuxtLink to="/components/accordion" class="nav-item" active-class="active">Accordion / Collaps.</NuxtLink>
+          <NuxtLink to="/components/panels" class="nav-item" active-class="active">Preview Card & Carousel</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">System</div>

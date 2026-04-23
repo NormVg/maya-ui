@@ -6,7 +6,8 @@
       </div>
       <h1 class="hero-title">A highly crafted,<br />premium component library.</h1>
       <p class="hero-subtitle">
-        Highly opinionated on motion and structure, completely unopinionated on styling mechanisms. Dark-first, pure CSS tokens, engineered for Nuxt.
+        Highly opinionated on motion and structure, completely unopinionated on styling mechanisms. Dark-first, pure CSS
+        tokens, engineered for Nuxt.
       </p>
       <div class="hero-actions">
         <MayaBtn variant="primary" size="md" @click="$router.push('/install')">
@@ -92,7 +93,8 @@ const componentListMd = `### Controls & Inputs
 - **MayaCheckbox**, **MayaSelect**, **MayaCombobox** — Selection utilities
 
 ### Layouts & Containers
-- **MayaCard**, **MayaBadge**, **MayaAvatar**, **MayaTable** — Core structural blocks
+- **MayaCard**, **MayaPreviewCard**, **MayaCarousel**, **MayaBadge**, **MayaAvatar**, **MayaTable** — Core structural blocks
+- **MayaAccordion**, **MayaCollapsible** — Expanding components
 - **MayaScrollArea**, **MayaResizable**, **MayaSheet** — Advanced dimensional containers
 - **MayaField**, **MayaLabel** — Accessible form framing
 
@@ -185,14 +187,17 @@ const componentListMd = `### Controls & Inputs
   .hero {
     padding: 40px 0 32px;
   }
+
   .hero-title {
     font-size: 2.5rem;
   }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
     padding: 0 40px;
   }
+
   .feature-grid {
     grid-template-columns: 1fr;
   }

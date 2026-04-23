@@ -27,46 +27,49 @@ defineProps({
   flex-direction: column;
 }
 
-/* Collapse inner border-radii and merge borders */
-.maya-btn-group--horizontal :deep(.maya-btn:not(:first-child):not(:last-child)) {
-  border-radius: 0;
+/* 1. Square EVERYTHING natively inside a BtnGroup to prevent rounded crevices on borders */
+.maya-btn-group :deep(.maya-btn) {
+  border-radius: 0 !important;
 }
 
-.maya-btn-group--horizontal :deep(.maya-btn:first-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+/* 2. Horizontal Radii - targeting immediate buttons or buttons wrapped in simple tooltips/dropdowns */
+.maya-btn-group--horizontal> :deep(.maya-btn:first-child),
+.maya-btn-group--horizontal> :deep(:first-child .maya-btn) {
+  border-top-left-radius: var(--maya-radius-md) !important;
+  border-bottom-left-radius: var(--maya-radius-md) !important;
 }
 
-.maya-btn-group--horizontal :deep(.maya-btn:last-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.maya-btn-group--horizontal> :deep(.maya-btn:last-child),
+.maya-btn-group--horizontal> :deep(:last-child .maya-btn) {
+  border-top-right-radius: var(--maya-radius-md) !important;
+  border-bottom-right-radius: var(--maya-radius-md) !important;
 }
 
-.maya-btn-group--horizontal :deep(.maya-btn + .maya-btn) {
+/* 3. Drop negative margins on adjacent components globally to handle Fudo's button borders */
+.maya-btn-group--horizontal> :deep(*:not(:first-child)) {
   margin-left: -1px;
 }
 
-/* Vertical */
-.maya-btn-group--vertical :deep(.maya-btn:first-child) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+/* 4. Vertical Radii */
+.maya-btn-group--vertical> :deep(.maya-btn:first-child),
+.maya-btn-group--vertical> :deep(:first-child .maya-btn) {
+  border-top-left-radius: var(--maya-radius-md) !important;
+  border-top-right-radius: var(--maya-radius-md) !important;
 }
 
-.maya-btn-group--vertical :deep(.maya-btn:last-child) {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.maya-btn-group--vertical> :deep(.maya-btn:last-child),
+.maya-btn-group--vertical> :deep(:last-child .maya-btn) {
+  border-bottom-left-radius: var(--maya-radius-md) !important;
+  border-bottom-right-radius: var(--maya-radius-md) !important;
 }
 
-.maya-btn-group--vertical :deep(.maya-btn:not(:first-child):not(:last-child)) {
-  border-radius: 0;
-}
-
-.maya-btn-group--vertical :deep(.maya-btn + .maya-btn) {
+/* 5. Vertical Negative Margins */
+.maya-btn-group--vertical> :deep(*:not(:first-child)) {
   margin-top: -1px;
 }
 
-/* Disable expanded hit area in groups */
+/* 6. Disable generic hit Area glow boxes for grouped components to prevent double borders under UI elements */
 .maya-btn-group :deep(.maya-btn::after) {
-  display: none;
+  display: none !important;
 }
 </style>
