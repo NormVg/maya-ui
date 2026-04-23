@@ -6,7 +6,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import hotkeys from 'hotkeys-js'
 
 const props = defineProps({
   triggered: { type: Boolean, default: false },
@@ -28,28 +27,41 @@ function flash() {
 }
 
 // ─── Autonomous Hotkey Integration ───
+let handleGlobalShortcut = null
+
 onMounted(() => {
   if (props.shortcut) {
-    // Normalize meta/cmd to cmd for hotkeys-js compatibility
-    const keys = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
+    const s = props.shortcut.toLowerCase()
+    const isMeta = s.includes('meta') || s.includes('cmd')
+    const isCtrl = s.includes('ctrl')
+    const isShift = s.includes('shift')
+    const keyChar = s.split('+').pop()
 
-    // Allow hotkeys inside input fields if MayaUI specifically requests it
-    hotkeys.filter = function (event) { return true }
+    handleGlobalShortcut = (e) => {
+      // Check if pressed keys match the required combo
+      const matchMeta = isMeta ? (e.metaKey || e.ctrlKey) : !e.metaKey
+      const matchShift = isShift ? e.shiftKey : !e.shiftKey
 
-    hotkeys(keys, function (event, handler) {
-      if (props.prevent) {
-        event.preventDefault()
+      // Allow ctrl as fallback for meta if meta isn't explicitly required,
+      // but if explicit ctrl is required, enforce it.
+      const matchCtrl = isCtrl ? e.ctrlKey : true
+
+      const matchKey = e.key.toLowerCase() === keyChar
+
+      if (matchMeta && matchShift && matchCtrl && matchKey) {
+        if (props.prevent) e.preventDefault()
+        flash()
+        emit('trigger')
       }
-      flash()
-      emit('trigger')
-    })
+    }
+
+    window.addEventListener('keydown', handleGlobalShortcut)
   }
 })
 
 onUnmounted(() => {
-  if (props.shortcut) {
-    const keys = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
-    hotkeys.unbind(keys)
+  if (handleGlobalShortcut) {
+    window.removeEventListener('keydown', handleGlobalShortcut)
   }
 })
 
