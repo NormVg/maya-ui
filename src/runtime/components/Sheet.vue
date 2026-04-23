@@ -42,10 +42,8 @@ function handleKeydown(e) {
 }
 
 watch(() => props.open, (val) => {
-  if (val && typeof document !== 'undefined') {
-    document.body.style.overflow = 'hidden'
-  } else if (typeof document !== 'undefined') {
-    document.body.style.overflow = ''
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = val ? 'hidden' : ''
   }
 })
 
@@ -64,7 +62,8 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   background: var(--maya-bg-overlay);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 999;
 }
 
@@ -72,13 +71,11 @@ onUnmounted(() => {
   position: fixed;
   background: var(--maya-bg-root);
   z-index: 1000;
-  box-shadow: var(--maya-shadow-md);
   display: flex;
   flex-direction: column;
   outline: none;
 }
 
-/* Close Button */
 .maya-sheet-close {
   position: absolute;
   top: 16px;
@@ -93,16 +90,21 @@ onUnmounted(() => {
   color: var(--maya-text-muted);
   border-radius: var(--maya-radius-sm);
   cursor: pointer;
-  transition: all var(--maya-duration) var(--maya-ease);
+  transition: all 150ms cubic-bezier(0.19, 1, 0.22, 1);
   z-index: 10;
 }
 
 .maya-sheet-close:hover {
   background: var(--maya-bg-surface);
   color: var(--maya-text-primary);
+  transform: scale(1.05);
 }
 
-/* Sides */
+.maya-sheet-close:active {
+  transform: scale(0.94);
+}
+
+/* ── Sides ── */
 .maya-sheet-right {
   top: 0;
   right: 0;
@@ -110,6 +112,7 @@ onUnmounted(() => {
   width: 100%;
   max-width: 400px;
   border-left: 1px solid var(--maya-border);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.4), -1px 0 0 rgba(255, 255, 255, 0.04);
 }
 
 .maya-sheet-left {
@@ -119,6 +122,7 @@ onUnmounted(() => {
   width: 100%;
   max-width: 400px;
   border-right: 1px solid var(--maya-border);
+  box-shadow: 8px 0 40px rgba(0, 0, 0, 0.4), 1px 0 0 rgba(255, 255, 255, 0.04);
 }
 
 .maya-sheet-top {
@@ -128,6 +132,7 @@ onUnmounted(() => {
   height: 100%;
   max-height: 400px;
   border-bottom: 1px solid var(--maya-border);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .maya-sheet-bottom {
@@ -139,12 +144,16 @@ onUnmounted(() => {
   border-top: 1px solid var(--maya-border);
   border-top-left-radius: var(--maya-radius-xl);
   border-top-right-radius: var(--maya-radius-xl);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.4), 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Transitions */
-.maya-sheet-fade-enter-active,
+/* ── Overlay transitions ── */
+.maya-sheet-fade-enter-active {
+  transition: opacity 250ms cubic-bezier(0.19, 1, 0.22, 1), backdrop-filter 250ms ease;
+}
+
 .maya-sheet-fade-leave-active {
-  transition: opacity 300ms var(--maya-ease-in-out);
+  transition: opacity 200ms cubic-bezier(0.55, 0.05, 0.68, 0.19), backdrop-filter 200ms ease;
 }
 
 .maya-sheet-fade-enter-from,
@@ -152,10 +161,13 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-/* Slide Right */
-.maya-sheet-slide-right-enter-active,
+/* ── Right slide ── */
+.maya-sheet-slide-right-enter-active {
+  transition: transform 320ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 .maya-sheet-slide-right-leave-active {
-  transition: transform 300ms var(--maya-ease-in-out);
+  transition: transform 220ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
 .maya-sheet-slide-right-enter-from,
@@ -163,10 +175,13 @@ onUnmounted(() => {
   transform: translateX(100%);
 }
 
-/* Slide Left */
-.maya-sheet-slide-left-enter-active,
+/* ── Left slide ── */
+.maya-sheet-slide-left-enter-active {
+  transition: transform 320ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 .maya-sheet-slide-left-leave-active {
-  transition: transform 300ms var(--maya-ease-in-out);
+  transition: transform 220ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
 .maya-sheet-slide-left-enter-from,
@@ -174,10 +189,13 @@ onUnmounted(() => {
   transform: translateX(-100%);
 }
 
-/* Slide Top */
-.maya-sheet-slide-top-enter-active,
+/* ── Top slide ── */
+.maya-sheet-slide-top-enter-active {
+  transition: transform 320ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 .maya-sheet-slide-top-leave-active {
-  transition: transform 300ms var(--maya-ease-in-out);
+  transition: transform 220ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
 .maya-sheet-slide-top-enter-from,
@@ -185,10 +203,13 @@ onUnmounted(() => {
   transform: translateY(-100%);
 }
 
-/* Slide Bottom */
-.maya-sheet-slide-bottom-enter-active,
+/* ── Bottom slide (bouncy — physical feel for bottom drawer) ── */
+.maya-sheet-slide-bottom-enter-active {
+  transition: transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .maya-sheet-slide-bottom-leave-active {
-  transition: transform 300ms var(--maya-ease-in-out);
+  transition: transform 220ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
 .maya-sheet-slide-bottom-enter-from,

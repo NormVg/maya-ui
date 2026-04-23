@@ -7,7 +7,8 @@
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
       <input class="maya-command-input" v-model="searchQuery" :placeholder="placeholder" ref="inputRef"
-        @keydown.down.prevent="navigateDown" @keydown.up.prevent="navigateUp" @keydown.enter.prevent="selectCurrent" />
+        @keydown.down.prevent="navigateDown" @keydown.up.prevent="navigateUp" @keydown.enter.prevent="selectCurrent"
+        @keydown="handleShortcut" />
     </div>
 
     <div class="maya-command-list" role="listbox" ref="listRef">
@@ -28,10 +29,11 @@
                 <span v-if="item.icon" class="maya-command-item-icon" v-html="item.icon"></span>
                 <span class="maya-command-item-label">{{ item.label }}</span>
               </div>
-              <span v-if="item.shortcut" class="maya-command-shortcut">{{ item.shortcut }}</span>
+              <MayaKbd v-if="item.shortcut">{{ item.shortcut }}</MayaKbd>
             </button>
           </div>
         </div>
+        <div v-if="groupIndex < filteredGroupsWithIndex.length - 1" class="maya-command-separator" />
       </template>
     </div>
   </div>
@@ -39,6 +41,7 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
+import MayaKbd from './Kbd.vue'
 
 const props = defineProps({
   groups: {
@@ -59,6 +62,7 @@ const inputRef = ref(null)
 const listRef = ref(null)
 const activeItemRef = ref(null)
 
+// Flat list of all items (for navigation + shortcut matching)
 const flatItemsList = computed(() => {
   if (!searchQuery.value) return props.groups.flatMap(g => g.items)
   const query = searchQuery.value.toLowerCase()
@@ -68,28 +72,27 @@ const flatItemsList = computed(() => {
 const filteredGroupsWithIndex = computed(() => {
   let count = 0
   const query = searchQuery.value.toLowerCase()
-
   return props.groups.map(group => {
     return {
       ...group,
-      items: group.items.filter(item => !query || item.label.toLowerCase().includes(query)).map(item => {
-        return { ...item, flatIndex: count++ }
-      })
+      items: group.items
+        .filter(item => !query || item.label.toLowerCase().includes(query))
+        .map(item => ({ ...item, flatIndex: count++ }))
     }
   }).filter(group => group.items.length > 0)
 })
 
+// Reset selection when query changes
 watch(searchQuery, () => {
   selectedIndex.value = 0
 })
 
+// Scroll selected item into view
 watch(selectedIndex, async () => {
   await nextTick()
   if (activeItemRef.value && listRef.value) {
     const list = listRef.value
     const item = activeItemRef.value
-
-    // Smooth scrolling logic to keep item in view
     const itemTop = item.offsetTop
     const itemBottom = itemTop + item.offsetHeight
     const listTop = list.scrollTop
@@ -105,20 +108,16 @@ watch(selectedIndex, async () => {
 
 function navigateDown() {
   if (flatItemsList.value.length === 0) return
-  if (selectedIndex.value < flatItemsList.value.length - 1) {
-    selectedIndex.value++
-  } else {
-    selectedIndex.value = 0 // loop to top
-  }
+  selectedIndex.value = selectedIndex.value < flatItemsList.value.length - 1
+    ? selectedIndex.value + 1
+    : 0
 }
 
 function navigateUp() {
   if (flatItemsList.value.length === 0) return
-  if (selectedIndex.value > 0) {
-    selectedIndex.value--
-  } else {
-    selectedIndex.value = flatItemsList.value.length - 1 // loop to bottom
-  }
+  selectedIndex.value = selectedIndex.value > 0
+    ? selectedIndex.value - 1
+    : flatItemsList.value.length - 1
 }
 
 function selectCurrent() {
@@ -131,11 +130,43 @@ function handleSelect(item) {
   emit('select', item)
 }
 
+/**
+ * Keyboard shortcut execution:
+ * Matches item.shortcut values like "⌘K", "⌘P", "⌘B" etc.
+ * When the input detects a matching key combo, it selects that item.
+ */
+function handleShortcut(e) {
+  // Build a comparable string from the current key combo
+  const meta = e.metaKey || e.ctrlKey
+  const shift = e.shiftKey
+  const key = e.key.toUpperCase()
+
+  if (!meta && !shift) return // Only intercept modifier combos
+
+  const allItems = props.groups.flatMap(g => g.items)
+  for (const item of allItems) {
+    if (!item.shortcut) continue
+
+    // Parse shortcut string (e.g. "⌘K", "⇧⌘Z", "C")
+    const sc = item.shortcut
+    const scMeta = sc.includes('⌘')
+    const scShift = sc.includes('⇧')
+    // Extract the actual key character (last alphanumeric char in shortcut)
+    const scKey = sc.replace(/[⌘⇧⌥⎇]/g, '').toUpperCase()
+
+    if (meta === scMeta && shift === scShift && key === scKey) {
+      e.preventDefault()
+      emit('select', item)
+      return
+    }
+  }
+}
+
 onMounted(() => {
-  // Autofocus visually works better inside modals if explicitly delayed slightly
+  // Focus with slight delay for modal context
   setTimeout(() => {
     if (inputRef.value) inputRef.value.focus()
-  }, 100)
+  }, 80)
 })
 </script>
 
@@ -145,13 +176,16 @@ onMounted(() => {
   flex-direction: column;
   width: 100%;
   max-width: 640px;
-  /* Increased from 500px as requested */
   background: var(--maya-bg-surface);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: var(--maya-radius-lg);
   border: 1px solid var(--maya-border);
   overflow: hidden;
   font-family: var(--maya-font-sans);
-  box-shadow: var(--maya-shadow-md);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .maya-command-search {
@@ -184,19 +218,26 @@ onMounted(() => {
 }
 
 .maya-command-list {
-  max-height: 300px;
+  max-height: 320px;
   overflow-y: auto;
   padding: 6px;
   scroll-behavior: smooth;
 }
 
 .maya-command-list::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .maya-command-list::-webkit-scrollbar-thumb {
   background: var(--maya-border-strong);
   border-radius: 99px;
+}
+
+.maya-command-separator {
+  height: 1px;
+  background: var(--maya-border);
+  margin: 4px 6px;
+  opacity: 0.6;
 }
 
 .maya-command-empty {
@@ -207,20 +248,22 @@ onMounted(() => {
 }
 
 .maya-command-group-heading {
-  padding: 8px 10px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  padding: 6px 10px 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
   color: var(--maya-text-muted);
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .maya-command-items {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .maya-command-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -228,26 +271,49 @@ onMounted(() => {
   padding: 8px 10px;
   border: none;
   background: transparent;
-  border-radius: var(--maya-radius-md);
+  border-radius: var(--maya-radius-sm);
   font-size: 0.875rem;
-  color: var(--maya-text-primary);
+  color: var(--maya-text-secondary);
   cursor: pointer;
   text-align: left;
-  transition: all 150ms var(--maya-ease);
+  transition: color 120ms cubic-bezier(0.19, 1, 0.22, 1);
+  user-select: none;
+}
+
+/* Pseudo-element hover — ui-rules § Pseudo-Elements */
+.maya-command-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--maya-text-primary);
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 120ms cubic-bezier(0.19, 1, 0.22, 1),
+    transform 120ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.maya-command-item.is-selected::before {
+  opacity: 0.07;
+  transform: scale(1);
 }
 
 .maya-command-item.is-selected {
-  background: var(--maya-bg-raised);
+  color: var(--maya-text-primary);
 }
 
 .maya-command-item:active {
-  transform: scale(0.99);
+  transform: scale(0.98);
+  transition: transform 80ms ease;
 }
 
 .maya-command-item-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .maya-command-item-icon {
@@ -257,18 +323,17 @@ onMounted(() => {
   width: 16px;
   height: 16px;
   color: var(--maya-text-muted);
+  transition: color 120ms ease;
 }
 
 .maya-command-item.is-selected .maya-command-item-icon {
   color: var(--maya-text-primary);
 }
 
-.maya-command-shortcut {
-  font-size: 0.75rem;
-  color: var(--maya-text-muted);
-  background: var(--maya-bg-root);
-  padding: 2px 6px;
-  border-radius: var(--maya-radius-sm);
-  border: 1px solid var(--maya-border);
+/* Shortcut key is handled by MayaKbd component's own styles.
+   We just ensure it stays correctly positioned inside the item. */
+:deep(.maya-kbd) {
+  position: relative;
+  z-index: 1;
 }
 </style>

@@ -3,9 +3,9 @@
     <slot />
 
     <Teleport to="body">
-      <Transition name="maya-dropdown-fade">
-        <div v-if="isOpen" ref="menu" class="maya-dropdown-content maya-context-menu"
-          :style="{ top: `${y}px`, left: `${x}px` }" role="menu" @keydown.esc="close" tabindex="-1">
+      <Transition name="maya-ctx-fade">
+        <div v-if="isOpen" ref="menu" class="maya-context-menu" :style="{ top: `${y}px`, left: `${x}px` }" role="menu"
+          @keydown.esc="close" tabindex="-1">
           <slot name="menu" />
         </div>
       </Transition>
@@ -24,27 +24,21 @@ const menu = ref(null)
 provide('closeDropdown', close)
 
 function open(e) {
-  // Prevent immediate close event from this click bubbling
   e.stopPropagation()
-
   isOpen.value = true
 
-  // Calculate positioning to avoid screen overflow
   nextTick(() => {
     let targetX = e.clientX
     let targetY = e.clientY
 
     if (menu.value) {
       const rect = menu.value.getBoundingClientRect()
-      // Adjust if off screen right
       if (targetX + rect.width > window.innerWidth) {
         targetX = window.innerWidth - rect.width - 8
       }
-      // Adjust if off screen bottom
       if (targetY + rect.height > window.innerHeight) {
-        targetY = targetY - rect.height // Flip it upwards
+        targetY = targetY - rect.height
       }
-
       menu.value.focus()
     }
 
@@ -63,11 +57,9 @@ function onClickOutside(e) {
   }
 }
 
-// Global dismiss listeners
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
   document.addEventListener('contextmenu', (e) => {
-    // If we right-click outside, close the current one
     if (isOpen.value && menu.value && !menu.value.contains(e.target)) {
       close()
     }
@@ -84,33 +76,44 @@ onUnmounted(() => {
   display: contents;
 }
 
-.maya-dropdown-content.maya-context-menu {
+.maya-context-menu {
   position: fixed;
-  min-width: 180px;
+  min-width: 200px;
   background: var(--maya-bg-surface);
+  background-image: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0) 100%);
   border: 1px solid var(--maya-border);
   border-radius: var(--maya-radius-md);
   padding: 4px;
   z-index: 9999;
-  box-shadow: var(--maya-shadow-md);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.25);
   outline: none;
 }
 
-.maya-dropdown-fade-enter-active {
-  transition: opacity var(--maya-duration) var(--maya-ease), transform var(--maya-duration) var(--maya-ease);
+/* Context menus: animate on entry from click position, fast exit */
+.maya-ctx-fade-enter-active {
+  transition:
+    opacity 160ms cubic-bezier(0.19, 1, 0.22, 1),
+    transform 180ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.maya-dropdown-fade-leave-active {
-  transition: opacity 120ms ease, transform 120ms ease;
+.maya-ctx-fade-leave-active {
+  transition:
+    opacity 100ms cubic-bezier(0.55, 0.05, 0.68, 0.19),
+    transform 100ms cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
-.maya-dropdown-fade-enter-from {
+.maya-ctx-fade-enter-from {
   opacity: 0;
-  transform: translateY(-4px) scale(0.98);
+  transform: scale(0.94) translateY(-4px);
 }
 
-.maya-dropdown-fade-leave-to {
+.maya-ctx-fade-leave-to {
   opacity: 0;
-  transform: translateY(-2px) scale(0.99);
+  transform: scale(0.97);
 }
 </style>
