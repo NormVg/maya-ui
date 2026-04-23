@@ -38,30 +38,39 @@
     </MayaPreviewCode>
 
     <MayaPreviewCode title="Kbd — Keyboard Keys"
-      description="Render keyboard shortcuts with physical key styling. Click the ⌘K key to see the triggered glow.">
+      description="Render keyboard shortcuts globally. Pass a 'shortcut' prop (e.g. 'meta+j') to natively listen for the hotkey and emit '@trigger'.">
       <template #preview>
-        <div class="row wrap">
-          <MayaKbd>⌘</MayaKbd>
-          <MayaKbd>⌘K</MayaKbd>
-          <MayaKbd>Ctrl</MayaKbd>
-          <MayaKbd>Enter</MayaKbd>
-          <MayaKbd>Shift</MayaKbd>
-          <MayaKbd>Esc</MayaKbd>
-          <MayaKbd>Tab</MayaKbd>
-        </div>
-        <div style="margin-top: 16px;">
-          <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">Press
-            <MayaKbd shortcut="meta+k" @trigger="() => { }" style="cursor: pointer;">⌘K</MayaKbd>
-            to open command palette
-          </span>
+        <div class="col" style="width: 100%; gap: 32px;">
+          <div class="row wrap">
+            <MayaKbd>⌘</MayaKbd>
+            <MayaKbd>⌘K</MayaKbd>
+            <MayaKbd>Ctrl</MayaKbd>
+            <MayaKbd>Enter</MayaKbd>
+            <MayaKbd>Shift</MayaKbd>
+            <MayaKbd>Esc</MayaKbd>
+            <MayaKbd>Tab</MayaKbd>
+          </div>
+
+          <div
+            style="padding: 16px; border: 1px dashed var(--maya-border-strong); border-radius: 8px; text-align: center;">
+            <p style="color: var(--maya-text-secondary); font-size: 0.8125rem; margin-bottom: 12px;">
+              Try pressing <MayaKbd shortcut="meta+j" @trigger="triggerCount++">⌘J</MayaKbd> on your keyboard!
+            </p>
+            <p style="color: var(--maya-text-primary); font-size: 0.875rem; font-weight: 500;">
+              Triggered: {{ triggerCount }} times
+            </p>
+          </div>
         </div>
       </template>
     </MayaPreviewCode>
   </div>
 </template>
 
-<!-- Note: no script block needed now! -->
+<script setup>
+import { ref } from 'vue'
 
+const triggerCount = ref(0)
+</script>
 
 <style scoped>
 .col {
