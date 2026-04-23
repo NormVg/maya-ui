@@ -47,8 +47,6 @@
           <NuxtLink to="/components/breadcrumb" class="nav-item" active-class="active">Breadcrumb</NuxtLink>
           <NuxtLink to="/components/navigation-menu" class="nav-item" active-class="active">Navigation Menu</NuxtLink>
           <NuxtLink to="/components/menubar" class="nav-item" active-class="active">Menubar</NuxtLink>
-          <NuxtLink to="/components/sidebar" class="nav-item" active-class="active">Sidebar</NuxtLink>
-          <NuxtLink to="/components/topbar" class="nav-item" active-class="active">Topbar</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Menus</div>
@@ -73,6 +71,16 @@
         <div class="nav-group">
           <div class="nav-group-title">System</div>
           <NuxtLink to="/components/theme-toggle" class="nav-item" active-class="active">Theme Toggle</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Screens</div>
+          <NuxtLink to="/screens/dashboard-demo" class="nav-item nav-item--screen" active-class="active">
+            Dashboard Demo
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; opacity: 0.5;">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </NuxtLink>
         </div>
       </nav>
     </aside>
