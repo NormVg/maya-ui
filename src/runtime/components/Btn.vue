@@ -14,7 +14,7 @@ defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (v) => ['primary', 'secondary', 'ghost'].includes(v),
+    validator: (v) => ['primary', 'secondary', 'ghost', 'outline'].includes(v),
   },
   size: {
     type: String,
@@ -113,6 +113,19 @@ defineEmits(['click'])
 .maya-btn--ghost:hover {
   background-color: var(--maya-btn-ghost-bg-hover);
   color: var(--maya-btn-ghost-text-hover);
+}
+
+/* ─── Outline ─── */
+.maya-btn--outline {
+  background-color: transparent;
+  color: var(--maya-text-secondary);
+  border: 1px solid var(--maya-border-strong);
+}
+
+.maya-btn--outline:hover {
+  background-color: var(--maya-btn-ghost-bg-hover);
+  color: var(--maya-text-primary);
+  border-color: var(--maya-border-hover);
 }
 
 /* ═══ Intent variants (override color on primary/secondary) ══ */
