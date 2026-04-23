@@ -101,6 +101,20 @@
           <NuxtLink to="/components/panels" class="nav-item" active-class="active">Preview Card & Carousel</NuxtLink>
         </div>
         <div class="nav-group">
+          <div class="nav-group-title">Tables &amp; Data</div>
+          <NuxtLink to="/components/data-table" class="nav-item" active-class="active">Data Table</NuxtLink>
+          <NuxtLink to="/components/pagination" class="nav-item" active-class="active">Pagination</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Selection</div>
+          <NuxtLink to="/components/tabs" class="nav-item" active-class="active">Tabs</NuxtLink>
+          <NuxtLink to="/components/choice-box" class="nav-item" active-class="active">Choice Box</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Calendar</div>
+          <NuxtLink to="/components/calendar" class="nav-item" active-class="active">Calendar</NuxtLink>
+        </div>
+        <div class="nav-group">
           <div class="nav-group-title">System</div>
           <NuxtLink to="/components/theme-toggle" class="nav-item" active-class="active">Theme Toggle</NuxtLink>
         </div>
