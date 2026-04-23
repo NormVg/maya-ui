@@ -2,9 +2,9 @@
   <div>
     <div class="hero">
       <div class="hero-badge">
-        <MayaBadge variant="outline" intent="info">✨ Maya UI v1.0.0</MayaBadge>
+        <MayaBadge variant="outline" intent="info">Maya UI v1.0.0</MayaBadge>
       </div>
-      <h1 class="hero-title">A headless-inspired,<br />premium component library.</h1>
+      <h1 class="hero-title">A highly crafted,<br />premium component library.</h1>
       <p class="hero-subtitle">
         Highly opinionated on motion and structure, completely unopinionated on styling mechanisms. Dark-first, pure CSS tokens, engineered for Nuxt.
       </p>
@@ -86,25 +86,25 @@ const configCode = `export default defineNuxtConfig({
   modules: ['maya-ui'],
 })`
 
-const componentListMd = `### 🎛 Controls & Inputs
+const componentListMd = `### Controls & Inputs
 - **MayaBtn**, **MayaToggle**, **MayaSwitch** — Interactive triggers with spring physics
 - **MayaInput**, **MayaNumberField**, **MayaInputOtp** — Standard and composite forms
 - **MayaCheckbox**, **MayaSelect**, **MayaCombobox** — Selection utilities
 
-### 🏗 Layouts & Containers
+### Layouts & Containers
 - **MayaCard**, **MayaBadge**, **MayaAvatar**, **MayaTable** — Core structural blocks
 - **MayaScrollArea**, **MayaResizable**, **MayaSheet** — Advanced dimensional containers
 - **MayaField**, **MayaLabel** — Accessible form framing
 
-### 🗺 Navigation & Menus
+### Navigation & Menus
 - **MayaBreadcrumb**, **MayaMenubar**, **MayaSidebar** — Wayfinding components
 - **MayaDropdownMenu**, **MayaContextMenu** — Contextual overlays
 
-### 💬 Feedback & Overlays
+### Feedback & Overlays
 - **MayaAlert**, **MayaBanner**, **MayaToast**, **MayaSonner** — Real-time notification stacks
 - **MayaSpinner**, **MayaSkeleton**, **MayaPixelLoader** — State indicators
 
-### 💻 Code Documentation
+### Code Documentation
 - **MayaCodeBlock**, **MayaInlineCode**, **MayaProse** — Developer-centric formatting`
 </script>
 

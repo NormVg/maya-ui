@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>✨ Maya UI</h1>
-  <p>A premium, headless-inspired, fully customizable Vue & Nuxt component library.</p>
+  <h1>Maya UI</h1>
+  <p>A premium, highly customizable Vue & Nuxt component library.</p>
 </div>
 
 <p align="center">
@@ -9,7 +9,7 @@
 
 ---
 
-## ✦ Why Maya UI?
+## Why Maya UI?
 
 Maya UI is not just another utility-based component library. It is designed to be **highly opinionated on motion and structure** but **completely unopinionated on styling mechanisms**.
 
@@ -21,7 +21,7 @@ Maya UI is not just another utility-based component library. It is designed to b
 
 ---
 
-## 📦 Installation
+## Installation
 
 Install the library using your preferred package manager:
 
@@ -41,36 +41,36 @@ You're done! All components prefixing with `Maya` are now accessible in your `.v
 
 ---
 
-## 🧬 Component Ecosystem
+## Component Ecosystem
 
 Maya UI includes over **40 distinct components** grouped by functionality, all following the exact same aesthetic language.
 
-### 🎛 Controls & Inputs
+### Controls & Inputs
 - `MayaBtn`, `MayaToggle`, `MayaToggleGroup`, `MayaSwitch`
 - `MayaInput`, `MayaTextarea`, `MayaNumberField`, `MayaInputOtp`
 - `MayaCheckbox`, `MayaRadio`, `MayaSelect`, `MayaCombobox`
 - `MayaDateChooser`
 
-### 🏗 Layouts & Containers
+### Layouts & Containers
 - `MayaCard`, `MayaBadge`, `MayaAvatar`, `MayaTable`
 - `MayaField`, `MayaLabel`, `MayaFieldset`
 - `MayaScrollArea`, `MayaResizable`, `MayaSheet` (Drawer)
 
-### 🗺 Navigation & Menus
+### Navigation & Menus
 - `MayaBreadcrumb`, `MayaMenubar`, `MayaSidebar`, `MayaTopbar`
 - `MayaDropdownMenu`, `MayaContextMenu`, `MayaCommand`
 
-### 💬 Feedback & Overlays
+### Feedback & Overlays
 - `MayaAlert`, `MayaAlertDialog`, `MayaBanner`
 - `MayaToast`, `MayaSonner` (Stackable notifications wrapper)
 - `MayaSpinner`, `MayaSkeleton`, `MayaPixelLoader`, `MayaDotOrbit`
 
-### 💻 Code Documentation
+### Code Documentation
 - `MayaCodeBlock`, `MayaInlineCode`, `MayaPreviewCode`, `MayaProse`
 
 ---
 
-## 🎨 Theming & Customization
+## Theming & Customization
 
 Maya UI relies purely on native CSS custom properties. By default, it injects a highly tuned `maya.css` stylesheet, but overriding it is as simple as defining root variables in your project.
 
@@ -97,7 +97,7 @@ Maya UI relies purely on native CSS custom properties. By default, it injects a 
 
 ---
 
-## 🧑‍💻 Local Development Playground
+## Local Development Playground
 
 Maya UI features a beautifully crafted playground mapped to the actual documentation UI.
 
@@ -116,7 +116,7 @@ Navigate to `http://localhost:3000` to interact with all the components live in 
 
 ---
 
-## ⚖️ License
+## License
 
 [MIT](./LICENSE) © 2026
 
