@@ -5,13 +5,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useMagicKeys, whenever } from '@vueuse/core'
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   triggered: { type: Boolean, default: false },
-  shortcut: { type: String, default: '' }, // e.g., 'meta+k', 'shift+x'
-  prevent: { type: Boolean, default: true } // whether to prevent default browser action
+  shortcut: { type: String, default: '' },
+  prevent: { type: Boolean, default: true }
 })
 
 const emit = defineEmits(['click', 'trigger'])
@@ -28,55 +27,67 @@ function flash() {
 }
 
 // ─── Autonomous Hotkey Integration ───
-const keys = useMagicKeys({
-  passive: false,
-  onEventFired(e) {
-    if (props.prevent && e.type === 'keydown' && props.shortcut) {
-      // Normalize to handle 'cmd+k', 'meta+k', etc for preventDefault
-      const s = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
-      const isCmd = s.includes('cmd')
-      const isCtrl = s.includes('ctrl')
-      const isShift = s.includes('shift')
-      const keyChar = s.split('+').pop()
+// Only set up if this Kbd instance has a shortcut prop
+onMounted(async () => {
+  if (!props.shortcut) return
 
-      if (
-        (isCmd ? (e.metaKey || e.ctrlKey) : !e.metaKey) &&
-        (isShift ? e.shiftKey : !e.shiftKey) &&
-        e.key.toLowerCase() === keyChar
-      ) {
+  console.log('[MayaKbd] Mounting with shortcut:', props.shortcut)
+
+  // Dynamic import to avoid SSR issues — useMagicKeys needs window
+  const { useMagicKeys, whenever } = await import('@vueuse/core')
+
+  const keys = useMagicKeys({
+    passive: false,
+    onEventFired(e) {
+      if (!props.prevent || e.type !== 'keydown') return
+      const parts = props.shortcut.toLowerCase().split('+')
+      const keyChar = parts[parts.length - 1]
+      const needsMeta = parts.includes('meta') || parts.includes('cmd')
+      const needsShift = parts.includes('shift')
+
+      if (needsMeta && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === keyChar) {
+        if (needsShift && !e.shiftKey) return
         e.preventDefault()
       }
     }
+  })
+
+  // Build the VueUse combo strings from the shortcut prop
+  // 'meta+k' → watch keys['command_k'] and keys['ctrl_k']
+  const parts = props.shortcut.toLowerCase().split('+')
+  const keyChar = parts[parts.length - 1]
+  const hasMeta = parts.includes('meta') || parts.includes('cmd')
+  const hasShift = parts.includes('shift')
+  const hasCtrl = parts.includes('ctrl')
+  const hasAlt = parts.includes('alt')
+
+  function onTrigger() {
+    console.log('[MayaKbd] TRIGGERED:', props.shortcut)
+    flash()
+    emit('trigger')
+  }
+
+  if (hasMeta) {
+    // Mac: command, Windows/Linux: ctrl
+    const cmdCombo = hasShift ? `shift_command_${keyChar}` : `command_${keyChar}`
+    const ctrlCombo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
+    console.log('[MayaKbd] Watching:', cmdCombo, 'and', ctrlCombo)
+    whenever(keys[cmdCombo], onTrigger)
+    whenever(keys[ctrlCombo], onTrigger)
+  } else if (hasCtrl) {
+    const combo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
+    console.log('[MayaKbd] Watching:', combo)
+    whenever(keys[combo], onTrigger)
+  } else if (hasAlt) {
+    const combo = hasShift ? `shift_alt_${keyChar}` : `alt_${keyChar}`
+    console.log('[MayaKbd] Watching:', combo)
+    whenever(keys[combo], onTrigger)
+  } else {
+    const combo = props.shortcut.replace(/\+/g, '_').toLowerCase()
+    console.log('[MayaKbd] Watching:', combo)
+    whenever(keys[combo], onTrigger)
   }
 })
-
-if (props.shortcut) {
-  // Prepare exactly the keys natively tracked by VueUse proxy
-  const baseKey = props.shortcut.split('+').pop().toLowerCase()
-  const s = props.shortcut.toLowerCase()
-
-  // Explicit trigger configurations
-  const isMetaOrCmd = s.includes('meta') || s.includes('cmd')
-  const isShift = s.includes('shift')
-
-  let ctrlStr = isShift ? `shift_ctrl_${baseKey}` : `ctrl_${baseKey}`
-  let cmdStr = isShift ? `shift_command_${baseKey}` : `command_${baseKey}`
-  let altStr = isShift ? `shift_alt_${baseKey}` : `alt_${baseKey}`
-
-  if (isMetaOrCmd) {
-    // Catch both Ctrl and Command bindings natively
-    whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
-    whenever(keys[cmdStr], () => { flash(); emit('trigger') })
-  } else if (s.includes('ctrl')) {
-    whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
-  } else if (s.includes('alt')) {
-    whenever(keys[altStr], () => { flash(); emit('trigger') })
-  } else {
-    // Just a simple key like 'shift_x' or 'escape'
-    const normStr = s.replace(/\+/g, '_')
-    whenever(keys[normStr], () => { flash(); emit('trigger') })
-  }
-}
 
 defineExpose({ flash })
 </script>
