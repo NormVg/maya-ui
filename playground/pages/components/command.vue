@@ -22,7 +22,7 @@
       <template #preview>
         <div style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
           <MayaBtn @click="isOpen = true" variant="outline">
-            Open Command Palette <MayaKbd ref="triggerKbdRef">⌘K</MayaKbd>
+            Open Command Palette <MayaKbd shortcut="meta+k" @trigger="isOpen = !isOpen">⌘K</MayaKbd>
           </MayaBtn>
 
           <MayaModal v-model="isOpen" :hideCloseButton="true" maxWidth="640px">
@@ -36,31 +36,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-import { useMagicKeys } from '@vueuse/core'
+import { ref } from 'vue'
 
 const isOpen = ref(false)
-const triggerKbdRef = ref(null)
-
-const { meta_k, ctrl_k } = useMagicKeys({
-  passive: false,
-  onEventFired(e) {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault()
-    }
-  }
-})
-
-watch([meta_k, ctrl_k], ([metaKPressed, ctrlKPressed]) => {
-  if (metaKPressed || ctrlKPressed) {
-    // Flash the Kbd on the trigger button
-    if (triggerKbdRef.value?.$el || triggerKbdRef.value) {
-      const kbdInstance = triggerKbdRef.value
-      if (kbdInstance?.flash) kbdInstance.flash()
-    }
-    isOpen.value = !isOpen.value
-  }
-})
 
 const mockGroups = [
   {

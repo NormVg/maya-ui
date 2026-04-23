@@ -5,11 +5,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { useMagicKeys } from '@vueuse/core'
 
 const props = defineProps({
-  triggered: { type: Boolean, default: false }
+  triggered: { type: Boolean, default: false },
+  shortcut: { type: String, default: '' }, // e.g., 'meta+k', 'shift+x'
+  prevent: { type: Boolean, default: true } // whether to prevent default browser action
 })
+
+const emit = defineEmits(['click', 'trigger'])
 
 const isTriggered = ref(false)
 let timeout = null
@@ -21,6 +26,44 @@ function flash() {
     isTriggered.value = false
   }, 300)
 }
+
+// ─── Autonomous Hotkey Integration ───
+onMounted(() => {
+  if (props.shortcut) {
+    const keys = useMagicKeys({
+      passive: false,
+      onEventFired(e) {
+        if (props.prevent && e.type === 'keydown') {
+          // A bit of custom logic to check if this specific keydown matches our shortcut
+          // useMagicKeys handles the reactive state, but we manually preventDefault here if needed
+          const keysCombo = props.shortcut.toLowerCase().split('+')
+          const isMeta = keysCombo.includes('meta') || keysCombo.includes('cmd')
+          const isCtrl = keysCombo.includes('ctrl')
+          const isShift = keysCombo.includes('shift')
+          const key = keysCombo[keysCombo.length - 1]
+
+          if (
+            (isMeta ? e.metaKey : true) &&
+            (isCtrl ? e.ctrlKey : true) &&
+            (isShift ? e.shiftKey : true) &&
+            e.key.toLowerCase() === key
+          ) {
+            e.preventDefault()
+          }
+        }
+      }
+    })
+
+    // Watch the specific shortcut via useMagicKeys dynamic property access
+    const magicRef = keys[props.shortcut]
+    watch(magicRef, (v) => {
+      if (v) {
+        flash()
+        emit('trigger')
+      }
+    })
+  }
+})
 
 defineExpose({ flash })
 </script>
