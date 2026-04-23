@@ -36,14 +36,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watch } from 'vue'
+import { useMagicKeys } from '@vueuse/core'
 
 const isOpen = ref(false)
 const triggerKbdRef = ref(null)
 
-function handleGlobalShortcut(e) {
-  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-    e.preventDefault()
+const { meta_k, ctrl_k } = useMagicKeys({
+  passive: false,
+  onEventFired(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault()
+    }
+  }
+})
+
+watch([meta_k, ctrl_k], ([metaKPressed, ctrlKPressed]) => {
+  if (metaKPressed || ctrlKPressed) {
     // Flash the Kbd on the trigger button
     if (triggerKbdRef.value?.$el || triggerKbdRef.value) {
       const kbdInstance = triggerKbdRef.value
@@ -51,14 +60,6 @@ function handleGlobalShortcut(e) {
     }
     isOpen.value = !isOpen.value
   }
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', handleGlobalShortcut)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', handleGlobalShortcut)
 })
 
 const mockGroups = [
