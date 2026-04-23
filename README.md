@@ -1,101 +1,122 @@
-# Maya UI
+<div align="center">
+  <h1>✨ Maya UI</h1>
+  <p>A premium, headless-inspired, fully customizable Vue & Nuxt component library.</p>
+</div>
 
-A premium component library for Nuxt — dark-first, zero dependencies, pure CSS tokens.
+<p align="center">
+  <b>Dark-First • Zero Dependencies • Pure CSS Tokens • Deep Nuxt Integration</b>
+</p>
 
-## Features
+---
 
-- **Dark-first design** — every component is crafted for dark mode, with a polished light counterpart
-- **Pure CSS tokens** — no Tailwind, no utility classes — just clean custom properties you override
-- **Auto-imported** — register the module and all components are globally available
-- **Semantic intent** — success, warning, danger, info across every interactive component
-- **Spring-based motion** — bouncy animations on buttons, toggles, checkboxes, and switches
-- **View Transitions** — cinematic circular-reveal theme toggle via the Document View Transition API
-- **Shiki syntax highlighting** — theme-aware code blocks with automatic light/dark switching
+## ✦ Why Maya UI?
 
-## Quick Start
+Maya UI is not just another utility-based component library. It is designed to be **highly opinionated on motion and structure** but **completely unopinionated on styling mechanisms**.
+
+- **State-of-the-art Motion** — Fluid, spring-based interactions on buttons, switches, toggles, and modals.
+- **Pure CSS Tokens** — No Tailwind config overhead. The theme strictly relies on standard CSS variables (`var(--maya-bg-surface)`).
+- **Nuxt Auto-Imports** — Zero repetitive `import` statements. `MayaBtn`, `MayaDialog`, `MayaToaster` are automatically available.
+- **Semantic Intent** — Built-in `success`, `warning`, `danger`, and `info` intents across all interactive elements.
+- **Cinematic Theme Toggling** — Uses the native Document View Transition API for instant, buttery-smooth light/dark mode circular reveals.
+
+---
+
+## 📦 Installation
+
+Install the library using your preferred package manager:
 
 ```bash
 pnpm add -D maya-ui
 ```
 
+Add the module to your `nuxt.config.ts`:
+
 ```typescript
-// nuxt.config.ts
 export default defineNuxtConfig({
   modules: ['maya-ui'],
 })
 ```
 
-That's it. All components are auto-imported with the `Maya` prefix.
+You're done! All components prefixing with `Maya` are now accessible in your `.vue` files.
 
-## Components
+---
 
-### Buttons & Controls
-- `MayaBtn` — primary, secondary, ghost with semantic intent
-- `MayaSwitch` — iOS-style toggle with spring animation
-- `MayaToggle` / `MayaToggleGroup` — pressable selection buttons
+## 🧬 Component Ecosystem
 
-### Inputs
-- `MayaInput` — text input with focus ring
-- `MayaTextarea` — multi-line text input
-- `MayaCheckbox` — bouncy animated checkmark
+Maya UI includes over **40 distinct components** grouped by functionality, all following the exact same aesthetic language.
 
-### Containers
-- `MayaCard` — surface with header/content/footer slots
-- `MayaBadge` — solid, soft, outline chip with semantic colors
-- `MayaAvatar` / `MayaAvatarGroup` — image, initials, status dot
-- `MayaTable` — clean data table
+### 🎛 Controls & Inputs
+- `MayaBtn`, `MayaToggle`, `MayaToggleGroup`, `MayaSwitch`
+- `MayaInput`, `MayaTextarea`, `MayaNumberField`, `MayaInputOtp`
+- `MayaCheckbox`, `MayaRadio`, `MayaSelect`, `MayaCombobox`
+- `MayaDateChooser`
 
-### Base UI
-- `MayaLabel` — accessible form label with required indicator
-- `MayaSeparator` — horizontal/vertical divider
-- `MayaKbd` — keyboard shortcut display
+### 🏗 Layouts & Containers
+- `MayaCard`, `MayaBadge`, `MayaAvatar`, `MayaTable`
+- `MayaField`, `MayaLabel`, `MayaFieldset`
+- `MayaScrollArea`, `MayaResizable`, `MayaSheet` (Drawer)
 
-### Code & Prose
-- `MayaCodeBlock` — Shiki-highlighted multi-line code with copy button
-- `MayaInlineCode` — copyable one-liner
-- `MayaProse` — markdown renderer with syntax highlighting
-- `MayaPreviewCode` — live preview + code tab component
+### 🗺 Navigation & Menus
+- `MayaBreadcrumb`, `MayaMenubar`, `MayaSidebar`, `MayaTopbar`
+- `MayaDropdownMenu`, `MayaContextMenu`, `MayaCommand`
 
-### Loaders
-- `MayaSpinner` — SVG animated ring
-- `MayaSkeleton` — shimmer placeholder
-- `MayaLoadingDots` — bouncing dots
+### 💬 Feedback & Overlays
+- `MayaAlert`, `MayaAlertDialog`, `MayaBanner`
+- `MayaToast`, `MayaSonner` (Stackable notifications wrapper)
+- `MayaSpinner`, `MayaSkeleton`, `MayaPixelLoader`, `MayaDotOrbit`
 
-### System
-- `MayaThemeToggle` — View Transition-powered dark/light switch
+### 💻 Code Documentation
+- `MayaCodeBlock`, `MayaInlineCode`, `MayaPreviewCode`, `MayaProse`
 
-## Customization
+---
 
-Override any CSS token in your app:
+## 🎨 Theming & Customization
+
+Maya UI relies purely on native CSS custom properties. By default, it injects a highly tuned `maya.css` stylesheet, but overriding it is as simple as defining root variables in your project.
 
 ```css
 :root {
+  /* Core Colors */
+  --maya-bg-root: #09090b;
+  --maya-text-primary: #ededed;
+
+  /* Accent Theming */
   --maya-accent: #6366f1;
   --maya-accent-hover: #818cf8;
+  --maya-accent-text: #ffffff;
+
+  /* Form & Radius */
   --maya-radius-md: 8px;
-  --maya-font-sans: "Geist", sans-serif;
+  --maya-radius-full: 9999px;
+
+  /* Typography */
+  --maya-font-sans: "Inter", "Geist", sans-serif;
+  --maya-font-mono: "Fira Code", monospace;
 }
 ```
 
-## Development
+---
+
+## 🧑‍💻 Local Development Playground
+
+Maya UI features a beautifully crafted playground mapped to the actual documentation UI.
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Generate type stubs
+# Generate Nuxt definitions
 pnpm run dev:prepare
 
-# Develop with the playground
+# Start playground
 pnpm run dev
-
-# Lint
-pnpm run lint
-
-# Test
-pnpm run test
 ```
 
-## License
+Navigate to `http://localhost:3000` to interact with all the components live in the browser.
 
-[MIT](./LICENSE)
+---
+
+## ⚖️ License
+
+[MIT](./LICENSE) © 2026
+

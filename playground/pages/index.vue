@@ -2,15 +2,19 @@
   <div>
     <div class="hero">
       <div class="hero-badge">
-        <MayaBadge variant="outline">v0.1.0</MayaBadge>
+        <MayaBadge variant="outline" intent="info">✨ Maya UI v1.0.0</MayaBadge>
       </div>
-      <h1 class="hero-title">Maya UI</h1>
+      <h1 class="hero-title">A headless-inspired,<br />premium component library.</h1>
       <p class="hero-subtitle">
-        A premium component library for Nuxt — dark-first, zero dependencies, pure CSS tokens.
+        Highly opinionated on motion and structure, completely unopinionated on styling mechanisms. Dark-first, pure CSS tokens, engineered for Nuxt.
       </p>
       <div class="hero-actions">
-        <MayaBtn variant="primary" size="md" @click="$router.push('/install')">Get Started</MayaBtn>
-        <MayaBtn variant="secondary" size="md" @click="$router.push('/components/button')">Browse Components</MayaBtn>
+        <MayaBtn variant="primary" size="md" @click="$router.push('/install')">
+          Get Started
+        </MayaBtn>
+        <MayaBtn variant="secondary" size="md" @click="$router.push('/components/button')">
+          Browse 40+ Components
+        </MayaBtn>
       </div>
     </div>
 
@@ -32,7 +36,7 @@
     <MayaSeparator />
 
     <div class="quick-start">
-      <h2 class="section-title">Quick Start</h2>
+      <h2 class="section-title">Quick Installation</h2>
       <MayaInlineCode code="pnpm add -D maya-ui" lang="bash" />
       <div style="margin-top: 16px;">
         <MayaCodeBlock filename="nuxt.config.ts" lang="typescript" :code="configCode" />
@@ -42,7 +46,7 @@
     <MayaSeparator />
 
     <div class="component-list">
-      <h2 class="section-title">What's Included</h2>
+      <h2 class="section-title">The Ecosystem</h2>
       <MayaProse :content="componentListMd" />
     </div>
   </div>
@@ -53,28 +57,28 @@ definePageMeta({ layout: 'landing' })
 
 const features = [
   {
-    title: 'Dark-First Design',
-    desc: 'Every component is designed for dark mode first, with a polished light mode counterpart.',
+    title: 'State-of-the-art Motion',
+    desc: 'Fluid, spring-based interactions on buttons, switches, toggles, and overlays.',
   },
   {
     title: 'Pure CSS Tokens',
-    desc: 'No Tailwind, no utility classes — just clean CSS custom properties you can override.',
+    desc: 'No Tailwind config overhead. The theme strictly relies on standard CSS variables.',
   },
   {
-    title: 'Auto-Imported',
-    desc: 'Register the Nuxt module and every component is available globally. No manual imports needed.',
+    title: 'Nuxt Auto-Imports',
+    desc: 'Zero repetitive import statements. All 40+ components are automatically available.',
   },
   {
     title: 'Semantic Intent',
-    desc: 'Success, warning, danger, info — all components speak the same semantic color language.',
+    desc: 'Built-in success, warning, danger, and info intents across all interactive elements.',
   },
   {
-    title: 'Bouncy Motion',
-    desc: 'Spring-based animations on every interactive element — buttons, toggles, checkboxes.',
+    title: 'Dark-First Structure',
+    desc: 'Every component is crafted for dark mode first, with a meticulously polished light counterpart.',
   },
   {
-    title: 'View Transitions',
-    desc: 'Built-in theme toggle with Document View Transition API for cinematic dark/light switches.',
+    title: 'Cinematic Transitions',
+    desc: 'Built-in toggle using the native Document View Transition API for instant circular reveals.',
   },
 ]
 
@@ -82,36 +86,26 @@ const configCode = `export default defineNuxtConfig({
   modules: ['maya-ui'],
 })`
 
-const componentListMd = `### Buttons & Controls
-- **MayaBtn** — Primary, secondary, ghost with semantic intent
-- **MayaSwitch** — iOS-style toggle with spring animation
-- **MayaToggle** / **MayaToggleGroup** — Pressable selection buttons
+const componentListMd = `### 🎛 Controls & Inputs
+- **MayaBtn**, **MayaToggle**, **MayaSwitch** — Interactive triggers with spring physics
+- **MayaInput**, **MayaNumberField**, **MayaInputOtp** — Standard and composite forms
+- **MayaCheckbox**, **MayaSelect**, **MayaCombobox** — Selection utilities
 
-### Inputs
-- **MayaInput** — Text input with focus ring
-- **MayaTextarea** — Multi-line text input
-- **MayaCheckbox** — Bouncy animated checkmark
+### 🏗 Layouts & Containers
+- **MayaCard**, **MayaBadge**, **MayaAvatar**, **MayaTable** — Core structural blocks
+- **MayaScrollArea**, **MayaResizable**, **MayaSheet** — Advanced dimensional containers
+- **MayaField**, **MayaLabel** — Accessible form framing
 
-### Containers
-- **MayaCard** — Surface with header/content/footer slots
-- **MayaBadge** — Solid, soft, outline chip with semantic colors
-- **MayaAvatar** / **MayaAvatarGroup** — Image, initials, status dot
-- **MayaTable** — Clean data table
+### 🗺 Navigation & Menus
+- **MayaBreadcrumb**, **MayaMenubar**, **MayaSidebar** — Wayfinding components
+- **MayaDropdownMenu**, **MayaContextMenu** — Contextual overlays
 
-### Base UI
-- **MayaLabel** — Accessible form label with required indicator
-- **MayaSeparator** — Horizontal/vertical divider
-- **MayaKbd** — Keyboard shortcut display
+### 💬 Feedback & Overlays
+- **MayaAlert**, **MayaBanner**, **MayaToast**, **MayaSonner** — Real-time notification stacks
+- **MayaSpinner**, **MayaSkeleton**, **MayaPixelLoader** — State indicators
 
-### Code & Prose
-- **MayaCodeBlock** — Shiki-highlighted multi-line code
-- **MayaInlineCode** — Copyable one-liner
-- **MayaProse** — Markdown renderer with syntax highlighting
-
-### Loaders
-- **MayaSpinner** — SVG animated ring
-- **MayaSkeleton** — Shimmer placeholder
-- **MayaLoadingDots** — Bouncing dots`
+### 💻 Code Documentation
+- **MayaCodeBlock**, **MayaInlineCode**, **MayaProse** — Developer-centric formatting`
 </script>
 
 <style scoped>
@@ -121,15 +115,16 @@ const componentListMd = `### Buttons & Controls
 }
 
 .hero-badge {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   font-weight: 700;
-  letter-spacing: -0.045em;
-  margin-bottom: 14px;
-  background: linear-gradient(135deg, var(--maya-text-primary) 0%, var(--maya-text-muted) 100%);
+  letter-spacing: -0.04em;
+  margin-bottom: 18px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--maya-text-primary) 0%, var(--maya-text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
