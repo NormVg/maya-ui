@@ -37,23 +37,39 @@
       </template>
     </MayaPreviewCode>
 
-    <MayaPreviewCode title="Kbd — Keyboard Keys" description="Render keyboard shortcuts with physical key styling.">
+    <MayaPreviewCode title="Kbd — Keyboard Keys"
+      description="Render keyboard shortcuts with physical key styling. Click the ⌘K key to see the triggered glow.">
       <template #preview>
         <div class="row wrap">
           <MayaKbd>⌘</MayaKbd>
-          <MayaKbd>⌘ K</MayaKbd>
+          <MayaKbd>⌘K</MayaKbd>
           <MayaKbd>Ctrl</MayaKbd>
           <MayaKbd>Enter</MayaKbd>
           <MayaKbd>Shift</MayaKbd>
           <MayaKbd>Esc</MayaKbd>
           <MayaKbd>Tab</MayaKbd>
-          <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">Press <MayaKbd>⌘</MayaKbd> + <MayaKbd>K
-            </MayaKbd> to open command palette</span>
+        </div>
+        <div style="margin-top: 16px;">
+          <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">Press
+            <MayaKbd ref="demoKbdRef" @click.native="flashDemo" style="cursor: pointer;">⌘K</MayaKbd>
+            to open command palette
+          </span>
         </div>
       </template>
     </MayaPreviewCode>
   </div>
 </template>
+
+
+<script setup>
+import { ref } from 'vue'
+
+const demoKbdRef = ref(null)
+
+function flashDemo() {
+  if (demoKbdRef.value?.flash) demoKbdRef.value.flash()
+}
+</script>
 
 <style scoped>
 .col {
