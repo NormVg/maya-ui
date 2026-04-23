@@ -67,4 +67,13 @@
   margin: 0 auto;
   padding: 0 40px 80px;
 }
+
+@media (max-width: 768px) {
+  .landing-topbar {
+    padding: 0 20px;
+  }
+  .landing-main {
+    padding: 0 20px 40px;
+  }
+}
 </style>

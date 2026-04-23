@@ -256,6 +256,15 @@ ul {
     padding: 24px 16px !important;
   }
 
+  /* Safe flex wrapping for all preview containers on mobile */
+  #app .maya-preview-code-canvas>div {
+    max-width: 100%;
+  }
+
+  #app .maya-preview-code-canvas [style*="display: flex"]:not(.maya-banner__inner) {
+    flex-wrap: wrap;
+  }
+
   .mobile-menu-open,
   .mobile-menu-close {
     display: flex;

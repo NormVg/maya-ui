@@ -185,4 +185,21 @@ const componentListMd = `### Buttons & Controls
 .component-list {
   padding: 48px 0 20px;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 0 32px;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 40px;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
