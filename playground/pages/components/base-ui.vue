@@ -51,9 +51,7 @@
         </div>
         <div style="margin-top: 16px;">
           <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">Press
-            <span @click="triggerDemo" style="cursor: pointer;">
-              <MayaKbd :triggered="kbdTriggered">⌘K</MayaKbd>
-            </span>
+            <MayaKbd :triggered="kbdTriggered" @click="triggerDemo" style="cursor: pointer;">⌘K</MayaKbd>
             to open command palette
           </span>
         </div>

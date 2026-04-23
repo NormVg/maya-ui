@@ -1,33 +1,15 @@
 <template>
-  <kbd class="maya-kbd" :class="{ 'is-triggered': isTriggered }">
+  <kbd class="maya-kbd" :class="{ 'is-triggered': triggered }" @click="$emit('click', $event)">
     <slot />
   </kbd>
 </template>
 
 <script setup>
-import { ref, watch, toRef } from 'vue'
-
-const props = defineProps({
+defineProps({
   triggered: { type: Boolean, default: false }
 })
 
-const isTriggered = ref(false)
-let timeout = null
-
-// Support external trigger via prop
-watch(toRef(props, 'triggered'), (val) => {
-  if (val) flash()
-})
-
-function flash() {
-  isTriggered.value = true
-  clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    isTriggered.value = false
-  }, 300)
-}
-
-defineExpose({ flash })
+defineEmits(['click'])
 </script>
 
 <style scoped>
@@ -52,10 +34,10 @@ defineExpose({ flash })
   user-select: none;
   letter-spacing: 0.02em;
   gap: 1px;
-  transition: all var(--maya-duration) var(--maya-ease);
+  transition: all 150ms var(--maya-ease);
 }
 
-/* ─── Triggered / Pressed micro-interaction ─── */
+/* ─── Triggered / Pressed state ─── */
 .maya-kbd.is-triggered {
   transform: translateY(1px) scale(0.95);
   border-bottom-width: 1px;

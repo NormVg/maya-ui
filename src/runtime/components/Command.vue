@@ -42,7 +42,6 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
-import MayaKbd from './Kbd.vue'
 
 const props = defineProps({
   groups: {
