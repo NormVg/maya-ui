@@ -31,7 +31,6 @@ function flash() {
 onMounted(async () => {
   if (!props.shortcut) return
 
-  console.log('[MayaKbd] Mounting with shortcut:', props.shortcut)
 
   // Dynamic import to avoid SSR issues — useMagicKeys needs window
   const { useMagicKeys, whenever } = await import('@vueuse/core')
@@ -62,7 +61,6 @@ onMounted(async () => {
   const hasAlt = parts.includes('alt')
 
   function onTrigger() {
-    console.log('[MayaKbd] TRIGGERED:', props.shortcut)
     flash()
     emit('trigger')
   }
@@ -71,20 +69,16 @@ onMounted(async () => {
     // Mac: command, Windows/Linux: ctrl
     const cmdCombo = hasShift ? `shift_command_${keyChar}` : `command_${keyChar}`
     const ctrlCombo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
-    console.log('[MayaKbd] Watching:', cmdCombo, 'and', ctrlCombo)
     whenever(keys[cmdCombo], onTrigger)
     whenever(keys[ctrlCombo], onTrigger)
   } else if (hasCtrl) {
     const combo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
-    console.log('[MayaKbd] Watching:', combo)
     whenever(keys[combo], onTrigger)
   } else if (hasAlt) {
     const combo = hasShift ? `shift_alt_${keyChar}` : `alt_${keyChar}`
-    console.log('[MayaKbd] Watching:', combo)
     whenever(keys[combo], onTrigger)
   } else {
     const combo = props.shortcut.replace(/\+/g, '_').toLowerCase()
-    console.log('[MayaKbd] Watching:', combo)
     whenever(keys[combo], onTrigger)
   }
 })
