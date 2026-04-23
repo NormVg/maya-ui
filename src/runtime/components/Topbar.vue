@@ -24,18 +24,20 @@ defineProps({
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 60px;
+  height: 52px;
   padding: 0 24px;
-  background: var(--maya-bg-surface);
-  border-bottom: 1px solid var(--maya-border);
+  background: transparent;
+  border-bottom: 1px dashed var(--maya-border);
   z-index: 40;
+  flex-shrink: 0;
 }
 
 .maya-topbar.sticky {
   position: sticky;
   top: 0;
   backdrop-filter: blur(8px);
-  background: color-mix(in srgb, var(--maya-bg-surface) 80%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--maya-bg-root) 85%, transparent);
 }
 
 .maya-topbar-left,
