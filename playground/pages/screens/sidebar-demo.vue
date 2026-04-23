@@ -1,7 +1,3 @@
-<script>
-export default { layout: 'screen' }
-</script>
-
 <template>
   <MayaSidebar>
     <template #header>
@@ -48,6 +44,10 @@ export default { layout: 'screen' }
 
 <script setup>
 import { ref } from 'vue'
+
+definePageMeta({
+  layout: 'screen'
+})
 
 const active = ref('Dashboard')
 const navItems = ['Dashboard', 'Analytics', 'Team', 'Projects', 'Settings']

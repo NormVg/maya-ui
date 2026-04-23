@@ -1,5 +1,7 @@
-<script>
-export default { layout: 'screen' }
+<script setup>
+definePageMeta({
+  layout: 'screen'
+})
 </script>
 
 <template>
