@@ -16,9 +16,8 @@
     </MayaPreviewCode>
 
     <MayaPreviewCode title="Inside a Modal"
-      description="Command is traditionally used inside a `<MayaModal>`. The modal component acts as the 'Palette' overlay."
-      code="<MayaModal v-model:open='isOpen'>
-  <MayaCommand :groups='groups' />
+      description="Command is traditionally used inside a MayaModal. The modal acts as the palette overlay." code="<MayaModal v-model='isOpen' :hideCloseButton='true' maxWidth='640px' style='padding: 0;'>
+  <MayaCommand :groups='groups' @select='isOpen = false' style='border: none; box-shadow: none;' />
 </MayaModal>">
       <template #preview>
         <div style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
@@ -26,11 +25,9 @@
             Open Command Palette <MayaKbd>⌘K</MayaKbd>
           </MayaBtn>
 
-          <MayaModal v-model:open="isOpen" :hideCloseButton="true" maxWidth="500px">
-            <!-- Command has its own border radius and shadow, so we reset modal padding/bg -->
-            <div style="margin: -24px;">
-              <MayaCommand :groups="mockGroups" @select="isOpen = false" style="border: none; box-shadow: none;" />
-            </div>
+          <MayaModal v-model="isOpen" :hideCloseButton="true" maxWidth="640px">
+            <MayaCommand :groups="mockGroups" @select="isOpen = false"
+              style="border: none; box-shadow: none; max-width: 100%;" />
           </MayaModal>
         </div>
       </template>

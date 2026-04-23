@@ -1,17 +1,17 @@
 <template>
   <Teleport to="body">
     <Transition name="maya-modal-backdrop">
-      <div v-if="modelValue" class="maya-modal-backdrop" @click="closeOnClickOutside && close()">
+      <div v-if="isOpen" class="maya-modal-backdrop" @click="closeOnClickOutside && close()">
         <Transition name="maya-modal-content" appear>
           <div class="maya-modal" :style="{ maxWidth }" @click.stop v-bind="$attrs">
-            <div class="maya-modal-header" v-if="$slots.header || title || description">
+            <div class="maya-modal-header" v-if="($slots.header || title || description) && !hideCloseButton">
               <slot name="header">
                 <div>
                   <h2 v-if="title" class="maya-modal-title">{{ title }}</h2>
                   <p v-if="description" class="maya-modal-description">{{ description }}</p>
                 </div>
               </slot>
-              <button class="maya-modal-close" @click="close" aria-label="Close">
+              <button v-if="!hideCloseButton" class="maya-modal-close" @click="close" aria-label="Close">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -35,30 +35,36 @@
 </template>
 
 <script setup>
-import { watch, onMounted, onUnmounted } from 'vue'
+import { watch, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
+  open: { type: Boolean, default: undefined }, // alias for v-model:open
   title: { type: String, default: '' },
   description: { type: String, default: '' },
   maxWidth: { type: String, default: '480px' },
-  closeOnClickOutside: { type: Boolean, default: true }
+  closeOnClickOutside: { type: Boolean, default: true },
+  hideCloseButton: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'update:open'])
+
+// Support both v-model and v-model:open
+const isOpen = computed(() => props.open !== undefined ? props.open : props.modelValue)
 
 function close() {
   emit('update:modelValue', false)
+  emit('update:open', false)
 }
 
 function handleKeydown(e) {
-  if (e.key === 'Escape' && props.modelValue) {
+  if (e.key === 'Escape' && isOpen.value) {
     close()
   }
 }
 
-watch(() => props.modelValue, (isOpen) => {
-  if (isOpen) {
+watch(isOpen, (val) => {
+  if (val) {
     document.body.style.overflow = 'hidden'
   } else {
     document.body.style.overflow = ''
