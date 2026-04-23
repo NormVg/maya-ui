@@ -50,7 +50,7 @@ defineExpose({ flash })
     0 1px 0 var(--maya-border-strong);
   white-space: nowrap;
   user-select: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   gap: 1px;
   transition: all var(--maya-duration) var(--maya-ease);
 }
