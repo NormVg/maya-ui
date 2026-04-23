@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
-import { useMagicKeys } from '@vueuse/core'
+import { ref, onMounted, onUnmounted } from 'vue'
+import hotkeys from 'hotkeys-js'
 
 const props = defineProps({
   triggered: { type: Boolean, default: false },
@@ -30,39 +30,26 @@ function flash() {
 // ─── Autonomous Hotkey Integration ───
 onMounted(() => {
   if (props.shortcut) {
-    const keys = useMagicKeys({
-      passive: false,
-      onEventFired(e) {
-        if (props.prevent && e.type === 'keydown') {
-          // Normalize shortcut format for manual checking
-          // 'meta+k' or 'cmd+k' -> check metaKey and 'k'
-          const s = props.shortcut.toLowerCase()
-          const isMeta = s.includes('meta') || s.includes('cmd')
-          const isCtrl = s.includes('ctrl')
-          const isShift = s.includes('shift')
-          const keyChar = s.split('+').pop()
+    // Normalize meta/cmd to cmd for hotkeys-js compatibility
+    const keys = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
 
-          if (
-            (isMeta ? (e.metaKey || e.ctrlKey) : !e.metaKey) &&
-            (isShift ? e.shiftKey : !e.shiftKey) &&
-            e.key.toLowerCase() === keyChar
-          ) {
-            e.preventDefault()
-          }
-        }
+    // Allow hotkeys inside input fields if MayaUI specifically requests it
+    hotkeys.filter = function (event) { return true }
+
+    hotkeys(keys, function (event, handler) {
+      if (props.prevent) {
+        event.preventDefault()
       }
+      flash()
+      emit('trigger')
     })
+  }
+})
 
-    // VueUse magic-keys normalizes keys to camelCase internally or allows direct access
-    // Better to use normalized string like 'cmd_k' or 'meta_k'
-    const normalizedKey = props.shortcut.replace(/\+/g, '_').toLowerCase()
-
-    watch(keys[normalizedKey], (v) => {
-      if (v) {
-        flash()
-        emit('trigger')
-      }
-    })
+onUnmounted(() => {
+  if (props.shortcut) {
+    const keys = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
+    hotkeys.unbind(keys)
   }
 })
 
