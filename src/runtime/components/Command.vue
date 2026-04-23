@@ -29,7 +29,8 @@
                 <span v-if="item.icon" class="maya-command-item-icon" v-html="item.icon"></span>
                 <span class="maya-command-item-label">{{ item.label }}</span>
               </div>
-              <MayaKbd v-if="item.shortcut">{{ item.shortcut }}</MayaKbd>
+              <MayaKbd v-if="item.shortcut" :triggered="triggeredShortcut === item.shortcut">{{ item.shortcut }}
+              </MayaKbd>
             </button>
           </div>
         </div>
@@ -61,6 +62,8 @@ const selectedIndex = ref(0)
 const inputRef = ref(null)
 const listRef = ref(null)
 const activeItemRef = ref(null)
+const triggeredShortcut = ref(null)
+let shortcutTimeout = null
 
 // Flat list of all items (for navigation + shortcut matching)
 const flatItemsList = computed(() => {
@@ -156,6 +159,12 @@ function handleShortcut(e) {
 
     if (meta === scMeta && shift === scShift && key === scKey) {
       e.preventDefault()
+      // Flash the matching Kbd before selecting
+      triggeredShortcut.value = item.shortcut
+      clearTimeout(shortcutTimeout)
+      shortcutTimeout = setTimeout(() => {
+        triggeredShortcut.value = null
+      }, 350)
       emit('select', item)
       return
     }
