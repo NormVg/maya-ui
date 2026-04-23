@@ -27,60 +27,39 @@ function flash() {
 }
 
 // ─── Autonomous Hotkey Integration ───
-// Only set up if this Kbd instance has a shortcut prop
-onMounted(async () => {
+// Native keydown listener instead of useMagicKeys — macOS browsers
+// don't fire keyup for non-modifier keys while Cmd is held, which
+// breaks useMagicKeys' state tracking on repeated presses.
+onMounted(() => {
   if (!props.shortcut) return
 
-
-  // Dynamic import to avoid SSR issues — useMagicKeys needs window
-  const { useMagicKeys, whenever } = await import('@vueuse/core')
-
-  const keys = useMagicKeys({
-    passive: false,
-    onEventFired(e) {
-      if (!props.prevent || e.type !== 'keydown') return
-      const parts = props.shortcut.toLowerCase().split('+')
-      const keyChar = parts[parts.length - 1]
-      const needsMeta = parts.includes('meta') || parts.includes('cmd')
-      const needsShift = parts.includes('shift')
-
-      if (needsMeta && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === keyChar) {
-        if (needsShift && !e.shiftKey) return
-        e.preventDefault()
-      }
-    }
-  })
-
-  // Build the VueUse combo strings from the shortcut prop
-  // 'meta+k' → watch keys['command_k'] and keys['ctrl_k']
   const parts = props.shortcut.toLowerCase().split('+')
   const keyChar = parts[parts.length - 1]
-  const hasMeta = parts.includes('meta') || parts.includes('cmd')
-  const hasShift = parts.includes('shift')
-  const hasCtrl = parts.includes('ctrl')
-  const hasAlt = parts.includes('alt')
+  const needsMeta = parts.includes('meta') || parts.includes('cmd')
+  const needsCtrl = parts.includes('ctrl')
+  const needsShift = parts.includes('shift')
+  const needsAlt = parts.includes('alt')
 
-  function onTrigger() {
+  window.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase()
+    if (key !== keyChar) return
+
+    // Check modifier requirements
+    if (needsMeta && !(e.metaKey || e.ctrlKey)) return
+    if (needsCtrl && !e.ctrlKey) return
+    if (needsShift && !e.shiftKey) return
+    if (needsAlt && !e.altKey) return
+
+    // For meta shortcuts, block if no modifier was held
+    if (!needsMeta && !needsCtrl && !needsShift && !needsAlt) {
+      // Plain key — only fire if no modifiers are held
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+    }
+
+    if (props.prevent) e.preventDefault()
     flash()
     emit('trigger')
-  }
-
-  if (hasMeta) {
-    // Mac: command, Windows/Linux: ctrl
-    const cmdCombo = hasShift ? `shift_command_${keyChar}` : `command_${keyChar}`
-    const ctrlCombo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
-    whenever(keys[cmdCombo], onTrigger)
-    whenever(keys[ctrlCombo], onTrigger)
-  } else if (hasCtrl) {
-    const combo = hasShift ? `shift_ctrl_${keyChar}` : `ctrl_${keyChar}`
-    whenever(keys[combo], onTrigger)
-  } else if (hasAlt) {
-    const combo = hasShift ? `shift_alt_${keyChar}` : `alt_${keyChar}`
-    whenever(keys[combo], onTrigger)
-  } else {
-    const combo = props.shortcut.replace(/\+/g, '_').toLowerCase()
-    whenever(keys[combo], onTrigger)
-  }
+  })
 })
 
 defineExpose({ flash })
