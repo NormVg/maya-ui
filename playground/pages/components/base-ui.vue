@@ -51,7 +51,9 @@
         </div>
         <div style="margin-top: 16px;">
           <span style="color: var(--maya-text-secondary); font-size: 0.8125rem;">Press
-            <MayaKbd :triggered="kbdTriggered" @click="triggerDemo" style="cursor: pointer;">⌘K</MayaKbd>
+            <span @click="flashDemo" style="cursor: pointer;">
+              <MayaKbd ref="demoKbdRef">⌘K</MayaKbd>
+            </span>
             to open command palette
           </span>
         </div>
@@ -64,11 +66,12 @@
 <script setup>
 import { ref } from 'vue'
 
-const kbdTriggered = ref(false)
+const demoKbdRef = ref(null)
 
-function triggerDemo() {
-  kbdTriggered.value = true
-  setTimeout(() => { kbdTriggered.value = false }, 300)
+function flashDemo() {
+  if (demoKbdRef.value?.flash) {
+    demoKbdRef.value.flash()
+  }
 }
 </script>
 

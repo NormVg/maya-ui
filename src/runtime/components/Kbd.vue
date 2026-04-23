@@ -1,15 +1,28 @@
 <template>
-  <kbd class="maya-kbd" :class="{ 'is-triggered': triggered }" @click="$emit('click', $event)">
+  <kbd class="maya-kbd" :class="{ 'is-triggered': isTriggered || triggered }">
     <slot />
   </kbd>
 </template>
 
 <script setup>
-defineProps({
+import { ref } from 'vue'
+
+const props = defineProps({
   triggered: { type: Boolean, default: false }
 })
 
-defineEmits(['click'])
+const isTriggered = ref(false)
+let timeout = null
+
+function flash() {
+  isTriggered.value = true
+  clearTimeout(timeout)
+  timeout = setTimeout(() => {
+    isTriggered.value = false
+  }, 300)
+}
+
+defineExpose({ flash })
 </script>
 
 <style scoped>
@@ -38,6 +51,7 @@ defineEmits(['click'])
 }
 
 /* ─── Triggered / Pressed state ─── */
+.maya-kbd:active,
 .maya-kbd.is-triggered {
   transform: translateY(1px) scale(0.95);
   border-bottom-width: 1px;
