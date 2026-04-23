@@ -22,7 +22,7 @@
       <template #preview>
         <div style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
           <MayaBtn @click="isOpen = true" variant="outline">
-            Open Command Palette <MayaKbd>⌘K</MayaKbd>
+            Open Command Palette <MayaKbd ref="triggerKbdRef">⌘K</MayaKbd>
           </MayaBtn>
 
           <MayaModal v-model="isOpen" :hideCloseButton="true" maxWidth="640px">
@@ -36,9 +36,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const isOpen = ref(false)
+const triggerKbdRef = ref(null)
+
+function handleGlobalShortcut(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault()
+    // Flash the Kbd on the trigger button
+    if (triggerKbdRef.value?.$el || triggerKbdRef.value) {
+      const kbdInstance = triggerKbdRef.value
+      if (kbdInstance?.flash) kbdInstance.flash()
+    }
+    isOpen.value = !isOpen.value
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleGlobalShortcut)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleGlobalShortcut)
+})
 
 const mockGroups = [
   {
