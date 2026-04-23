@@ -115,6 +115,10 @@
           <NuxtLink to="/components/calendar" class="nav-item" active-class="active">Calendar</NuxtLink>
         </div>
         <div class="nav-group">
+          <div class="nav-group-title">Color</div>
+          <NuxtLink to="/components/color-picker" class="nav-item" active-class="active">Color Picker</NuxtLink>
+        </div>
+        <div class="nav-group">
           <div class="nav-group-title">System</div>
           <NuxtLink to="/components/theme-toggle" class="nav-item" active-class="active">Theme Toggle</NuxtLink>
         </div>
