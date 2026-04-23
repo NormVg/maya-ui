@@ -43,11 +43,28 @@
           <NuxtLink to="/components/field" class="nav-item" active-class="active">Field & Form</NuxtLink>
         </div>
         <div class="nav-group">
-          <div class="nav-group-title">Containers</div>
+          <div class="nav-group-title">Navigation</div>
+          <NuxtLink to="/components/breadcrumb" class="nav-item" active-class="active">Breadcrumb</NuxtLink>
+          <NuxtLink to="/components/navigation-menu" class="nav-item" active-class="active">Navigation Menu</NuxtLink>
+          <NuxtLink to="/components/menubar" class="nav-item" active-class="active">Menubar</NuxtLink>
+          <NuxtLink to="/components/sidebar" class="nav-item" active-class="active">Sidebar</NuxtLink>
+          <NuxtLink to="/components/topbar" class="nav-item" active-class="active">Topbar</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Menus</div>
+          <NuxtLink to="/components/dropdown-menu" class="nav-item" active-class="active">Dropdown Menu</NuxtLink>
+          <NuxtLink to="/components/context-menu" class="nav-item" active-class="active">Context Menu</NuxtLink>
+          <NuxtLink to="/components/command" class="nav-item" active-class="active">Command</NuxtLink>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Containers / Layout</div>
           <NuxtLink to="/components/card" class="nav-item" active-class="active">Card</NuxtLink>
           <NuxtLink to="/components/badge" class="nav-item" active-class="active">Badge</NuxtLink>
           <NuxtLink to="/components/avatar" class="nav-item" active-class="active">Avatar</NuxtLink>
           <NuxtLink to="/components/table" class="nav-item" active-class="active">Table</NuxtLink>
+          <NuxtLink to="/components/scroll-area" class="nav-item" active-class="active">Scroll Area</NuxtLink>
+          <NuxtLink to="/components/resizable" class="nav-item" active-class="active">Resizable</NuxtLink>
+          <NuxtLink to="/components/sheet" class="nav-item" active-class="active">Sheet / Drawer</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Loaders</div>
