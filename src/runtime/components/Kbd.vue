@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
 
 const props = defineProps({
@@ -28,58 +28,55 @@ function flash() {
 }
 
 // ─── Autonomous Hotkey Integration ───
-onMounted(() => {
-  if (props.shortcut) {
-    const keys = useMagicKeys({
-      passive: false,
-      onEventFired(e) {
-        if (props.prevent && e.type === 'keydown') {
-          // Normalize to handle 'cmd+k', 'meta+k', etc for preventDefault
-          const s = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
-          const isCmd = s.includes('cmd')
-          const isCtrl = s.includes('ctrl')
-          const isShift = s.includes('shift')
-          const keyChar = s.split('+').pop()
+const keys = useMagicKeys({
+  passive: false,
+  onEventFired(e) {
+    if (props.prevent && e.type === 'keydown' && props.shortcut) {
+      // Normalize to handle 'cmd+k', 'meta+k', etc for preventDefault
+      const s = props.shortcut.replace(/meta/ig, 'cmd').toLowerCase()
+      const isCmd = s.includes('cmd')
+      const isCtrl = s.includes('ctrl')
+      const isShift = s.includes('shift')
+      const keyChar = s.split('+').pop()
 
-          if (
-            (isCmd ? (e.metaKey || e.ctrlKey) : !e.metaKey) &&
-            (isShift ? e.shiftKey : !e.shiftKey) &&
-            e.key.toLowerCase() === keyChar
-          ) {
-            e.preventDefault()
-          }
-        }
+      if (
+        (isCmd ? (e.metaKey || e.ctrlKey) : !e.metaKey) &&
+        (isShift ? e.shiftKey : !e.shiftKey) &&
+        e.key.toLowerCase() === keyChar
+      ) {
+        e.preventDefault()
       }
-    })
-
-    // Prepare exactly the keys the user wants internally natively tracked by VueUse proxy
-    // Convert 'meta+k' to 'command_k' and 'ctrl_k' automatically
-    const baseKey = props.shortcut.split('+').pop().toLowerCase()
-    const s = props.shortcut.toLowerCase()
-
-    // Explicit trigger configurations
-    const isMetaOrCmd = s.includes('meta') || s.includes('cmd')
-    const isShift = s.includes('shift')
-
-    let ctrlStr = isShift ? `shift_ctrl_${baseKey}` : `ctrl_${baseKey}`
-    let cmdStr = isShift ? `shift_command_${baseKey}` : `command_${baseKey}`
-    let altStr = isShift ? `shift_alt_${baseKey}` : `alt_${baseKey}`
-
-    if (isMetaOrCmd) {
-      // Catch both Ctrl and Command bindings natively
-      whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
-      whenever(keys[cmdStr], () => { flash(); emit('trigger') })
-    } else if (s.includes('ctrl')) {
-      whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
-    } else if (s.includes('alt')) {
-      whenever(keys[altStr], () => { flash(); emit('trigger') })
-    } else {
-      // Just a simple key like 'shift_x' or 'escape'
-      const normStr = s.replace(/\+/g, '_')
-      whenever(keys[normStr], () => { flash(); emit('trigger') })
     }
   }
 })
+
+if (props.shortcut) {
+  // Prepare exactly the keys natively tracked by VueUse proxy
+  const baseKey = props.shortcut.split('+').pop().toLowerCase()
+  const s = props.shortcut.toLowerCase()
+
+  // Explicit trigger configurations
+  const isMetaOrCmd = s.includes('meta') || s.includes('cmd')
+  const isShift = s.includes('shift')
+
+  let ctrlStr = isShift ? `shift_ctrl_${baseKey}` : `ctrl_${baseKey}`
+  let cmdStr = isShift ? `shift_command_${baseKey}` : `command_${baseKey}`
+  let altStr = isShift ? `shift_alt_${baseKey}` : `alt_${baseKey}`
+
+  if (isMetaOrCmd) {
+    // Catch both Ctrl and Command bindings natively
+    whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
+    whenever(keys[cmdStr], () => { flash(); emit('trigger') })
+  } else if (s.includes('ctrl')) {
+    whenever(keys[ctrlStr], () => { flash(); emit('trigger') })
+  } else if (s.includes('alt')) {
+    whenever(keys[altStr], () => { flash(); emit('trigger') })
+  } else {
+    // Just a simple key like 'shift_x' or 'escape'
+    const normStr = s.replace(/\+/g, '_')
+    whenever(keys[normStr], () => { flash(); emit('trigger') })
+  }
+}
 
 defineExpose({ flash })
 </script>
