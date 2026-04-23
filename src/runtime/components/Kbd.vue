@@ -34,19 +34,18 @@ onMounted(() => {
       passive: false,
       onEventFired(e) {
         if (props.prevent && e.type === 'keydown') {
-          // A bit of custom logic to check if this specific keydown matches our shortcut
-          // useMagicKeys handles the reactive state, but we manually preventDefault here if needed
-          const keysCombo = props.shortcut.toLowerCase().split('+')
-          const isMeta = keysCombo.includes('meta') || keysCombo.includes('cmd')
-          const isCtrl = keysCombo.includes('ctrl')
-          const isShift = keysCombo.includes('shift')
-          const key = keysCombo[keysCombo.length - 1]
+          // Normalize shortcut format for manual checking
+          // 'meta+k' or 'cmd+k' -> check metaKey and 'k'
+          const s = props.shortcut.toLowerCase()
+          const isMeta = s.includes('meta') || s.includes('cmd')
+          const isCtrl = s.includes('ctrl')
+          const isShift = s.includes('shift')
+          const keyChar = s.split('+').pop()
 
           if (
-            (isMeta ? e.metaKey : true) &&
-            (isCtrl ? e.ctrlKey : true) &&
-            (isShift ? e.shiftKey : true) &&
-            e.key.toLowerCase() === key
+            (isMeta ? (e.metaKey || e.ctrlKey) : !e.metaKey) &&
+            (isShift ? e.shiftKey : !e.shiftKey) &&
+            e.key.toLowerCase() === keyChar
           ) {
             e.preventDefault()
           }
@@ -54,9 +53,11 @@ onMounted(() => {
       }
     })
 
-    // Watch the specific shortcut via useMagicKeys dynamic property access
-    const magicRef = keys[props.shortcut]
-    watch(magicRef, (v) => {
+    // VueUse magic-keys normalizes keys to camelCase internally or allows direct access
+    // Better to use normalized string like 'cmd_k' or 'meta_k'
+    const normalizedKey = props.shortcut.replace(/\+/g, '_').toLowerCase()
+
+    watch(keys[normalizedKey], (v) => {
       if (v) {
         flash()
         emit('trigger')
