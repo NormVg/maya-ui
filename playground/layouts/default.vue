@@ -88,6 +88,13 @@
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </NuxtLink>
+          <NuxtLink to="/screens/app-shell-demo" class="nav-item nav-item--screen" active-class="active">
+            App Shell Demo
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; opacity: 0.5;">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </NuxtLink>
         </div>
       </nav>
     </aside>
