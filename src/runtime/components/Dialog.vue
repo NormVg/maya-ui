@@ -1,8 +1,8 @@
 <template>
   <ClientOnly>
     <Teleport to="body">
-      <Transition name="maya-dialog" :duration="{ enter: 400, leave: 200 }">
-        <div v-show="modelValue" class="maya-dialog-root" role="dialog" aria-modal="true" :aria-labelledby="titleId" :aria-describedby="descId">
+      <Transition name="maya-dialog" :duration="{ enter: 280, leave: 160 }">
+        <div v-if="modelValue" class="maya-dialog-root" role="dialog" aria-modal="true" :aria-labelledby="titleId" :aria-describedby="descId">
           <div class="maya-dialog-backdrop" @click="closeOnClickOutside && close()" />
 
           <div class="maya-dialog-container">
@@ -197,17 +197,26 @@ onUnmounted(() => {
   Backdrop fades in via ease-out.
   Dialog box scales in using bouncy spring.
 */
-.maya-dialog-enter-active .maya-dialog-backdrop,
+.maya-dialog-enter-active .maya-dialog-backdrop {
+  transition: opacity 220ms var(--maya-ease-out);
+}
+
 .maya-dialog-leave-active .maya-dialog-backdrop {
-  transition: opacity 250ms var(--maya-ease-out, ease-out);
+  transition: opacity 140ms var(--maya-ease-in);
 }
 
 .maya-dialog-enter-active .maya-dialog-content {
-  transition: opacity 250ms ease-out, transform 400ms var(--maya-ease-bouncy, cubic-bezier(0.34, 1.56, 0.64, 1));
+  transition:
+    opacity 220ms var(--maya-ease-out),
+    transform 260ms var(--maya-ease-out),
+    filter 240ms var(--maya-ease-out);
 }
 
 .maya-dialog-leave-active .maya-dialog-content {
-  transition: opacity 200ms ease-in, transform 200ms ease-in;
+  transition:
+    opacity 140ms var(--maya-ease-in),
+    transform 140ms var(--maya-ease-in),
+    filter 140ms var(--maya-ease-in);
 }
 
 .maya-dialog-enter-from .maya-dialog-backdrop,
@@ -217,11 +226,13 @@ onUnmounted(() => {
 
 .maya-dialog-enter-from .maya-dialog-content {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(0.96) translateY(8px);
+  filter: blur(8px);
 }
 
 .maya-dialog-leave-to .maya-dialog-content {
   opacity: 0;
-  transform: scale(0.98); /* Less drastic collapse on exit */
+  transform: scale(0.98) translateY(6px);
+  filter: blur(8px);
 }
 </style>

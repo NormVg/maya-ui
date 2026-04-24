@@ -91,12 +91,11 @@ const sortedRows = computed(() => {
 .maya-data-table-wrap {
   display: flex;
   flex-direction: column;
+  background: var(--maya-table-bg) var(--maya-gradient-surface);
+  border: 1px solid var(--maya-border);
   border-radius: var(--maya-radius-lg);
   overflow: hidden;
-  background: var(--maya-bg-surface);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0 0 0 1px var(--maya-border-subtle);
+  box-shadow: var(--maya-shadow-md);
 }
 
 .maya-data-table-toolbar {
@@ -105,7 +104,7 @@ const sortedRows = computed(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--maya-border-subtle);
+  border-bottom: 1px dashed var(--maya-dash-color);
 }
 
 .maya-data-table-scroll {
@@ -124,10 +123,12 @@ const sortedRows = computed(() => {
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--maya-text-tertiary);
-  border-bottom: 1px solid var(--maya-border-subtle);
+  color: var(--maya-table-head-text);
+  border-bottom: 1px dashed var(--maya-dash-color);
   white-space: nowrap;
-  background: var(--maya-bg-surface);
+  background: var(--maya-table-head-bg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .maya-data-table-th.is-sortable {
@@ -153,7 +154,7 @@ const sortedRows = computed(() => {
 
 .maya-data-table-tr {
   transition: background 150ms ease;
-  border-bottom: 1px solid var(--maya-border-subtle);
+  border-bottom: 1px solid var(--maya-table-row-border);
 }
 
 .maya-data-table-tr:last-child {
@@ -161,7 +162,7 @@ const sortedRows = computed(() => {
 }
 
 .maya-data-table-tr:hover {
-  background: var(--maya-bg-surface-elevated);
+  background: var(--maya-table-row-hover);
 }
 
 .maya-data-table-tr.is-clickable {
@@ -169,13 +170,14 @@ const sortedRows = computed(() => {
 }
 
 .maya-data-table-tr.is-clickable:active {
-  background: var(--maya-bg-root);
+  background: var(--maya-table-row-hover);
+  filter: brightness(0.96);
 }
 
 .maya-data-table-td {
   padding: 14px 16px;
   font-size: 0.8125rem;
-  color: var(--maya-text-secondary);
+  color: var(--maya-text-primary);
   vertical-align: middle;
 }
 
@@ -183,6 +185,6 @@ const sortedRows = computed(() => {
   padding: 48px 16px;
   text-align: center;
   font-size: 0.875rem;
-  color: var(--maya-text-tertiary);
+  color: var(--maya-text-muted);
 }
 </style>

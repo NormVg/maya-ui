@@ -115,6 +115,21 @@ When content changes size (accordions, dynamic labels, expanding sections):
 - Guard initial render: `bounds.height > 0 ? bounds.height : 'auto'` to avoid animating from 0.
 - **Don't measure and animate the same element** — that creates an infinite loop.
 
+### Height Animation (Required for View Switching)
+
+When switching between two panels (for example `Preview` and `Code`), animate both:
+
+- **Content transition** with `<Transition mode="out-in">` and enter/leave motion classes.
+- **Container height transition** by measuring the active inner panel and animating the outer wrapper's `height`.
+
+Pattern:
+
+- Outer wrapper: animated `height` with `overflow: hidden`.
+- Inner wrapper: natural content height, observed with `ResizeObserver`.
+- On panel switch: lock current height, swap panel, then animate to the new measured height.
+
+Never hard-cut between panel heights; abrupt jumps make the UI feel broken.
+
 ---
 
 ## 7. Enter/Exit Animations

@@ -54,8 +54,8 @@
   --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
   --maya-gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
   --maya-pattern-stripes: repeating-linear-gradient(-45deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.02) 1px,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.04) 1px,
       transparent 1px,
       transparent 6px);
   --maya-skeleton-base: rgba(255, 255, 255, 0.04);
@@ -107,7 +107,7 @@
   --maya-table-row-border: rgba(255, 255, 255, 0.05);
 
   /* Dashed */
-  --maya-dash-color: rgba(255, 255, 255, 0.12);
+  --maya-dash-color: rgba(255, 255, 255, 0.2);
 
   /* ─── Semantic Colors (desaturated to match monochrome palette) ─── */
   /* Success - Emerald */
@@ -166,8 +166,8 @@
   --maya-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(0, 0, 0, 0.02);
   --maya-gradient-surface: linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 100%);
   --maya-pattern-stripes: repeating-linear-gradient(-45deg,
-      rgba(0, 0, 0, 0.02),
-      rgba(0, 0, 0, 0.02) 1px,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.05) 1px,
       transparent 1px,
       transparent 6px);
   --maya-skeleton-base: rgba(0, 0, 0, 0.04);
@@ -219,7 +219,7 @@
   --maya-table-row-border: rgba(0, 0, 0, 0.06);
 
   /* Dashed */
-  --maya-dash-color: rgba(0, 0, 0, 0.15);
+  --maya-dash-color: rgba(0, 0, 0, 0.24);
 
   /* Success - Emerald */
   --maya-success: #30A46C;

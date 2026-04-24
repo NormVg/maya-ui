@@ -48,7 +48,11 @@
   border-radius: var(--maya-radius-md);
   cursor: pointer;
   outline: none;
-  transition: color 120ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition:
+    color 120ms cubic-bezier(0.19, 1, 0.22, 1),
+    background-color 150ms cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 150ms cubic-bezier(0.19, 1, 0.22, 1),
+    transform 140ms cubic-bezier(0.19, 1, 0.22, 1);
   user-select: none;
 }
 
@@ -61,24 +65,24 @@
   border-radius: inherit;
   background: var(--maya-text-primary);
   opacity: 0;
-  transform: scale(0.92);
+  transform: scale(0.94);
   transition:
     opacity 120ms cubic-bezier(0.19, 1, 0.22, 1),
-    transform 120ms cubic-bezier(0.19, 1, 0.22, 1);
+    transform 150ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 :deep(a:hover)::before,
 :deep(button:hover)::before,
-:deep(a:focus)::before,
-:deep(button:focus)::before {
+:deep(a:focus-visible)::before,
+:deep(button:focus-visible)::before {
   opacity: 0.06;
   transform: scale(1);
 }
 
 :deep(a:hover),
 :deep(button:hover),
-:deep(a:focus),
-:deep(button:focus) {
+:deep(a:focus-visible),
+:deep(button:focus-visible) {
   color: var(--maya-text-primary);
 }
 
@@ -96,6 +100,7 @@
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.06),
     0 1px 3px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
 }
 
 :deep(a.router-link-exact-active)::before,

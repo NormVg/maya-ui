@@ -26,22 +26,47 @@
         </button>
       </div>
 
-      <div class="maya-preview-code-panels">
-        <div v-show="view === 'preview'" class="maya-preview-code-panel maya-preview-code-canvas" :class="{ active: view === 'preview' }" :style="{ height: previewHeight, overflowY: previewHeight !== 'auto' ? 'auto' : 'visible' }">
-          <slot name="preview" />
-        </div>
+      <div class="maya-preview-code-panels" :style="panelContainerStyle">
+        <Transition
+          name="maya-panel-fade"
+          mode="out-in"
+          @before-enter="onTransitionStart"
+          @after-enter="onTransitionEnd"
+          @before-leave="onTransitionStart"
+          @after-leave="onTransitionEnd"
+        >
+          <div
+            v-if="view === 'preview'"
+            ref="activePanelRef"
+            key="preview"
+            class="maya-preview-code-panel maya-preview-code-canvas"
+            :style="{ overflowY: previewHeight !== 'auto' ? 'auto' : 'visible' }"
+          >
+            <div class="maya-preview-code-panel-inner">
+              <slot name="preview" />
+            </div>
+          </div>
 
-        <div v-show="view === 'code'" class="maya-preview-code-panel maya-preview-code-source" :class="{ active: view === 'code' }" :style="{ height: codeHeight, overflowY: codeHeight !== 'auto' ? 'auto' : 'visible' }">
-          <div v-if="highlighted" v-html="highlighted" />
-          <slot v-else name="code" />
-        </div>
+          <div
+            v-else
+            ref="activePanelRef"
+            key="code"
+            class="maya-preview-code-panel maya-preview-code-source"
+            :style="{ overflowY: codeHeight !== 'auto' ? 'auto' : 'visible' }"
+          >
+            <div class="maya-preview-code-panel-inner">
+              <div v-if="highlighted" v-html="highlighted" />
+              <slot v-else name="code" />
+            </div>
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useShiki } from '../composables/useShiki'
 
 const props = defineProps({
@@ -56,6 +81,10 @@ const props = defineProps({
 const view = ref('preview')
 const copied = ref(false)
 const highlighted = ref('')
+const animatedHeight = ref('auto')
+const activePanelRef = ref(null)
+const isPanelTransitioning = ref(false)
+let resizeObserver = null
 const { highlight: shikiHighlight, currentTheme } = useShiki()
 
 async function doHighlight() {
@@ -71,10 +100,80 @@ onMounted(doHighlight)
 watch(() => [props.code, props.lang], doHighlight)
 watch(currentTheme, doHighlight)
 
+const activePanelHeightProp = computed(() => (view.value === 'preview' ? props.previewHeight : props.codeHeight))
+
+const panelContainerStyle = computed(() => ({
+  height: animatedHeight.value,
+  transition: 'height 220ms var(--maya-ease-out)',
+  overflow: isPanelTransitioning.value ? 'hidden' : 'visible'
+}))
+
+function readInnerHeight() {
+  const el = activePanelRef.value
+  return el ? el.offsetHeight : 0
+}
+
+function updateAnimatedHeight() {
+  if (activePanelHeightProp.value !== 'auto') {
+    animatedHeight.value = activePanelHeightProp.value
+    return
+  }
+  const nextHeight = readInnerHeight()
+  if (nextHeight > 0) animatedHeight.value = `${nextHeight}px`
+}
+
+function attachResizeObserver() {
+  if (resizeObserver) resizeObserver.disconnect()
+  if (!activePanelRef.value || activePanelHeightProp.value !== 'auto') return
+  resizeObserver = new ResizeObserver(() => {
+    updateAnimatedHeight()
+  })
+  resizeObserver.observe(activePanelRef.value)
+}
+
+watch(view, async () => {
+  const currentHeight = readInnerHeight()
+  if (currentHeight > 0 && activePanelHeightProp.value === 'auto') {
+    animatedHeight.value = `${currentHeight}px`
+  }
+
+  await nextTick()
+  updateAnimatedHeight()
+  attachResizeObserver()
+})
+
+watch(activePanelRef, () => {
+  updateAnimatedHeight()
+  attachResizeObserver()
+})
+
+watch(() => [props.previewHeight, props.codeHeight], () => {
+  updateAnimatedHeight()
+  attachResizeObserver()
+})
+
+onMounted(async () => {
+  await nextTick()
+  updateAnimatedHeight()
+  attachResizeObserver()
+})
+
+onBeforeUnmount(() => {
+  if (resizeObserver) resizeObserver.disconnect()
+})
+
 function copyCode() {
   navigator.clipboard.writeText(props.code)
   copied.value = true
   setTimeout(() => { copied.value = false }, 1500)
+}
+
+function onTransitionStart() {
+  isPanelTransitioning.value = true
+}
+
+function onTransitionEnd() {
+  isPanelTransitioning.value = false
 }
 </script>
 
@@ -183,12 +282,7 @@ function copyCode() {
 }
 
 .maya-preview-code-panel {
-  opacity: 0;
-  transition: opacity 150ms ease;
-}
-
-.maya-preview-code-panel.active {
-  opacity: 1;
+  width: 100%;
 }
 
 .maya-preview-code-canvas {
@@ -207,6 +301,17 @@ function copyCode() {
   overflow-x: auto;
   border-bottom-left-radius: calc(var(--maya-radius-lg) - 1px);
   border-bottom-right-radius: calc(var(--maya-radius-lg) - 1px);
+}
+
+.maya-preview-code-panel-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maya-preview-code-source .maya-preview-code-panel-inner {
+  display: block;
 }
 
 .maya-preview-code-source :deep(pre) {
