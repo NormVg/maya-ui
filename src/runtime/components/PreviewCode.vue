@@ -27,11 +27,11 @@
       </div>
 
       <div class="maya-preview-code-panels">
-        <div class="maya-preview-code-panel maya-preview-code-canvas" :class="{ active: view === 'preview' }">
+        <div v-show="view === 'preview'" class="maya-preview-code-panel maya-preview-code-canvas" :class="{ active: view === 'preview' }" :style="{ height: previewHeight, overflowY: previewHeight !== 'auto' ? 'auto' : 'visible' }">
           <slot name="preview" />
         </div>
 
-        <div class="maya-preview-code-panel maya-preview-code-source" :class="{ active: view === 'code' }">
+        <div v-show="view === 'code'" class="maya-preview-code-panel maya-preview-code-source" :class="{ active: view === 'code' }" :style="{ height: codeHeight, overflowY: codeHeight !== 'auto' ? 'auto' : 'visible' }">
           <div v-if="highlighted" v-html="highlighted" />
           <slot v-else name="code" />
         </div>
@@ -49,6 +49,8 @@ const props = defineProps({
   description: { type: String, default: '' },
   code: { type: String, default: '' },
   lang: { type: String, default: 'vue' },
+  previewHeight: { type: String, default: 'auto' },
+  codeHeight: { type: String, default: 'auto' },
 })
 
 const view = ref('preview')
@@ -177,19 +179,16 @@ function copyCode() {
 }
 
 .maya-preview-code-panels {
-  display: grid;
+  display: block;
 }
 
 .maya-preview-code-panel {
-  grid-area: 1 / 1;
   opacity: 0;
-  pointer-events: none;
   transition: opacity 150ms ease;
 }
 
 .maya-preview-code-panel.active {
   opacity: 1;
-  pointer-events: auto;
 }
 
 .maya-preview-code-canvas {

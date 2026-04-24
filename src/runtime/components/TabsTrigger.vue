@@ -1,6 +1,8 @@
 <template>
-  <button class="maya-tabs-trigger" :class="{ 'is-active': isActive }" :data-state="isActive ? 'active' : 'inactive'"
-    :data-tab-value="value" role="tab" :aria-selected="isActive" @click="handleClick">
+  <button class="maya-tabs-trigger"
+    :class="{ 'is-active': isActive, 'maya-tabs-trigger--vertical': orientation === 'vertical' }"
+    :data-state="isActive ? 'active' : 'inactive'" :data-tab-value="value" role="tab" :aria-selected="isActive"
+    @click="handleClick">
     <slot />
   </button>
 </template>
@@ -17,6 +19,7 @@ const props = defineProps({
 
 const activeTab = inject('mayaTabsActive')
 const setActive = inject('mayaTabsSetActive')
+const orientation = inject('mayaTabsOrientation', 'horizontal')
 
 const isActive = computed(() => activeTab.value === props.value)
 
@@ -45,6 +48,12 @@ const handleClick = () => {
   border-radius: calc(var(--maya-radius-lg) - 2px);
   transition: color 200ms var(--maya-ease-out);
   white-space: nowrap;
+}
+
+.maya-tabs-trigger--vertical {
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
 }
 
 .maya-tabs-trigger.is-active {

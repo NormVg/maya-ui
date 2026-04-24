@@ -62,9 +62,10 @@
           <!-- Battery: optimal is 100, so approaching 0 is danger -->
           <MayaMeter label="Battery Level" :value="battery" showLabel :optimum="100" :lowThreshold="20"
             :highThreshold="50" />
-        </div>
-        <div class="demo-actions">
-          <MayaBtn size="sm" @click="randomizeMeters">Randomize Data</MayaBtn>
+
+          <div class="demo-actions">
+            <MayaBtn size="sm" @click="randomizeMeters">Randomize Data</MayaBtn>
+          </div>
         </div>
       </template>
     </MayaPreviewCode>

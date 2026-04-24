@@ -88,7 +88,7 @@
 }
 
 /* Active / router-link-active pill — bouncy spring feel */
-:deep(a.router-link-active),
+:deep(a.router-link-exact-active),
 :deep(a.active),
 :deep(button.active) {
   color: var(--maya-text-primary);
@@ -98,7 +98,7 @@
     0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-:deep(a.router-link-active)::before,
+:deep(a.router-link-exact-active)::before,
 :deep(a.active)::before,
 :deep(button.active)::before {
   display: none;

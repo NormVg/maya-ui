@@ -157,13 +157,13 @@ const isOpen = ref(false)
 .rounded-lg { border-radius: var(--maya-radius-lg, 0.5rem); }
 .rounded-md { border-radius: var(--maya-radius-md, 0.375rem); }
 .border { border: 1px solid var(--maya-border); }
-.border-zinc-800 { border-color: #27272a; }
-.hover\:border-zinc-700:hover { border-color: #3f3f46; }
+.border-zinc-800 { border-color: var(--maya-border-strong); }
+.hover\:border-zinc-700:hover { border-color: var(--maya-border-hover); }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
 .font-semibold { font-weight: 600; }
 .font-mono { font-family: var(--maya-font-mono); }
-.text-white { color: white; }
-.text-zinc-300 { color: #d4d4d8; }
+.text-white { color: var(--maya-text-primary); }
+.text-zinc-300 { color: var(--maya-text-secondary); }
 .transition { transition: all 150ms ease; }
 .transition-transform { transition: transform 250ms var(--maya-ease-bouncy); }
 .rotate-180 { transform: rotate(180deg); }

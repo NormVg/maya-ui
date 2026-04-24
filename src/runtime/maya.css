@@ -23,7 +23,7 @@
   --maya-ease-bouncy: cubic-bezier(0.25, 1, 0.5, 1.2);
 
   /* ─── Dashed Line Decorators ─── */
-  --maya-dash-color: rgba(255, 255, 255, 0.06);
+  --maya-dash-color: rgba(255, 255, 255, 0.12);
   --maya-dash-size: 1px;
   --maya-dash-pattern: 4px 4px;
 }
@@ -107,7 +107,7 @@
   --maya-table-row-border: rgba(255, 255, 255, 0.05);
 
   /* Dashed */
-  --maya-dash-color: rgba(255, 255, 255, 0.06);
+  --maya-dash-color: rgba(255, 255, 255, 0.12);
 
   /* ─── Semantic Colors (desaturated to match monochrome palette) ─── */
   /* Success - Emerald */
@@ -219,7 +219,7 @@
   --maya-table-row-border: rgba(0, 0, 0, 0.06);
 
   /* Dashed */
-  --maya-dash-color: rgba(0, 0, 0, 0.08);
+  --maya-dash-color: rgba(0, 0, 0, 0.15);
 
   /* Success - Emerald */
   --maya-success: #30A46C;

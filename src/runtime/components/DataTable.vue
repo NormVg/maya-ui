@@ -91,13 +91,12 @@ const sortedRows = computed(() => {
 .maya-data-table-wrap {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border-radius: var(--maya-radius-xl);
+  border-radius: var(--maya-radius-lg);
   overflow: hidden;
+  background: var(--maya-bg-surface);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.04),
-    inset 0 0 0 1px var(--maya-border-subtle),
-    0 4px 16px rgba(0,0,0,0.15);
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px var(--maya-border-subtle);
 }
 
 .maya-data-table-toolbar {
@@ -107,7 +106,6 @@ const sortedRows = computed(() => {
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px solid var(--maya-border-subtle);
-  background: var(--maya-bg-surface);
 }
 
 .maya-data-table-scroll {
@@ -118,29 +116,28 @@ const sortedRows = computed(() => {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--maya-font-sans);
-  background: var(--maya-bg-surface);
+  text-align: left;
 }
 
 .maya-data-table-th {
   padding: 12px 16px;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--maya-text-tertiary);
-  text-align: left;
   border-bottom: 1px solid var(--maya-border-subtle);
   white-space: nowrap;
-  background: var(--maya-bg-root);
+  background: var(--maya-bg-surface);
 }
 
 .maya-data-table-th.is-sortable {
   cursor: pointer;
   user-select: none;
+  transition: color 150ms ease;
 }
 
 .maya-data-table-th.is-sortable:hover {
-  color: var(--maya-text-secondary);
+  color: var(--maya-text-primary);
 }
 
 .maya-data-table-th span {
@@ -155,7 +152,7 @@ const sortedRows = computed(() => {
 }
 
 .maya-data-table-tr {
-  transition: background 100ms ease;
+  transition: background 150ms ease;
   border-bottom: 1px solid var(--maya-border-subtle);
 }
 
@@ -172,7 +169,7 @@ const sortedRows = computed(() => {
 }
 
 .maya-data-table-tr.is-clickable:active {
-  background: var(--maya-bg-surface-hover, rgba(255,255,255,0.04));
+  background: var(--maya-bg-root);
 }
 
 .maya-data-table-td {

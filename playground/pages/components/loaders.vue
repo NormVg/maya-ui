@@ -24,7 +24,7 @@
     <MayaPreviewCode title="Skeleton" description="Shimmer placeholder for loading states. Matches real content shape."
       :code="skeletonCode">
       <template #preview>
-        <div class="col" style="width: 100%; max-width: 340px;">
+        <div class="col" style="width: 100%; max-width: 340px; gap: 16px;">
           <div class="row align-center" style="gap: 12px;">
             <MayaSkeleton width="40px" height="40px" rounded="full" />
             <div class="col" style="flex: 1; gap: 6px;">

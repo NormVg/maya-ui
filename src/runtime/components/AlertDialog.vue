@@ -148,4 +148,29 @@ onUnmounted(() => {
   gap: 12px;
   margin-top: 16px;
 }
+
+/* Animations */
+.maya-overlay-fade-enter-active,
+.maya-overlay-fade-leave-active {
+  transition: opacity 250ms var(--maya-ease-out);
+}
+.maya-overlay-fade-enter-from,
+.maya-overlay-fade-leave-to {
+  opacity: 0;
+}
+
+.maya-dialog-zoom-enter-active {
+  transition: opacity 250ms var(--maya-ease-out), transform 400ms var(--maya-ease-bouncy);
+}
+.maya-dialog-zoom-leave-active {
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+.maya-dialog-zoom-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.maya-dialog-zoom-leave-to {
+  opacity: 0;
+  transform: scale(0.98);
+}
 </style>

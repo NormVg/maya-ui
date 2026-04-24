@@ -226,7 +226,7 @@ function toggle() {
 }
 
 function closeDropdown(e) {
-  if (isOpen.value && container.value && !container.value.contains(e.target)) {
+  if (isOpen.value && container.value && !e.composedPath().includes(container.value)) {
     isOpen.value = false
   }
 }

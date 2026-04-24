@@ -14,14 +14,19 @@
       <template #preview>
         <div style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
           <MayaNavigationMenu>
-            <a href="#"
-              style="background: var(--maya-bg-raised); color: var(--maya-text-primary); box-shadow: var(--maya-shadow-sm);">Overview</a>
-            <a href="#">Getting Started</a>
-            <a href="#">Docs</a>
-            <a href="#">Blog</a>
+            <a href="#" :class="{ active: currentNav === 'overview' }" @click.prevent="currentNav = 'overview'">Overview</a>
+            <a href="#" :class="{ active: currentNav === 'start' }" @click.prevent="currentNav = 'start'">Getting Started</a>
+            <a href="#" :class="{ active: currentNav === 'docs' }" @click.prevent="currentNav = 'docs'">Docs</a>
+            <a href="#" :class="{ active: currentNav === 'blog' }" @click.prevent="currentNav = 'blog'">Blog</a>
           </MayaNavigationMenu>
         </div>
       </template>
     </MayaPreviewCode>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const currentNav = ref('overview')
+</script>

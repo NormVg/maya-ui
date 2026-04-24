@@ -57,6 +57,7 @@ defineEmits(['click'])
   position: absolute;
   inset: -6px;
   border-radius: var(--maya-radius-xl);
+  pointer-events: none;
 }
 
 .maya-btn:active {

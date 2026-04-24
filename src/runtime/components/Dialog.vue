@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <Teleport to="body">
-      <Transition name="maya-dialog">
+      <Transition name="maya-dialog" :duration="{ enter: 400, leave: 200 }">
         <div v-show="modelValue" class="maya-dialog-root" role="dialog" aria-modal="true" :aria-labelledby="titleId" :aria-describedby="descId">
           <div class="maya-dialog-backdrop" @click="closeOnClickOutside && close()" />
 

@@ -23,6 +23,9 @@ const props = defineProps({
 const activeTab = ref(props.defaultValue)
 provide('mayaTabsActive', activeTab)
 
+// Provide orientation for vertical layout alignment
+provide('mayaTabsOrientation', props.orientation)
+
 const setActive = (value) => {
   activeTab.value = value
 }

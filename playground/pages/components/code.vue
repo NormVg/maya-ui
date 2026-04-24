@@ -33,10 +33,45 @@
         </div>
       </template>
     </MayaPreviewCode>
+    <!-- Preview Code Component -->
+    <MayaPreviewCode title="Preview Component" description="Interactive tabbed viewer demonstrating a live component next to its source code, with configurable heights." lang="vue"
+      :code="previewCodeUsage">
+      <template #preview>
+        <div style="width: 100%;">
+          <MayaPreviewCode
+            title="Nested Preview"
+            description="I am inside a preview!"
+            lang="html"
+            previewHeight="160px"
+            codeHeight="200px"
+            code="<!-- This code block has a strict height of 200px and will scroll -->\n<div class='example'>\n  <p>Hello World</p>\n</div>"
+          >
+            <template #preview>
+              <div style="display:flex; height: 100%; align-items:center; justify-content:center;">
+                <MayaBtn>Sample Action</MayaBtn>
+              </div>
+            </template>
+          </MayaPreviewCode>
+        </div>
+      </template>
+    </MayaPreviewCode>
+
   </div>
 </template>
 
 <script setup>
+const previewCodeUsage = `<MayaPreviewCode
+  title="Nested Preview"
+  description="I am inside a preview!"
+  lang="html"
+  previewHeight="160px"
+  codeHeight="200px"
+  code="<!-- HTML goes here -->"
+>
+  <template #preview>
+    <!-- Live component preview here -->
+  </template>
+</MayaPreviewCode>`
 const codeBlockExample = `export default defineNuxtConfig({
   modules: ['maya-ui'],
   maya: {

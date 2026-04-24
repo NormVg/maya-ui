@@ -36,18 +36,11 @@ const updateIndicator = async () => {
   await nextTick()
   if (!listRef.value) return
   const activeEl = listRef.value.querySelector(`[data-tab-value="${activeTab.value}"]`)
-  if (activeEl && props.orientation === 'horizontal') {
+  if (activeEl) {
     indicatorStyle.value = {
       width: `${activeEl.offsetWidth}px`,
-      height: 'calc(100% - 8px)',
-      transform: `translate(${activeEl.offsetLeft}px, 0)`,
-      opacity: 1
-    }
-  } else if (activeEl && props.orientation === 'vertical') {
-    indicatorStyle.value = {
       height: `${activeEl.offsetHeight}px`,
-      width: 'calc(100% - 8px)',
-      transform: `translate(0, ${activeEl.offsetTop}px)`,
+      transform: `translate(${activeEl.offsetLeft}px, ${activeEl.offsetTop}px)`,
       opacity: 1
     }
   }
@@ -111,8 +104,8 @@ watch(activeTab, () => updateIndicator())
 
 .maya-tabs-indicator {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 0;
+  left: 0;
   background: var(--maya-bg-surface);
   border-radius: calc(var(--maya-radius-lg) - 2px);
   box-shadow:
