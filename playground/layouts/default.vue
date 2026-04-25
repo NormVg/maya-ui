@@ -20,111 +20,77 @@
           <NuxtLink to="/" class="nav-item" :class="{ active: route.path === '/' }">Introduction</NuxtLink>
           <NuxtLink to="/install" class="nav-item" active-class="active">Installation</NuxtLink>
           <NuxtLink to="/theming" class="nav-item" active-class="active">Theming</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Foundations</div>
           <NuxtLink to="/foundations/colors" class="nav-item" active-class="active">Colors & Surfaces</NuxtLink>
           <NuxtLink to="/components/sound" class="nav-item" active-class="active">Sound</NuxtLink>
         </div>
+
         <div class="nav-group">
-          <div class="nav-group-title">Base UI</div>
-          <NuxtLink to="/components/base-ui" class="nav-item" active-class="active">Label / Separator / Kbd</NuxtLink>
-          <NuxtLink to="/components/code" class="nav-item" active-class="active">Code & Prose</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Buttons & Controls</div>
+          <div class="nav-group-title">Forms & Inputs</div>
           <NuxtLink to="/components/button" class="nav-item" active-class="active">Button</NuxtLink>
-          <NuxtLink to="/components/controls" class="nav-item" active-class="active">Toggle & Switch</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Inputs</div>
           <NuxtLink to="/components/input" class="nav-item" active-class="active">Input</NuxtLink>
           <NuxtLink to="/components/textarea" class="nav-item" active-class="active">Textarea</NuxtLink>
           <NuxtLink to="/components/number-field" class="nav-item" active-class="active">Number Field</NuxtLink>
           <NuxtLink to="/components/checkbox" class="nav-item" active-class="active">Checkbox</NuxtLink>
           <NuxtLink to="/components/radio" class="nav-item" active-class="active">Radio</NuxtLink>
+          <NuxtLink to="/components/controls" class="nav-item" active-class="active">Toggle & Switch</NuxtLink>
           <NuxtLink to="/components/input-otp" class="nav-item" active-class="active">Input OTP</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Selectors</div>
+          <NuxtLink to="/components/choice-box" class="nav-item" active-class="active">Choice Box</NuxtLink>
           <NuxtLink to="/components/select" class="nav-item" active-class="active">Select & Combobox</NuxtLink>
           <NuxtLink to="/components/date-chooser" class="nav-item" active-class="active">Date Chooser</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Form Structure</div>
+          <NuxtLink to="/components/calendar" class="nav-item" active-class="active">Calendar</NuxtLink>
+          <NuxtLink to="/components/color-picker" class="nav-item" active-class="active">Color Picker</NuxtLink>
           <NuxtLink to="/components/field" class="nav-item" active-class="active">Field & Form</NuxtLink>
         </div>
+
         <div class="nav-group">
-          <div class="nav-group-title">Navigation</div>
-          <NuxtLink to="/components/breadcrumb" class="nav-item" active-class="active">Breadcrumb</NuxtLink>
-          <NuxtLink to="/components/navigation-menu" class="nav-item" active-class="active">Navigation Menu</NuxtLink>
+          <div class="nav-group-title">Navigation & Menus</div>
           <NuxtLink to="/components/menubar" class="nav-item" active-class="active">Menubar</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Menus</div>
+          <NuxtLink to="/components/navigation-menu" class="nav-item" active-class="active">Navigation Menu</NuxtLink>
           <NuxtLink to="/components/dropdown-menu" class="nav-item" active-class="active">Dropdown Menu</NuxtLink>
           <NuxtLink to="/components/context-menu" class="nav-item" active-class="active">Context Menu</NuxtLink>
           <NuxtLink to="/components/command" class="nav-item" active-class="active">Command</NuxtLink>
+          <NuxtLink to="/components/breadcrumb" class="nav-item" active-class="active">Breadcrumb</NuxtLink>
+          <NuxtLink to="/components/tabs" class="nav-item" active-class="active">Tabs</NuxtLink>
+          <NuxtLink to="/components/pagination" class="nav-item" active-class="active">Pagination</NuxtLink>
         </div>
+
         <div class="nav-group">
-          <div class="nav-group-title">Containers / Layout</div>
-          <NuxtLink to="/components/card" class="nav-item" active-class="active">Card</NuxtLink>
-          <NuxtLink to="/components/badge" class="nav-item" active-class="active">Badge</NuxtLink>
-          <NuxtLink to="/components/avatar" class="nav-item" active-class="active">Avatar</NuxtLink>
+          <div class="nav-group-title">Data Display</div>
           <NuxtLink to="/components/table" class="nav-item" active-class="active">Table</NuxtLink>
-          <NuxtLink to="/components/scroll-area" class="nav-item" active-class="active">Scroll Area</NuxtLink>
-          <NuxtLink to="/components/resizable" class="nav-item" active-class="active">Resizable</NuxtLink>
-          <NuxtLink to="/components/sheet" class="nav-item" active-class="active">Sheet / Drawer</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Data Display & States</div>
+          <NuxtLink to="/components/data-table" class="nav-item" active-class="active">Data Table</NuxtLink>
+          <NuxtLink to="/components/card" class="nav-item" active-class="active">Card</NuxtLink>
+          <NuxtLink to="/components/avatar" class="nav-item" active-class="active">Avatar</NuxtLink>
+          <NuxtLink to="/components/badge" class="nav-item" active-class="active">Badge</NuxtLink>
+          <NuxtLink to="/components/accordion" class="nav-item" active-class="active">Accordion / Collapsible</NuxtLink>
+          <NuxtLink to="/components/panels" class="nav-item" active-class="active">Preview Card & Carousel</NuxtLink>
           <NuxtLink to="/components/empty-state" class="nav-item" active-class="active">Empty State</NuxtLink>
           <NuxtLink to="/components/visualisation" class="nav-item" active-class="active">Visualisation</NuxtLink>
+          <NuxtLink to="/components/code" class="nav-item" active-class="active">Code & Prose</NuxtLink>
         </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Loaders</div>
-          <NuxtLink to="/components/loaders" class="nav-item" active-class="active">Spinner / Skeleton / Dots</NuxtLink>
-        </div>
+
         <div class="nav-group">
           <div class="nav-group-title">Feedback & Overlays</div>
           <NuxtLink to="/components/dialog" class="nav-item" active-class="active">Dialog</NuxtLink>
+          <NuxtLink to="/components/alert-dialog" class="nav-item" active-class="active">Alert Dialog</NuxtLink>
+          <NuxtLink to="/components/sheet" class="nav-item" active-class="active">Sheet / Drawer</NuxtLink>
           <NuxtLink to="/components/popover" class="nav-item" active-class="active">Popover</NuxtLink>
           <NuxtLink to="/components/hover-card" class="nav-item" active-class="active">Hover Card</NuxtLink>
           <NuxtLink to="/components/tooltip" class="nav-item" active-class="active">Tooltip</NuxtLink>
-          <NuxtLink to="/components/alert" class="nav-item" active-class="active">Alert</NuxtLink>
-          <NuxtLink to="/components/alert-dialog" class="nav-item" active-class="active">Alert Dialog</NuxtLink>
-          <NuxtLink to="/components/banner" class="nav-item" active-class="active">Banner</NuxtLink>
           <NuxtLink to="/components/toast" class="nav-item" active-class="active">Toast / Sonner</NuxtLink>
-          <NuxtLink to="/components/status-indicators" class="nav-item" active-class="active">Status Indicators
-          </NuxtLink>
+          <NuxtLink to="/components/alert" class="nav-item" active-class="active">Alert</NuxtLink>
+          <NuxtLink to="/components/banner" class="nav-item" active-class="active">Banner</NuxtLink>
+          <NuxtLink to="/components/loaders" class="nav-item" active-class="active">Loaders (Spinner / Skeleton)</NuxtLink>
+          <NuxtLink to="/components/status-indicators" class="nav-item" active-class="active">Status Indicators</NuxtLink>
         </div>
+
         <div class="nav-group">
-          <div class="nav-group-title">Expand & Panels</div>
-          <NuxtLink to="/components/accordion" class="nav-item" active-class="active">Accordion / Collaps.</NuxtLink>
-          <NuxtLink to="/components/panels" class="nav-item" active-class="active">Preview Card & Carousel</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Tables &amp; Data</div>
-          <NuxtLink to="/components/data-table" class="nav-item" active-class="active">Data Table</NuxtLink>
-          <NuxtLink to="/components/pagination" class="nav-item" active-class="active">Pagination</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Selection</div>
-          <NuxtLink to="/components/tabs" class="nav-item" active-class="active">Tabs</NuxtLink>
-          <NuxtLink to="/components/choice-box" class="nav-item" active-class="active">Choice Box</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Calendar</div>
-          <NuxtLink to="/components/calendar" class="nav-item" active-class="active">Calendar</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Color</div>
-          <NuxtLink to="/components/color-picker" class="nav-item" active-class="active">Color Picker</NuxtLink>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">System</div>
+          <div class="nav-group-title">Layout & Utilities</div>
+          <NuxtLink to="/components/scroll-area" class="nav-item" active-class="active">Scroll Area</NuxtLink>
+          <NuxtLink to="/components/resizable" class="nav-item" active-class="active">Resizable</NuxtLink>
+          <NuxtLink to="/components/base-ui" class="nav-item" active-class="active">Base UI (Label / Separator)</NuxtLink>
           <NuxtLink to="/components/theme-toggle" class="nav-item" active-class="active">Theme Toggle</NuxtLink>
         </div>
+
         <div class="nav-group">
           <div class="nav-group-title">Screens</div>
           <NuxtLink to="/screens/sidebar-demo" class="nav-item nav-item--screen" active-class="active">
