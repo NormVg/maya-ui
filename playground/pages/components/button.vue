@@ -147,10 +147,23 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaBtn Props API" :propsList="buttonProps" />
   </div>
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const buttonProps = [
+  { name: 'variant', type: 'String', default: '"primary"', description: 'The visual style. Options: "primary", "secondary", "ghost", "outline".' },
+  { name: 'size', type: 'String', default: '"md"', description: 'The sizing of the button. Options: "sm", "md", "lg", "icon".' },
+  { name: 'intent', type: 'String', default: '"default"', description: 'The semantic color intent. Options: "default", "success", "warning", "danger", "info".' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the button is disabled and unclickable.' },
+  { name: '@click', type: 'Event', default: '', description: 'Emitted when the button is clicked.' }
+]
+
 const variantsCode = `<MayaBtn variant="primary">Primary</MayaBtn>
 <MayaBtn variant="secondary">Secondary</MayaBtn>
 <MayaBtn variant="ghost">Ghost</MayaBtn>`
