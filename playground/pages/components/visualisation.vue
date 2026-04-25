@@ -56,13 +56,6 @@
       </template>
     </MayaPreviewCode>
 
-    <MayaPreviewCode title="Image Viewer" description="Click to open in a modal overlay with zoom and pan support." lang="vue" :code="imageCode">
-      <template #preview>
-        <div style="width: 100%; max-width: 400px; height: 250px; margin: 0 auto;">
-          <MayaImageViewer src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1000&auto=format&fit=crop" />
-        </div>
-      </template>
-    </MayaPreviewCode>
   </div>
 </template>
 
@@ -91,8 +84,6 @@ const chatCode = `<MayaChatBubble role="user" time="10:42 AM">
 const uploadCode = `<MayaFileUpload @change="onFileChange" />`
 
 const audioCode = `<MayaAudioPlayer src="/path/to/audio.mp3" />`
-
-const imageCode = `<MayaImageViewer src="/path/to/image.jpg" />`
 </script>
 
 <style scoped>
