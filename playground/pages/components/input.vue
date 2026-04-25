@@ -40,11 +40,25 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaInput Props API" :propsList="inputProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const val = ref('')
 const labeled = ref('')
+
+const inputProps = [
+  { name: 'modelValue', type: 'String | Number', default: '""', description: 'The value of the input. Used with v-model.' },
+  { name: 'type', type: 'String', default: '"text"', description: 'Standard HTML input type (text, password, email, file, etc.).' },
+  { name: 'label', type: 'String', default: 'undefined', description: 'Optional text label displayed above the input.' },
+  { name: 'placeholder', type: 'String', default: '""', description: 'Placeholder text when input is empty.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the input is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '', description: 'Emitted when the input value changes.' }
+]
 </script>
