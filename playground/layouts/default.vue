@@ -19,6 +19,7 @@
           <div class="nav-group-title">Getting Started</div>
           <NuxtLink to="/" class="nav-item" :class="{ active: route.path === '/' }">Introduction</NuxtLink>
           <NuxtLink to="/install" class="nav-item" active-class="active">Installation</NuxtLink>
+          <NuxtLink to="/theming" class="nav-item" active-class="active">Theming</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Foundations</div>
@@ -78,6 +79,7 @@
         <div class="nav-group">
           <div class="nav-group-title">Data Display & States</div>
           <NuxtLink to="/components/empty-state" class="nav-item" active-class="active">Empty State</NuxtLink>
+          <NuxtLink to="/components/visualisation" class="nav-item" active-class="active">Visualisation</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Loaders</div>

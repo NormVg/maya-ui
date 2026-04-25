@@ -1,5 +1,5 @@
 <template>
-  <div class="maya-prose" v-html="rendered" />
+  <div class="maya-prose" v-html="rendered" @click="handleCopy" />
 </template>
 
 <script setup>
@@ -27,7 +27,7 @@ async function render() {
     // Code fences
     const fenceMatch = lines[i].match(/^```(\w*)/)
     if (fenceMatch) {
-      const lang = fenceMatch[1] || 'plaintext'
+      const lang = fenceMatch[1] || 'text'
       const codeLines = []
       i++
       while (i < lines.length && !lines[i].startsWith('```')) {
@@ -36,11 +36,28 @@ async function render() {
       }
       i++ // skip closing ```
       const code = codeLines.join('\n')
+      
+      const copySvg = `<svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>`
+      const checkSvg = `<svg class="icon-check" style="display:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--maya-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`
+      
+      // Encode code to safely store in data attribute
+      const encodedCode = encodeURIComponent(code)
+
+      const headerHtml = `
+        <div class="maya-prose-codeblock-header">
+          <span class="maya-prose-codeblock-filename">${lang}</span>
+          <button class="maya-prose-copy-btn" data-code="${encodedCode}" aria-label="Copy code">
+            ${copySvg}
+            ${checkSvg}
+          </button>
+        </div>
+      `
+      
       try {
         const html = await shikiHighlight(code, lang)
-        parts.push(`<div class="maya-prose-codeblock">${html}</div>`)
+        parts.push(`<div class="maya-prose-codeblock">${headerHtml}<div class="maya-prose-codeblock-body">${html}</div></div>`)
       } catch {
-        parts.push(`<div class="maya-prose-codeblock"><pre><code>${escapeHtml(code)}</code></pre></div>`)
+        parts.push(`<div class="maya-prose-codeblock">${headerHtml}<div class="maya-prose-codeblock-body"><pre><code>${escapeHtml(code)}</code></pre></div></div>`)
       }
       continue
     }
@@ -114,6 +131,29 @@ function inlineFormat(text) {
     .replace(/`([^`]+)`/g, '<code class="maya-prose-inline-code">$1</code>')
     // Links
     .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+}
+
+function handleCopy(e) {
+  const btn = e.target.closest('.maya-prose-copy-btn')
+  if (!btn) return
+  
+  const encodedCode = btn.getAttribute('data-code')
+  if (encodedCode) {
+    const code = decodeURIComponent(encodedCode)
+    navigator.clipboard.writeText(code)
+    
+    const iconCopy = btn.querySelector('.icon-copy')
+    const iconCheck = btn.querySelector('.icon-check')
+    
+    if (iconCopy && iconCheck) {
+      iconCopy.style.display = 'none'
+      iconCheck.style.display = 'block'
+      setTimeout(() => {
+        iconCopy.style.display = 'block'
+        iconCheck.style.display = 'none'
+      }, 1500)
+    }
+  }
 }
 
 onMounted(render)
@@ -218,17 +258,61 @@ watch(currentTheme, render)
   overflow: hidden;
 }
 
-.maya-prose :deep(.maya-prose-codeblock pre) {
-  margin: 0;
-  padding: 16px 20px;
-  background: var(--maya-code-bg) !important;
+.maya-prose :deep(.maya-prose-codeblock-header) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--maya-bg-surface);
+  border-bottom: 1px dashed var(--maya-dash-color);
+}
+
+.maya-prose :deep(.maya-prose-codeblock-filename) {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--maya-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   font-family: var(--maya-font-mono);
-  font-size: 0.8125rem;
-  line-height: 1.65;
+}
+
+.maya-prose :deep(.maya-prose-copy-btn) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--maya-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--maya-radius-sm);
+  transition: color var(--maya-duration) var(--maya-ease), transform var(--maya-duration-bouncy) var(--maya-ease-bouncy);
+}
+
+.maya-prose :deep(.maya-prose-copy-btn:hover) {
+  color: var(--maya-text-primary);
+}
+
+.maya-prose :deep(.maya-prose-copy-btn:active) {
+  transform: scale(0.88);
+}
+
+.maya-prose :deep(.maya-prose-codeblock-body) {
+  background: var(--maya-code-bg);
   overflow-x: auto;
 }
 
-.maya-prose :deep(.maya-prose-codeblock code) {
+.maya-prose :deep(.maya-prose-codeblock-body pre) {
+  margin: 0;
+  padding: 16px 20px;
+  background: transparent !important;
+  font-family: var(--maya-font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+
+.maya-prose :deep(.maya-prose-codeblock-body code) {
   font-family: var(--maya-font-mono);
 }
 </style>
