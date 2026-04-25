@@ -23,6 +23,7 @@
         <div class="nav-group">
           <div class="nav-group-title">Foundations</div>
           <NuxtLink to="/foundations/colors" class="nav-item" active-class="active">Colors & Surfaces</NuxtLink>
+          <NuxtLink to="/components/sound" class="nav-item" active-class="active">Sound</NuxtLink>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Base UI</div>

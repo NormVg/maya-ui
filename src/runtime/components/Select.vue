@@ -150,7 +150,7 @@ onUnmounted(() => {
   border: 1px solid var(--maya-border);
   border-radius: var(--maya-radius-md);
   padding: 4px;
-  z-index: 50;
+  z-index: 9999;
   box-shadow: var(--maya-shadow-md);
 }
 
