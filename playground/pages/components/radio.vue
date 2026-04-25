@@ -48,13 +48,26 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaRadio Props API" :propsList="radioProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const color1 = ref('red')
 const color2 = ref('blue')
 const color3 = ref('green')
+
+const radioProps = [
+  { name: 'modelValue', type: 'String | Number | Boolean', default: 'undefined', description: 'The currently selected value of the group. Used with v-model.' },
+  { name: 'value', type: 'String | Number | Boolean', default: '(Required)', description: 'The specific value of this radio button.' },
+  { name: 'name', type: 'String', default: '""', description: 'The native name attribute for grouping.' },
+  { name: 'label', type: 'String', default: '""', description: 'Optional text label displayed next to the radio button.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the radio button is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the radio is selected.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Default slot to render custom label content.' }
+]
 </script>

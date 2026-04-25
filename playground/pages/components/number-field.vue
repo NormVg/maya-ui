@@ -56,13 +56,25 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaNumberField Props API" :propsList="numberFieldProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const val1 = ref(10)
 const val2 = ref(2.5)
 const val3 = ref(42)
+
+const numberFieldProps = [
+  { name: 'modelValue', type: 'Number', default: '0', description: 'The numeric value of the field. Used with v-model.' },
+  { name: 'min', type: 'Number', default: '-Infinity', description: 'The minimum allowed value.' },
+  { name: 'max', type: 'Number', default: 'Infinity', description: 'The maximum allowed value.' },
+  { name: 'step', type: 'Number', default: '1', description: 'The step increment/decrement amount.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the number field is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the numeric value changes.' }
+]
 </script>

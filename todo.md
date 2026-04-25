@@ -53,11 +53,11 @@ const componentProps = [
 ### Forms & Inputs
 - [x] `button.vue`
 - [x] `input.vue`
-- [ ] `textarea.vue`
-- [ ] `number-field.vue`
-- [ ] `checkbox.vue`
-- [ ] `radio.vue`
-- [ ] `controls.vue` (Toggle & Switch)
+- [x] `textarea.vue`
+- [x] `number-field.vue`
+- [x] `checkbox.vue`
+- [x] `radio.vue`
+- [x] `controls.vue` (Toggle & Switch)
 - [ ] `input-otp.vue`
 - [ ] `choice-box.vue`
 - [ ] `select.vue`

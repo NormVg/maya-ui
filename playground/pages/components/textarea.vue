@@ -40,12 +40,26 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaTextarea Props API" :propsList="textareaProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const val = ref('')
 const labeled = ref('')
 const bio = ref('')
+
+const textareaProps = [
+  { name: 'modelValue', type: 'String', default: '""', description: 'The value of the textarea. Used with v-model.' },
+  { name: 'placeholder', type: 'String', default: '""', description: 'Placeholder text when textarea is empty.' },
+  { name: 'label', type: 'String', default: '""', description: 'Optional text label displayed above the textarea.' },
+  { name: 'rows', type: 'Number', default: '4', description: 'Number of visible text lines.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the textarea is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the textarea value changes.' }
+]
 </script>

@@ -67,14 +67,36 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaToggle Props API" :propsList="toggleProps" />
+    <ApiTable title="MayaSwitch Props API" :propsList="switchProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const t0 = ref(false), t1 = ref(true), t2 = ref(false), t3 = ref(false), t4 = ref(true)
 const tgSingle = ref('center')
 const sw1 = ref(false), sw2 = ref(true), sw3 = ref(false), swDis = ref(true)
+
+const toggleProps = [
+  { name: 'modelValue', type: 'Boolean', default: 'false', description: 'The pressed state of the toggle. Used with v-model.' },
+  { name: 'size', type: 'String', default: '"md"', description: 'The size of the toggle. Options: "sm", "md", "lg".' },
+  { name: 'intent', type: 'String', default: '"default"', description: 'The semantic color intent. Options: "default", "success", "warning", "danger", "info".' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the toggle is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the toggle is pressed.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Content of the toggle button.' }
+]
+
+const switchProps = [
+  { name: 'modelValue', type: 'Boolean', default: 'false', description: 'The checked state of the switch. Used with v-model.' },
+  { name: 'size', type: 'String', default: '"md"', description: 'The size of the switch. Options: "sm", "md", "lg".' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the switch is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the switch is toggled.' }
+]
 </script>
 
 <style scoped>

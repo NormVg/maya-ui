@@ -38,13 +38,25 @@
         <MayaCheckbox label="Can't toggle" disabled />
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaCheckbox Props API" :propsList="checkboxProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const checked = ref(false)
 const a = ref(true)
 const b = ref(false)
 const c = ref(false)
+
+const checkboxProps = [
+  { name: 'modelValue', type: 'Boolean', default: 'false', description: 'The checked state of the checkbox. Used with v-model.' },
+  { name: 'label', type: 'String', default: '""', description: 'Optional text label displayed next to the checkbox.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the checkbox is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the checkbox is toggled.' }
+]
 </script>
