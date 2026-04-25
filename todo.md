@@ -24,23 +24,23 @@ This document outlines the migration plan to add the `ApiTable` component to all
 import ApiTable from '~/components/ApiTable.vue'
 
 const componentProps = [
-  { 
-    name: 'variant', 
-    type: 'String', 
-    default: '"primary"', 
-    description: 'The visual style variant.' 
+  {
+    name: 'variant',
+    type: 'String',
+    default: '"primary"',
+    description: 'The visual style variant.'
   },
-  { 
-    name: 'disabled', 
-    type: 'Boolean', 
-    default: 'false', 
-    description: 'Whether the component is disabled.' 
+  {
+    name: 'disabled',
+    type: 'Boolean',
+    default: 'false',
+    description: 'Whether the component is disabled.'
   },
-  { 
-    name: '@click', 
-    type: 'Event', 
-    default: '', 
-    description: 'Emitted when the component is clicked.' 
+  {
+    name: '@click',
+    type: 'Event',
+    default: '',
+    description: 'Emitted when the component is clicked.'
   }
 ]
 </script>

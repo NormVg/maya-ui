@@ -161,7 +161,8 @@ const buttonProps = [
   { name: 'size', type: 'String', default: '"md"', description: 'The sizing of the button. Options: "sm", "md", "lg", "icon".' },
   { name: 'intent', type: 'String', default: '"default"', description: 'The semantic color intent. Options: "default", "success", "warning", "danger", "info".' },
   { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the button is disabled and unclickable.' },
-  { name: '@click', type: 'Event', default: '', description: 'Emitted when the button is clicked.' }
+  { name: '@click', type: 'Event', default: '—', description: 'Emitted when the button is clicked. Passes the native MouseEvent.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'The default slot for the button content (text, icons).' }
 ]
 
 const variantsCode = `<MayaBtn variant="primary">Primary</MayaBtn>
