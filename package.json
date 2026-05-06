@@ -1,6 +1,6 @@
 {
   "name": "@thenormvg/maya-ui",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A premium, highly customizable Vue & Nuxt component library.",
   "keywords": ["nuxt", "vue", "ui", "components", "maya-ui", "design-system", "agent-skill"],
   "repository": {

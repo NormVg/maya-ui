@@ -1,10 +1,10 @@
-import { defineNuxtModule, addComponentsDir, addImportsDir, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponentsDir, addImports, addImportsDir, createResolver } from '@nuxt/kit'
 
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'maya-ui',
+    name: '@thenormvg/maya-ui',
     configKey: 'mayaUi',
   },
   defaults: {},
@@ -19,8 +19,11 @@ export default defineNuxtModule<ModuleOptions>({
       watch: true
     })
 
-    // Auto-import composables
-    addImportsDir(resolver.resolve('./runtime/composables'))
+    // Auto-import composables (explicitly for better reliability)
+    addImports([
+      { name: 'useToast', from: resolver.resolve('./runtime/composables/useToast') },
+      { name: 'useMayaSound', from: resolver.resolve('./runtime/composables/useMayaSound') }
+    ])
 
     // Inject global CSS tokens
     nuxt.options.css.push(resolver.resolve('./runtime/maya.css'))

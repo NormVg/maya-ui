@@ -15,6 +15,7 @@
 
 <script setup>
 import { ref, watch, nextTick } from 'vue'
+import { useToast } from '../composables/useToast'
 
 const { toasts, dismiss } = useToast()
 const VISIBLE_COUNT = 3
