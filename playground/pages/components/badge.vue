@@ -52,8 +52,23 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaBadge API" :propsList="badgeProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const badgeProps = [
+  { name: 'intent', type: 'String', default: '"default"', description: 'Semantic intent ("default", "success", "warning", "danger", "info").' },
+  { name: 'variant', type: 'String', default: '"soft"', description: 'Rendering variant ("solid", "soft", "outline").' },
+  { name: 'size', type: 'String', default: '"md"', description: 'Badge size ("sm", "md").' },
+  { name: 'dot', type: 'Boolean', default: 'false', description: 'Show a status dot next to the text.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Content of the badge.' }
+]
+</script>
 
 <style scoped>
 .row {

@@ -21,6 +21,12 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <ApiTable 
+      title="useToast() API" 
+      description="Properties accepted by the toast() function options object."
+      :propsList="toastOptions"
+    />
   </div>
 </template>
 
@@ -105,6 +111,15 @@ function spawnWithAction() {
   <MayaBtn variant="outline" @click="spawnWithAction">With Action</MayaBtn>
 </template>
 `.trim()
+
+const toastOptions = [
+  { name: 'title', type: 'string', default: "''", description: 'The main heading text of the toast.' },
+  { name: 'description', type: 'string', default: "''", description: 'Secondary descriptive text below the title.' },
+  { name: 'intent', type: 'string', default: "'default'", description: "The visual semantic intent: 'default', 'success', 'warning', 'danger', or 'info'." },
+  { name: 'icon', type: 'Component', default: 'undefined', description: 'A Vue component (like a Lucide icon) to render alongside the text.' },
+  { name: 'duration', type: 'number', default: '4000', description: 'Time in milliseconds before the toast auto-dismisses.' },
+  { name: 'action', type: 'object', default: 'undefined', description: 'An object containing { label: string, onClick: Function } to render an action button.' }
+]
 </script>
 
 <style scoped>

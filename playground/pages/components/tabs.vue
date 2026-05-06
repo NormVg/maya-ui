@@ -84,10 +84,20 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaTabs API" :propsList="tabsProps" />
   </div>
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const tabsProps = [
+  { name: 'defaultValue', type: 'String', default: '—', description: 'Required. The default active tab value.' },
+  { name: 'orientation', type: 'String', default: '"horizontal"', description: 'The orientation of the tabs ("horizontal" or "vertical").' }
+]
+
 const defaultTabsCode = `<MayaTabs default-value="account">
   <MayaTabsList>
     <MayaTabsTrigger value="account">Account</MayaTabsTrigger>

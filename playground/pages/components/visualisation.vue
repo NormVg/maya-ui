@@ -56,6 +56,39 @@
       </template>
     </MayaPreviewCode>
 
+    <ApiTable 
+      title="BentoGrid API"
+      description="Properties and slots for the BentoGrid component."
+      :propsList="bentoGridProps"
+      :slotsList="bentoGridSlots"
+    />
+
+    <ApiTable 
+      title="BentoItem API"
+      description="Properties and slots for the BentoItem component."
+      :propsList="bentoItemProps"
+      :slotsList="bentoItemSlots"
+    />
+
+    <ApiTable 
+      title="ChatBubble API"
+      description="Properties and slots for the ChatBubble component."
+      :propsList="chatBubbleProps"
+      :slotsList="chatBubbleSlots"
+    />
+
+    <ApiTable 
+      title="FileUpload API"
+      description="Properties and events for the FileUpload component."
+      :propsList="fileUploadProps"
+      :eventsList="fileUploadEvents"
+    />
+
+    <ApiTable 
+      title="AudioPlayer API"
+      description="Properties for the AudioPlayer component."
+      :propsList="audioPlayerProps"
+    />
   </div>
 </template>
 
@@ -84,6 +117,47 @@ const chatCode = `<MayaChatBubble role="user" time="10:42 AM">
 const uploadCode = `<MayaFileUpload @change="onFileChange" />`
 
 const audioCode = `<MayaAudioPlayer src="/path/to/audio.mp3" />`
+
+const bentoGridProps = [
+  { name: 'columns', type: 'number', default: '3', description: 'Number of columns in the grid.' },
+  { name: 'gap', type: 'string', default: "'16px'", description: 'Gap between grid items.' }
+]
+
+const bentoGridSlots = [
+  { name: 'default', description: 'The BentoItem components.' }
+]
+
+const bentoItemProps = [
+  { name: 'colSpan', type: 'number', default: '1', description: 'Number of columns the item spans.' },
+  { name: 'rowSpan', type: 'number', default: '1', description: 'Number of rows the item spans.' },
+  { name: 'hoverable', type: 'boolean', default: 'false', description: 'Enables hover animation and depth.' }
+]
+
+const bentoItemSlots = [
+  { name: 'default', description: 'Content of the Bento item.' }
+]
+
+const chatBubbleProps = [
+  { name: 'role', type: 'string', default: "'user'", description: 'Role of the speaker: "user" or "ai".' },
+  { name: 'time', type: 'string', default: "''", description: 'Optional timestamp to display.' }
+]
+
+const chatBubbleSlots = [
+  { name: 'default', description: 'The chat message text.' }
+]
+
+const fileUploadProps = [
+  { name: 'accept', type: 'string', default: "'*/*'", description: 'Allowed file types (standard accept attribute).' },
+  { name: 'multiple', type: 'boolean', default: 'false', description: 'Allow multiple files.' }
+]
+
+const fileUploadEvents = [
+  { name: 'change', description: 'Emitted with the selected file object.' }
+]
+
+const audioPlayerProps = [
+  { name: 'src', type: 'string', default: 'undefined', description: 'URL of the audio file to play. Required.' }
+]
 </script>
 
 <style scoped>

@@ -72,8 +72,29 @@
         </MayaHoverCard>
       </template>
     </MayaPreviewCode>
+    
+    <!-- API Reference -->
+    <ApiTable 
+      title="HoverCard API" 
+      description="Props and slots from HoverCard.vue source."
+      :propsList="hoverCardProps"
+      :slotsList="hoverCardSlots"
+    />
   </div>
 </template>
+
+<script setup>
+const hoverCardProps = [
+  { name: 'align', type: 'string', default: "'bottom-center'", description: "Controls the alignment and placement of the hover card relative to the trigger. One of 'bottom-start' | 'bottom-center' | 'bottom-end' | 'top-start' | 'top-center' | 'top-end'." },
+  { name: 'openDelay', type: 'number', default: '200', description: 'Delay in milliseconds before the hover card opens when hovered.' },
+  { name: 'closeDelay', type: 'number', default: '150', description: 'Delay in milliseconds before the hover card closes when unhovered.' }
+]
+
+const hoverCardSlots = [
+  { name: 'trigger', description: 'The element that triggers the hover card when hovered or focused.' },
+  { name: 'default', description: 'The main content of the hover card.' }
+]
+</script>
 
 <style scoped>
 .link-trigger {

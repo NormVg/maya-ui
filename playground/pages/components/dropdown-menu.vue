@@ -74,5 +74,18 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaDropdownMenu API" :propsList="dropdownProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const dropdownProps = [
+  { name: 'align', type: 'String', default: '"down-left"', description: 'Alignment of the dropdown relative to the trigger ("down-left", "down-right", "up-left", "up-right").' },
+  { name: '#trigger', type: 'Slot', default: '—', description: 'Slot for the button/element that toggles the dropdown.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Slot for the dropdown items and separators.' }
+]
+</script>

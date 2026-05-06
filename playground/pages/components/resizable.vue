@@ -19,5 +19,21 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable 
+      title="Resizable API" 
+      description="Props for MayaResizable."
+      :propsList="resizableProps"
+    />
   </div>
 </template>
+
+<script setup>
+const resizableProps = [
+  { name: 'minWidth', type: 'string', default: "'180px'", description: 'Minimum width allowed for the container.' },
+  { name: 'minHeight', type: 'string', default: "'120px'", description: 'Minimum height allowed for the container.' },
+  { name: 'maxWidth', type: 'string', default: "'100%'", description: 'Maximum width allowed for the container.' },
+  { name: 'maxHeight', type: 'string', default: "'100%'", description: 'Maximum height allowed for the container.' }
+]
+</script>

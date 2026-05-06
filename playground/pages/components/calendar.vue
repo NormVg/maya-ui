@@ -15,14 +15,24 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaCalendar Props API" :propsList="calendarProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const selected = ref(null)
 
 const calendarCode = `<MayaCalendar v-model="date" />`
+
+const calendarProps = [
+  { name: 'modelValue', type: 'Date', default: 'null', description: 'The selected Date object. Used with v-model.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted with the Date object when selected.' }
+]
 </script>
 
 <style scoped>

@@ -43,11 +43,16 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaColorPicker Props API" :propsList="colorPickerProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const color = ref('#6366f1')
 const panelColor = ref('#6366f1')
 const compactColor = ref('#22c55e')
@@ -66,6 +71,12 @@ const panelsCode = `<MayaColorPanels
 
 const compactCode = `<!-- 8-column compact toolbar -->
 <MayaColorPanels v-model="color" :cols="8" />`
+
+const colorPickerProps = [
+  { name: 'modelValue', type: 'String', default: '"#6366f1"', description: 'The hex color code. Used with v-model.' },
+  { name: 'presets', type: 'Array', default: 'Array[12]', description: 'An array of hex color strings to display in the preset grid.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted with the hex string.' }
+]
 </script>
 
 <style scoped>

@@ -58,6 +58,13 @@
         </div>
       </template>
     </MayaPreviewCode>
+  <ApiTable
+    title="Sheet API"
+    description="Props, events, and slots from Sheet.vue source."
+    :propsList="sheetProps"
+    :eventsList="sheetEvents"
+    :slotsList="sheetSlots"
+  />
   </div>
 </template>
 
@@ -68,4 +75,21 @@ const openRight = ref(false)
 const openLeft = ref(false)
 const openTop = ref(false)
 const openBottom = ref(false)
+
+// From Sheet.vue: defineProps({ open, side, hideClose })
+const sheetProps = [
+  { name: 'open', type: 'boolean', default: 'false', description: 'Controls sheet visibility. Bind with v-model:open.' },
+  { name: 'side', type: 'string', default: "'right'", description: "Which edge to slide in from. One of 'left' | 'right' | 'top' | 'bottom'." },
+  { name: 'hideClose', type: 'boolean', default: 'false', description: 'When true, the close (×) button is hidden.' }
+]
+
+// From Sheet.vue: defineEmits(['update:open'])
+const sheetEvents = [
+  { name: 'update:open', description: 'Emitted with false when the sheet requests to close.' }
+]
+
+// From Sheet.vue template: <slot />
+const sheetSlots = [
+  { name: 'default', description: 'The sheet body content rendered inside the sliding panel.' }
+]
 </script>

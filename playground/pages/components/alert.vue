@@ -66,6 +66,13 @@
         </MayaAlert>
       </template>
     </MayaPreviewCode>
+
+    <ApiTable
+      title="Alert API"
+      description="Props and slots extracted directly from Alert.vue source."
+      :propsList="alertProps"
+      :slotsList="alertSlots"
+    />
   </div>
 </template>
 
@@ -132,6 +139,22 @@ const rowLayoutCode = `
   </MayaAlert>
 </template>
 `.trim()
+
+// From Alert.vue source: defineProps({ intent, title, icon, layout })
+const alertProps = [
+  { name: 'intent', type: 'string', default: "'default'", description: "Semantic color intent. One of 'default' | 'success' | 'warning' | 'danger' | 'info'." },
+  { name: 'title', type: 'string', default: "''", description: 'The bold title text shown at the top of the alert.' },
+  { name: 'icon', type: 'Component | string', default: 'null', description: 'Lucide or custom icon component rendered in the icon slot.' },
+  { name: 'layout', type: 'string', default: "'column'", description: "Layout direction. 'column' stacks title/desc vertically; 'row' flows them inline." }
+]
+
+// From Alert.vue template: slots icon, title, default, action
+const alertSlots = [
+  { name: 'icon', description: 'Custom icon content — overrides the :icon prop.' },
+  { name: 'title', description: 'Custom title content — overrides the title prop string.' },
+  { name: 'default', description: 'The alert body / description text.' },
+  { name: 'action', description: 'Optional action area (e.g. a button) aligned to the right.' }
+]
 </script>
 
 <style scoped>

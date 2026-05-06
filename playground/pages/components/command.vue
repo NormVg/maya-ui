@@ -32,13 +32,25 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaCommand API" :propsList="commandProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const isOpen = ref(false)
+
+const commandProps = [
+  { name: 'groups', type: 'Array', default: '[]', description: 'Array of group objects { heading, items: [{ label, shortcut, icon }] }.' },
+  { name: 'placeholder', type: 'String', default: '"Type a command or search..."', description: 'Placeholder for the search input.' },
+  { name: '@select', type: 'Event', default: '—', description: 'Emitted when an item is clicked or selected via Enter key.' },
+  { name: '#empty', type: 'Slot', default: '—', description: 'Displayed when search yields no results.' }
+]
+
 
 const mockGroups = [
   {

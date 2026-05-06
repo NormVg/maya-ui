@@ -26,16 +26,29 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaPagination API" :propsList="paginationProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
+
 const page = ref(6)
 const page2 = ref(3)
 
 const basicCode = `<MayaPagination v-model:current="page" :total="240" :per-page="10" />`
 const fewCode = `<MayaPagination v-model:current="page" :total="50" :per-page="10" />`
+
+const paginationProps = [
+  { name: 'current', type: 'Number', default: '—', description: 'Required. The current active page. Used with v-model:current.' },
+  { name: 'total', type: 'Number', default: '—', description: 'Required. Total number of items.' },
+  { name: 'perPage', type: 'Number', default: '10', description: 'Number of items per page.' },
+  { name: 'siblings', type: 'Number', default: '1', description: 'Number of always visible pages before and after the current page.' },
+  { name: '@update:current', type: 'Event', default: '—', description: 'Emitted when the page changes.' }
+]
 </script>
 
 <style scoped>

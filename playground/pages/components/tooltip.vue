@@ -39,6 +39,14 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable 
+      title="Tooltip API" 
+      description="Props and slots from Tooltip.vue source."
+      :propsList="tooltipProps"
+      :slotsList="tooltipSlots"
+    />
   </div>
 </template>
 
@@ -60,6 +68,17 @@ const tooltipCode = `<template>
     </MayaTooltip>
   </div>
 </template>`
+
+const tooltipProps = [
+  { name: 'align', type: 'string', default: "'up-center'", description: "Controls the alignment and placement of the tooltip relative to the trigger. One of 'up-left' | 'up-center' | 'up-right' | 'down-left' | 'down-center' | 'down-right'." },
+  { name: 'openDelay', type: 'number', default: '200', description: 'Delay in milliseconds before the tooltip opens when hovered.' },
+  { name: 'closeDelay', type: 'number', default: '100', description: 'Delay in milliseconds before the tooltip closes when unhovered.' }
+]
+
+const tooltipSlots = [
+  { name: 'trigger', description: 'The element that triggers the tooltip when hovered or focused.' },
+  { name: 'default', description: 'The textual content of the tooltip.' }
+]
 </script>
 
 <style scoped>

@@ -24,15 +24,26 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaDateChooser Props API" :propsList="dateChooserProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const date1 = ref('')
 // Set date2 to effectively tomorrow's date for demo context
 const tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1)
 const date2 = ref(tomorrow.toISOString().split('T')[0])
+
+const dateChooserProps = [
+  { name: 'modelValue', type: 'Date | String | Number', default: 'null', description: 'The selected date. Used with v-model.' },
+  { name: 'placeholder', type: 'String', default: '"Pick a date"', description: 'Placeholder text when no date is picked.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the date chooser is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted with an ISO date string.' },
+  { name: '@change', type: 'Event', default: '—', description: 'Emitted with the ISO date string on selection.' }
+]
 </script>

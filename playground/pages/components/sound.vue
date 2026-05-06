@@ -47,6 +47,13 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable 
+      title="useMayaSound() API" 
+      description="Methods and parameters available from the useMayaSound composable."
+      :propsList="soundApiProps"
+    />
   </div>
 </template>
 
@@ -96,6 +103,10 @@ const theme = ref('glass')
 
 <MayaSelect v-model="theme" :options="['aero', 'glass', 'arcade', ...]" />
 <MayaBtn @click="play('success', theme)">Play Theme</MayaBtn>`
+
+const soundApiProps = [
+  { name: 'play', type: 'Function', default: 'undefined', description: 'Method: play(type: SoundType, theme?: FeelType). Triggers a mathematically generated sound effect based on the provided intent.' }
+]
 </script>
 
 <style scoped>

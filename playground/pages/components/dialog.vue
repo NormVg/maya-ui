@@ -40,6 +40,14 @@
         />
       </template>
     </MayaPreviewCode>
+
+    <ApiTable
+      title="Dialog API"
+      description="Props, events, and slots from Dialog.vue source."
+      :propsList="dialogProps"
+      :eventsList="dialogEvents"
+      :slotsList="dialogSlots"
+    />
   </div>
 </template>
 
@@ -92,6 +100,27 @@ const data = reactive({
   username: '@peduarte'
 })
 <\/script>`
+
+// From Dialog.vue source: defineProps({ modelValue, showClose, closeOnClickOutside, closeOnEscape, titleId, descId })
+const dialogProps = [
+  { name: 'modelValue', type: 'boolean', default: 'false', description: 'Controls dialog visibility. Use v-model to bind.' },
+  { name: 'showClose', type: 'boolean', default: 'true', description: 'Whether to render the close (×) button in the top-right corner.' },
+  { name: 'closeOnClickOutside', type: 'boolean', default: 'true', description: 'Close when clicking the backdrop.' },
+  { name: 'closeOnEscape', type: 'boolean', default: 'true', description: 'Close when the Escape key is pressed.' },
+  { name: 'titleId', type: 'string', default: 'undefined', description: 'ID for the title element, used for aria-labelledby.' },
+  { name: 'descId', type: 'string', default: 'undefined', description: 'ID for the description element, used for aria-describedby.' }
+]
+
+// From Dialog.vue: defineEmits(['update:modelValue', 'close'])
+const dialogEvents = [
+  { name: 'update:modelValue', description: 'Emitted with false when the dialog requests to close.' },
+  { name: 'close', description: 'Emitted whenever the dialog closes (backdrop click, Escape, or close button).' }
+]
+
+// From Dialog.vue template: <slot />
+const dialogSlots = [
+  { name: 'default', description: 'The dialog body content — forms, text, actions, etc.' }
+]
 </script>
 
 <style scoped>

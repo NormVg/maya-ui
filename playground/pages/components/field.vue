@@ -72,8 +72,21 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaField Props API" :propsList="fieldProps" />
   </div>
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const fieldProps = [
+  { name: 'label', type: 'String', default: '""', description: 'The label for the field group.' },
+  { name: 'description', type: 'String', default: '""', description: 'Secondary descriptive text below the input.' },
+  { name: 'error', type: 'String', default: '""', description: 'Error message. If provided, turns child inputs red.' },
+  { name: 'name', type: 'String', default: '""', description: 'Native name attribute for the label "for" connection.' },
+  { name: 'required', type: 'Boolean', default: 'false', description: 'Marks the label as required (often appends an asterisk).' },
+  { name: '#label', type: 'Slot', default: '—', description: 'Slot for custom label markup.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'The default slot where the input component goes.' }
+]
 </script>

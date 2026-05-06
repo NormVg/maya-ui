@@ -69,6 +69,25 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <div style="display: flex; flex-direction: column; gap: 32px; margin-top: 48px;">
+      <ApiTable 
+        title="StatusDot API" 
+        description="Props for MayaStatusDot."
+        :propsList="statusDotProps"
+      />
+      <ApiTable 
+        title="Progress API" 
+        description="Props for MayaProgress."
+        :propsList="progressProps"
+      />
+      <ApiTable 
+        title="Meter API" 
+        description="Props for MayaMeter."
+        :propsList="meterProps"
+      />
+    </div>
   </div>
 </template>
 
@@ -121,6 +140,28 @@ const meterCode = `
   <MayaMeter label="Battery Level" :value="100" showLabel :optimum="100" :lowThreshold="20" :highThreshold="50" />
 </template>
 `.trim()
+
+const statusDotProps = [
+  { name: 'intent', type: 'string', default: "'default'", description: "Color intent: 'default', 'success', 'warning', 'danger', or 'info'." },
+  { name: 'ping', type: 'boolean', default: 'true', description: 'Whether to show the animating radar ring.' }
+]
+
+const progressProps = [
+  { name: 'value', type: 'number', default: '0', description: 'Progress percentage (0-100).' },
+  { name: 'indeterminate', type: 'boolean', default: 'false', description: 'If true, displays an animated endless loading bar.' },
+  { name: 'intent', type: 'string', default: "'default'", description: "Color intent: 'default', 'success', 'warning', 'danger', or 'info'." }
+]
+
+const meterProps = [
+  { name: 'value', type: 'number', default: '0', description: 'Current measurement value.' },
+  { name: 'min', type: 'number', default: '0', description: 'Minimum bounds.' },
+  { name: 'max', type: 'number', default: '100', description: 'Maximum bounds.' },
+  { name: 'lowThreshold', type: 'number', default: '33', description: 'Upper bound of the low range.' },
+  { name: 'highThreshold', type: 'number', default: '66', description: 'Lower bound of the high range.' },
+  { name: 'optimum', type: 'number', default: '50', description: 'Optimal value, determines color direction (e.g. if 0 is optimal, high values turn red).' },
+  { name: 'label', type: 'string', default: "''", description: 'Screen reader label and visible label text.' },
+  { name: 'showLabel', type: 'boolean', default: 'false', description: 'Whether to render the label text visibly.' }
+]
 </script>
 
 <style scoped>

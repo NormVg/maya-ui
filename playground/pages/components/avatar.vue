@@ -55,8 +55,23 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaAvatar API" :propsList="avatarProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const avatarProps = [
+  { name: 'src', type: 'String', default: '""', description: 'Image source URL.' },
+  { name: 'alt', type: 'String', default: '""', description: 'Alt text, also used as fallback initials if initials are not provided.' },
+  { name: 'initials', type: 'String', default: '""', description: 'Initials to display when no image is provided.' },
+  { name: 'size', type: 'String', default: '"md"', description: 'Avatar size ("sm", "md", "lg", "xl").' },
+  { name: 'status', type: 'String', default: '""', description: 'Status dot ("online", "away", "busy", "offline").' }
+]
+</script>
 
 <style scoped>
 .row {

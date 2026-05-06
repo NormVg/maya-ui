@@ -22,11 +22,19 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaNavigationMenu API" :propsList="navMenuProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const currentNav = ref('overview')
+
+const navMenuProps = [
+  { name: '#default', type: 'Slot', default: '—', description: 'The default slot for anchor links or router links.' }
+]
 </script>

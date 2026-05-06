@@ -81,6 +81,20 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <div style="display: flex; flex-direction: column; gap: 32px; margin-top: 48px;">
+      <ApiTable 
+        title="Spinner API" 
+        description="Props for MayaSpinner."
+        :propsList="spinnerProps"
+      />
+      <ApiTable 
+        title="Skeleton API" 
+        description="Props for MayaSkeleton."
+        :propsList="skeletonProps"
+      />
+    </div>
   </div>
 </template>
 
@@ -137,6 +151,17 @@ const orbitCode = `
   <MayaDotOrbit />
 </template>
 `.trim()
+
+const spinnerProps = [
+  { name: 'size', type: 'string', default: "'md'", description: "Size of the spinner: 'sm', 'md', or 'lg'." },
+  { name: 'intent', type: 'string', default: "'default'", description: "Color intent: 'default', 'success', 'warning', 'danger', or 'info'." }
+]
+
+const skeletonProps = [
+  { name: 'width', type: 'string', default: "'100%'", description: 'Width of the skeleton placeholder (e.g. "40px", "100%").' },
+  { name: 'height', type: 'string', default: "'20px'", description: 'Height of the skeleton placeholder.' },
+  { name: 'rounded', type: 'string', default: "'md'", description: "Border radius: 'none', 'sm', 'md', 'lg', 'full'." }
+]
 </script>
 
 <style scoped>

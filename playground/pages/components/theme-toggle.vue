@@ -23,6 +23,13 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable 
+      title="ThemeToggle API" 
+      description="MayaThemeToggle accepts no props or events. It manages the theme state internally."
+      :propsList="[]"
+    />
   </div>
 </template>
 

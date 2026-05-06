@@ -49,6 +49,13 @@
         </MayaAlertDialog>
       </template>
     </MayaPreviewCode>
+  <ApiTable
+      title="AlertDialog API"
+      description="Props, events, and slots from AlertDialog.vue source."
+      :propsList="alertDialogProps"
+      :eventsList="alertDialogEvents"
+      :slotsList="alertDialogSlots"
+    />
   </div>
 </template>
 
@@ -102,6 +109,28 @@ const open = ref(false)
   </MayaAlertDialog>
 </template>
 `.trim()
+// From AlertDialog.vue: defineProps({ open, title, description, preventCloseOut })
+const alertDialogProps = [
+  { name: 'open', type: 'boolean', default: 'false', description: 'Controls dialog visibility. Bind with v-model:open.' },
+  { name: 'title', type: 'string', default: "''", description: 'Heading text rendered in the dialog header.' },
+  { name: 'description', type: 'string', default: "''", description: 'Subtext below the title describing the action.' },
+  { name: 'preventCloseOut', type: 'boolean', default: 'false', description: 'When true, clicking the backdrop or pressing Escape does NOT close the dialog.' }
+]
+
+// From AlertDialog.vue: defineEmits(['update:open', 'action'])
+const alertDialogEvents = [
+  { name: 'update:open', description: 'Emitted with false when the dialog requests to close.' },
+  { name: 'action', description: 'Emitted when the default action button is clicked.' }
+]
+
+// From AlertDialog.vue template: slots title, description, default, cancel, action
+const alertDialogSlots = [
+  { name: 'title', description: 'Custom title content — overrides the title prop.' },
+  { name: 'description', description: 'Custom description content — overrides the description prop.' },
+  { name: 'default', description: 'Optional custom body content shown between the header and footer.' },
+  { name: 'cancel', description: 'Custom cancel button (defaults to secondary Cancel button).' },
+  { name: 'action', description: 'Custom action button (defaults to danger Continue button).' }
+]
 </script>
 
 <style scoped>

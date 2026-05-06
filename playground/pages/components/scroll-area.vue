@@ -24,5 +24,17 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <ApiTable 
+      title="ScrollArea API" 
+      description="Props from ScrollArea.vue source."
+      :propsList="scrollAreaProps"
+    />
   </div>
 </template>
+
+<script setup>
+const scrollAreaProps = [
+  { name: 'hideScrollbar', type: 'boolean', default: 'false', description: 'When true, hides the scrollbar track and thumb while keeping the container scrollable.' }
+]
+</script>

@@ -56,6 +56,30 @@
       </template>
     </MayaPreviewCode>
 
+    <ApiTable 
+      title="CodeBlock API"
+      description="Properties for the CodeBlock component."
+      :propsList="codeBlockProps"
+    />
+
+    <ApiTable 
+      title="InlineCode API"
+      description="Properties for the InlineCode component."
+      :propsList="inlineCodeProps"
+    />
+
+    <ApiTable 
+      title="Prose API"
+      description="Properties for the Prose component."
+      :propsList="proseProps"
+    />
+
+    <ApiTable 
+      title="PreviewCode API"
+      description="Properties and slots for the PreviewCode component."
+      :propsList="previewCodeProps"
+      :slotsList="previewCodeSlots"
+    />
   </div>
 </template>
 
@@ -117,4 +141,34 @@ export default defineNuxtConfig({
 - **MayaBadge** — Inline label with \`solid\`, \`soft\`, and \`outline\` styles`
 
 const proseUsage = `<MayaProse :content="markdownString" />`
+
+const codeBlockProps = [
+  { name: 'code', type: 'string', default: "''", description: 'The source code string to display and highlight.' },
+  { name: 'lang', type: 'string', default: "'text'", description: 'The language for syntax highlighting (e.g. "vue", "javascript").' },
+  { name: 'filename', type: 'string', default: "''", description: 'Optional filename to display in the header.' }
+]
+
+const inlineCodeProps = [
+  { name: 'code', type: 'string', default: "''", description: 'The inline code snippet string.' },
+  { name: 'lang', type: 'string', default: "''", description: 'The language for syntax highlighting.' },
+  { name: 'copyable', type: 'boolean', default: 'true', description: 'Whether to show the copy to clipboard button.' }
+]
+
+const proseProps = [
+  { name: 'content', type: 'string', default: "''", description: 'The Markdown string to render as HTML.' }
+]
+
+const previewCodeProps = [
+  { name: 'title', type: 'string', default: "''", description: 'The title displayed above the preview.' },
+  { name: 'description', type: 'string', default: "''", description: 'The description displayed below the title.' },
+  { name: 'code', type: 'string', default: "''", description: 'The source code to display in the Code tab.' },
+  { name: 'lang', type: 'string', default: "'vue'", description: 'The language for syntax highlighting in the Code tab.' },
+  { name: 'previewHeight', type: 'string', default: "'auto'", description: 'Fixed height for the Preview tab (e.g. "200px").' },
+  { name: 'codeHeight', type: 'string', default: "'auto'", description: 'Fixed height for the Code tab.' }
+]
+
+const previewCodeSlots = [
+  { name: 'preview', description: 'The live component preview.' },
+  { name: 'code', description: 'Optional custom code content, overriding the default CodeBlock.' }
+]
 </script>

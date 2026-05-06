@@ -28,10 +28,20 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaTable API" :propsList="tableProps" />
   </div>
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const tableProps = [
+  { name: 'columns', type: 'Array', default: '—', description: 'Required. Array of column definitions: { key, label }.' },
+  { name: 'rows', type: 'Array', default: '[]', description: 'Array of data objects to display.' }
+]
+
 const columns = [
   { key: 'name', label: 'Name' },
   { key: 'role', label: 'Role' },

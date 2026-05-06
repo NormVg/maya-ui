@@ -101,15 +101,34 @@ const plan = ref('pro')
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaChoiceBox Props API" :propsList="choiceBoxProps" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const notifications = ref(true)
 const weeklyDigest = ref(false)
 const plan = ref('pro')
+
+const choiceBoxProps = [
+  { name: 'modelValue', type: 'ChoiceValue | ChoiceValue[] | null', default: 'false', description: 'The selected state or value array. Used with v-model.' },
+  { name: 'value', type: 'ChoiceValue', default: 'true', description: 'The value to associate with this specific box.' },
+  { name: 'type', type: 'String', default: '"checkbox"', description: 'The input type: "checkbox" or "radio".' },
+  { name: 'name', type: 'String', default: 'undefined', description: 'Native input name attribute for grouping.' },
+  { name: 'title', type: 'String', default: '""', description: 'Primary title text.' },
+  { name: 'description', type: 'String', default: '""', description: 'Secondary descriptive text.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the choice box is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when selection changes.' },
+  { name: '@change', type: 'Event', default: '—', description: 'Emitted with the checked boolean.' },
+  { name: '#title', type: 'Slot', default: '—', description: 'Slot for custom title rendering.' },
+  { name: '#description', type: 'Slot', default: '—', description: 'Slot for custom description rendering.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Default slot for extra inner content.' }
+]
 </script>
 
 <style scoped>

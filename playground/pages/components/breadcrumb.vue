@@ -43,5 +43,18 @@
         </MayaBreadcrumb>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaBreadcrumb API" :propsList="breadcrumbProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const breadcrumbProps = [
+  { name: 'items', type: 'Array', default: 'null', description: 'Optional array of items { label, href }. If null, relies on default slot content.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'If items array is not used, provide list items here.' },
+  { name: '#separator', type: 'Slot', default: '—', description: 'Customize the separator between breadcrumb items.' }
+]
+</script>

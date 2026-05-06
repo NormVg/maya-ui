@@ -34,6 +34,13 @@
         <MayaEmptyState :icon="FolderOpenIcon" title="Empty Directory" description="" />
       </template>
     </MayaPreviewCode>
+
+    <ApiTable 
+      title="Empty State API"
+      description="Properties and slots for the EmptyState component."
+      :propsList="emptyStateProps"
+      :slotsList="emptyStateSlots"
+    />
   </div>
 </template>
 
@@ -61,6 +68,19 @@ const minimalCode = `
   <MayaEmptyState :icon="FolderOpenIcon" title="Empty Directory" description="" />
 </template>
 `.trim()
+
+const emptyStateProps = [
+  { name: 'title', type: 'string', default: "'No items found'", description: 'The primary title text.' },
+  { name: 'description', type: 'string', default: "'There is nothing to display here right now.'", description: 'A secondary description text.' },
+  { name: 'icon', type: 'Component | String', default: 'null', description: 'Icon component or string to display.' }
+]
+
+const emptyStateSlots = [
+  { name: 'icon', description: 'Slot for a custom icon or image.' },
+  { name: 'title', description: 'Slot for custom title content.' },
+  { name: 'description', description: 'Slot for custom description content.' },
+  { name: 'default', description: 'Slot for actions (e.g. buttons) below the description.' }
+]
 </script>
 
 <style scoped>

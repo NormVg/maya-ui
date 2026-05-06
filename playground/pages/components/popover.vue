@@ -70,8 +70,28 @@
         </MayaPopover>
       </template>
     </MayaPreviewCode>
+    
+    <!-- API Reference -->
+    <ApiTable 
+      title="Popover API" 
+      description="Props and slots from Popover.vue source."
+      :propsList="popoverProps"
+      :slotsList="popoverSlots"
+    />
   </div>
 </template>
+
+<script setup>
+const popoverProps = [
+  { name: 'align', type: 'string', default: "'bottom-start'", description: "Controls the alignment and placement of the popover relative to the trigger. One of 'bottom-start' | 'bottom-center' | 'bottom-end' | 'top-start' | 'top-center' | 'top-end'." },
+  { name: 'ariaLabel', type: 'string', default: "'Popover'", description: 'Accessibility label for the popover dialog.' }
+]
+
+const popoverSlots = [
+  { name: 'trigger', description: 'The element that toggles the popover when clicked (e.g. a button).' },
+  { name: 'default', description: 'The main content of the popover.' }
+]
+</script>
 
 <style scoped>
 .popover-content {

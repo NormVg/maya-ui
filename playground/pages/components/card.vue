@@ -49,8 +49,23 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaCard API" :propsList="cardProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const cardProps = [
+  { name: 'intent', type: 'String', default: '"default"', description: 'Semantic intent color edge ("default", "success", "warning", "danger", "info").' },
+  { name: 'bordered', type: 'Boolean', default: 'false', description: 'If true, adds a border to the card.' },
+  { name: '#header', type: 'Slot', default: '—', description: 'Slot for the card header.' },
+  { name: '#default', type: 'Slot', default: '—', description: 'Main content slot (body).' },
+  { name: '#footer', type: 'Slot', default: '—', description: 'Slot for the card footer.' }
+]
+</script>
 
 <style scoped>
 .card-grid {

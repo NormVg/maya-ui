@@ -51,5 +51,16 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaMenubar API" :propsList="menubarProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const menubarProps = [
+  { name: '#default', type: 'Slot', default: '—', description: 'The default slot to hold MayaDropdownMenu or button elements.' }
+]
+</script>

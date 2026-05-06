@@ -62,11 +62,14 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaSelect Props API" :propsList="selectProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const val1 = ref('')
 const val2 = ref('')
@@ -80,5 +83,14 @@ const frameworks = [
   { label: 'Next.js', value: 'nextjs' },
   { label: 'Svelte', value: 'svelte' },
   { label: 'Solid', value: 'solid', disabled: true },
+]
+
+const selectProps = [
+  { name: 'modelValue', type: 'String | Number', default: '""', description: 'The selected value. Used with v-model.' },
+  { name: 'options', type: 'Array', default: '[]', description: 'List of options. Can be primitive array or objects { label, value, disabled }.' },
+  { name: 'placeholder', type: 'String', default: '"Select an option"', description: 'Placeholder when nothing is selected.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the select is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted on selection.' },
+  { name: '@change', type: 'Event', default: '—', description: 'Emitted with the selected value on change.' }
 ]
 </script>

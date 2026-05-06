@@ -55,6 +55,15 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable 
+      title="Banner API" 
+      description="Props, events, and slots from Banner.vue source."
+      :propsList="bannerProps"
+      :eventsList="bannerEvents"
+      :slotsList="bannerSlots"
+    />
   </div>
 </template>
 
@@ -108,6 +117,24 @@ const variantsCode = `
   </div>
 </template>
 `.trim()
+
+const bannerProps = [
+  { name: 'modelValue', type: 'boolean', default: 'true', description: 'Controls banner visibility. Use v-model to bind.' },
+  { name: 'intent', type: 'string', default: "'default'", description: "Semantic color intent: 'default', 'success', 'warning', 'danger', or 'info'." },
+  { name: 'icon', type: 'Component', default: 'null', description: 'Lucide icon component to display.' },
+  { name: 'dismissible', type: 'boolean', default: 'true', description: 'Whether to render the close button.' }
+]
+
+const bannerEvents = [
+  { name: 'update:modelValue', description: 'Emitted with false when the banner is dismissed.' },
+  { name: 'close', description: 'Emitted when the banner is dismissed.' }
+]
+
+const bannerSlots = [
+  { name: 'default', description: 'The main textual content of the banner.' },
+  { name: 'icon', description: 'Custom icon rendering (overrides :icon prop).' },
+  { name: 'actions', description: 'Action buttons to place on the right side.' }
+]
 </script>
 
 <style scoped>

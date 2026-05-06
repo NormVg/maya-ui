@@ -58,52 +58,52 @@ const componentProps = [
 - [x] `checkbox.vue`
 - [x] `radio.vue`
 - [x] `controls.vue` (Toggle & Switch)
-- [ ] `input-otp.vue`
-- [ ] `choice-box.vue`
-- [ ] `select.vue`
-- [ ] `date-chooser.vue`
-- [ ] `calendar.vue`
-- [ ] `color-picker.vue`
-- [ ] `field.vue`
+- [x] InputOTP (`input-otp.vue`)
+- [x] ChoiceBox (`choice-box.vue`)
+- [x] Select (`select.vue`)
+- [x] DateChooser (`date-chooser.vue`)
+- [x] Calendar (`calendar.vue`)
+- [x] ColorPicker (`color-picker.vue`)
+- [x] Field (`field.vue`)
 
 ### Navigation & Menus
-- [ ] `menubar.vue`
-- [ ] `navigation-menu.vue`
-- [ ] `dropdown-menu.vue`
-- [ ] `context-menu.vue`
-- [ ] `command.vue`
-- [ ] `breadcrumb.vue`
-- [ ] `tabs.vue`
-- [ ] `pagination.vue`
+- [x] Menubar (`menubar.vue`)
+- [x] NavigationMenu (`navigation-menu.vue`)
+- [x] DropdownMenu (`dropdown-menu.vue`)
+- [x] ContextMenu (`context-menu.vue`)
+- [x] Command (`command.vue`)
+- [x] Breadcrumb (`breadcrumb.vue`)
+- [x] Tabs (`tabs.vue`)
+- [x] Pagination (`pagination.vue`)
 
 ### Data Display
-- [ ] `table.vue`
-- [ ] `data-table.vue`
-- [ ] `card.vue`
-- [ ] `avatar.vue`
-- [ ] `badge.vue`
-- [ ] `accordion.vue`
-- [ ] `panels.vue`
-- [ ] `empty-state.vue`
-- [ ] `visualisation.vue`
-- [ ] `code.vue`
+- [x] `table.vue`
+- [x] `data-table.vue`
+- [x] `card.vue`
+- [x] `avatar.vue`
+- [x] `badge.vue`
+- [x] `accordion.vue`
+- [x] `panels.vue`
+- [x] `empty-state.vue`
+- [x] `visualisation.vue`
+- [x] `code.vue`
 
 ### Feedback & Overlays
-- [ ] `dialog.vue`
-- [ ] `alert-dialog.vue`
-- [ ] `sheet.vue`
-- [ ] `popover.vue`
-- [ ] `hover-card.vue`
-- [ ] `tooltip.vue`
-- [ ] `toast.vue`
-- [ ] `alert.vue`
-- [ ] `banner.vue`
-- [ ] `loaders.vue`
-- [ ] `status-indicators.vue`
+- [x] `dialog.vue`
+- [x] `alert-dialog.vue`
+- [x] `sheet.vue`
+- [x] `popover.vue`
+- [x] `hover-card.vue`
+- [x] `tooltip.vue`
+- [x] `toast.vue`
+- [x] `alert.vue`
+- [x] `banner.vue`
+- [x] `loaders.vue`
+- [x] `status-indicators.vue`
 
 ### Layout & Utilities
-- [ ] `scroll-area.vue`
-- [ ] `resizable.vue`
-- [ ] `base-ui.vue`
-- [ ] `theme-toggle.vue`
-- [ ] `sound.vue`
+- [x] `scroll-area.vue`
+- [x] `resizable.vue`
+- [x] `base-ui.vue`
+- [x] `theme-toggle.vue`
+- [x] `sound.vue`

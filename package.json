@@ -1,8 +1,16 @@
 {
-  "name": "maya-ui",
+  "name": "@thenormvg/maya-ui",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "description": "A premium, highly customizable Vue & Nuxt component library.",
+  "keywords": ["nuxt", "vue", "ui", "components", "maya-ui", "design-system", "agent-skill"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NormVg/maya-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NormVg/maya-ui/issues"
+  },
+  "homepage": "https://github.com/NormVg/maya-ui#readme",
   "license": "MIT",
   "type": "module",
   "exports": {

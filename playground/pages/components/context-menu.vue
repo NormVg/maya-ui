@@ -88,5 +88,17 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaContextMenu API" :propsList="contextMenuProps" />
   </div>
 </template>
+
+<script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const contextMenuProps = [
+  { name: '#default', type: 'Slot', default: '—', description: 'The wrapping element. Right-clicking within this area opens the context menu.' },
+  { name: '#menu', type: 'Slot', default: '—', description: 'The content (dropdown items) of the context menu.' }
+]
+</script>

@@ -52,6 +52,26 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <div style="display: flex; flex-direction: column; gap: 32px; margin-top: 48px;">
+      <ApiTable 
+        title="Label API" 
+        description="Props for MayaLabel."
+        :propsList="labelProps"
+      />
+      <ApiTable 
+        title="Separator API" 
+        description="Props for MayaSeparator."
+        :propsList="separatorProps"
+      />
+      <ApiTable 
+        title="Kbd API" 
+        description="Props and events for MayaKbd."
+        :propsList="kbdProps"
+        :eventsList="kbdEvents"
+      />
+    </div>
   </div>
 </template>
 
@@ -59,6 +79,27 @@
 import { ref } from 'vue'
 
 const triggerCount = ref(0)
+
+const labelProps = [
+  { name: 'for', type: 'string', default: "''", description: 'ID of the input element this label is bound to.' },
+  { name: 'required', type: 'boolean', default: 'false', description: 'When true, displays a red asterisk.' },
+  { name: 'hint', type: 'string', default: "''", description: 'Optional helper text displayed inline.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Visually dims the label.' }
+]
+
+const separatorProps = [
+  { name: 'orientation', type: 'string', default: "'horizontal'", description: "Direction: 'horizontal' or 'vertical'." },
+  { name: 'label', type: 'string', default: "''", description: 'Optional text badge displayed in the center (horizontal only).' }
+]
+
+const kbdProps = [
+  { name: 'shortcut', type: 'string', default: "''", description: 'A shortcut combo (e.g. "meta+j", "shift+k") to automatically listen for.' },
+  { name: 'size', type: 'string', default: "'md'", description: "Size of the key: 'sm', 'md', or 'lg'." }
+]
+
+const kbdEvents = [
+  { name: 'trigger', description: 'Emitted when the defined shortcut combo is pressed globally.' }
+]
 </script>
 
 <style scoped>

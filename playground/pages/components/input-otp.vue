@@ -29,11 +29,14 @@
       </template>
     </MayaPreviewCode>
 
+    <!-- API Reference -->
+    <ApiTable title="MayaInputOTP Props API" :propsList="inputOtpProps" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ApiTable from '~/components/ApiTable.vue'
 
 const code1 = ref('')
 const code2 = ref('')
@@ -42,4 +45,12 @@ const code3 = ref('123456')
 function log(val) {
   console.log('OTP Complete:', val)
 }
+
+const inputOtpProps = [
+  { name: 'modelValue', type: 'String', default: '""', description: 'The current value of the OTP input. Used with v-model.' },
+  { name: 'length', type: 'Number', default: '6', description: 'The number of input slots.' },
+  { name: 'disabled', type: 'Boolean', default: 'false', description: 'Whether the OTP input is disabled.' },
+  { name: '@update:modelValue', type: 'Event', default: '—', description: 'Emitted when the OTP value changes.' },
+  { name: '@complete', type: 'Event', default: '—', description: 'Emitted when all slots are filled.' }
+]
 </script>

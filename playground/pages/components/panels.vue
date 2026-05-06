@@ -55,6 +55,20 @@
         <MayaCodeBlock filename="carousel.vue" lang="vue" :code="carouselCode" />
       </template>
     </MayaPreviewCode>
+
+    <ApiTable 
+      title="Preview Card API"
+      description="Properties and slots for the PreviewCard component."
+      :propsList="previewCardProps"
+      :slotsList="previewCardSlots"
+    />
+
+    <ApiTable 
+      title="Carousel API"
+      description="Properties and slots for the Carousel component."
+      :propsList="carouselProps"
+      :slotsList="carouselSlots"
+    />
   </div>
 </template>
 
@@ -90,6 +104,25 @@ const carouselCode = `<template>
     </MayaCarouselItem>
   </MayaCarousel>
 </template>`
+
+const previewCardProps = [
+  { name: 'imageUrl', type: 'string', default: 'undefined', description: 'Background image URL.' },
+  { name: 'interactive', type: 'boolean', default: 'false', description: 'Enables hover scaling, borders, and radial glassmorphic shines.' },
+  { name: 'variant', type: 'string', default: "'default'", description: 'Padding variant ("default", "compact", "expanded").' }
+]
+
+const previewCardSlots = [
+  { name: 'default', description: 'Content rendered inside the card, above the background image.' }
+]
+
+const carouselProps = [
+  { name: 'showControls', type: 'boolean', default: 'true', description: 'Whether to show previous/next buttons.' },
+  { name: 'scrollAmount', type: 'number', default: '0', description: 'Amount to scroll in pixels. If 0, scrolls 80% of viewport width.' }
+]
+
+const carouselSlots = [
+  { name: 'default', description: 'The carousel items (should be MayaCarouselItem components).' }
+]
 </script>
 
 <style scoped>

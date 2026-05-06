@@ -25,10 +25,24 @@
         </div>
       </template>
     </MayaPreviewCode>
+
+    <!-- API Reference -->
+    <ApiTable title="MayaDataTable API" :propsList="dataTableProps" />
   </div>
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+const dataTableProps = [
+  { name: 'columns', type: 'Array', default: '—', description: 'Required. Array of columns: { key, label, sortable }.' },
+  { name: 'rows', type: 'Array', default: '—', description: 'Required. Array of data objects.' },
+  { name: 'onRowClick', type: 'Function', default: 'null', description: 'Callback function triggered when a row is clicked.' },
+  { name: '#toolbar', type: 'Slot', default: '—', description: 'Optional slot for a toolbar above the table.' },
+  { name: '#cell-{key}', type: 'Slot', default: '—', description: 'Dynamic slot to override the rendering of a specific cell.' },
+  { name: '#empty', type: 'Slot', default: '—', description: 'Displayed when there are no rows.' }
+]
+
 const columns = [
   { key: 'name', label: 'Name', sortable: true },
   { key: 'email', label: 'Email', sortable: true },

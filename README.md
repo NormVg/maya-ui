@@ -26,14 +26,14 @@ Maya UI is not just another utility-based component library. It is designed to b
 Install the library using your preferred package manager:
 
 ```bash
-pnpm add -D maya-ui
+pnpm add -D @thenormvg/maya-ui
 ```
 
 Add the module to your `nuxt.config.ts`:
 
 ```typescript
 export default defineNuxtConfig({
-  modules: ['maya-ui'],
+  modules: ['@thenormvg/maya-ui'],
 })
 ```
 
@@ -69,6 +69,16 @@ Maya UI includes over **40 distinct components** grouped by functionality, all f
 
 ### Code Documentation
 - `MayaCodeBlock`, `MayaInlineCode`, `MayaPreviewCode`, `MayaProse`
+
+---
+
+## Built-in Agent Skill
+
+Maya UI ships with a first-class AI Agent skill inside the `skills/maya-ui` directory. 
+
+If you use AI coding assistants (like Claude, Gemini, or custom agents), you can give them access to this folder. It provides a highly optimized, token-efficient reference of the entire 90+ component library, all design tokens, and best practices. 
+
+Instead of hallucinating props or importing components manually, your agent will write perfect Maya UI code out of the box.
 
 ---
 

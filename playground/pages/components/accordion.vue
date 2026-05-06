@@ -71,6 +71,29 @@
         />
       </template>
     </MayaPreviewCode>
+
+    <ApiTable 
+      title="Accordion API"
+      description="Properties and events for the Accordion component."
+      :propsList="accordionProps"
+      :eventsList="accordionEvents"
+      :slotsList="accordionSlots"
+    />
+
+    <ApiTable 
+      title="AccordionItem API"
+      description="Properties and slots for the AccordionItem component."
+      :propsList="accordionItemProps"
+      :slotsList="accordionItemSlots"
+    />
+
+    <ApiTable 
+      title="Collapsible API"
+      description="Properties and events for the Collapsible component."
+      :propsList="collapsibleProps"
+      :eventsList="collapsibleEvents"
+      :slotsList="collapsibleSlots"
+    />
   </div>
 </template>
 
@@ -78,6 +101,43 @@
 import { ref } from 'vue'
 
 const isCollapsibleOpen = ref(false)
+
+const accordionProps = [
+  { name: 'type', type: 'string', default: "'single'", description: 'Determines whether one or multiple items can be opened at the same time.' },
+  { name: 'collapsible', type: 'boolean', default: 'false', description: 'When type is "single", allows closing content when clicking trigger for an open item.' },
+  { name: 'modelValue', type: 'string | array', default: 'undefined', description: 'The controlled value of the item(s) to expand.' }
+]
+
+const accordionEvents = [
+  { name: 'update:modelValue', description: 'Event emitted when the expanded item(s) change.' }
+]
+
+const accordionSlots = [
+  { name: 'default', description: 'The accordion items.' }
+]
+
+const accordionItemProps = [
+  { name: 'value', type: 'string', default: 'undefined', description: 'A unique value for the item. Required.' }
+]
+
+const accordionItemSlots = [
+  { name: 'trigger', description: 'The trigger button content.' },
+  { name: 'default', description: 'The content that is revealed when the accordion item is expanded.' }
+]
+
+const collapsibleProps = [
+  { name: 'modelValue', type: 'boolean', default: 'undefined', description: 'The controlled open state of the collapsible.' },
+  { name: 'defaultOpen', type: 'boolean', default: 'false', description: 'The default open state when initially rendered.' }
+]
+
+const collapsibleEvents = [
+  { name: 'update:modelValue', description: 'Event emitted when the open state changes.' }
+]
+
+const collapsibleSlots = [
+  { name: 'trigger', description: 'The trigger element. Receives { isOpen } prop.' },
+  { name: 'default', description: 'The collapsible content. Receives { isOpen } prop.' }
+]
 
 const accordionCode = `<template>
   <MayaAccordion type="single" collapsible>
