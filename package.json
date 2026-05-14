@@ -2,7 +2,15 @@
   "name": "@thenormvg/maya-ui",
   "version": "1.0.4",
   "description": "A premium, highly customizable Vue & Nuxt component library.",
-  "keywords": ["nuxt", "vue", "ui", "components", "maya-ui", "design-system", "agent-skill"],
+  "keywords": [
+    "nuxt",
+    "vue",
+    "ui",
+    "components",
+    "maya-ui",
+    "design-system",
+    "agent-skill"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NormVg/maya-ui.git"
@@ -49,7 +57,8 @@
     "@thenormvg/web-have-sounds": "^1.0.1",
     "@vueuse/core": "^14.2.1",
     "lucide-vue-next": "^1.0.0",
-    "shiki": "^4.0.2"
+    "shiki": "^4.0.2",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",
@@ -58,6 +67,7 @@
     "@nuxt/schema": "^4.4.2",
     "@nuxt/test-utils": "^4.0.2",
     "@types/node": "latest",
+    "@types/three": "^0.184.1",
     "changelogen": "^0.6.2",
     "eslint": "^10.2.1",
     "nuxt": "^4.4.2",

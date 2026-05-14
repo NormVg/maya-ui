@@ -55,6 +55,11 @@
         </div>
 
         <div class="nav-group">
+          <div class="nav-group-title">Shaders</div>
+          <NuxtLink to="/components/dither-shader" class="nav-item" active-class="active">Dither Shader</NuxtLink>
+        </div>
+
+        <div class="nav-group">
           <div class="nav-group-title">Data Display</div>
           <NuxtLink to="/components/table" class="nav-item" active-class="active">Table</NuxtLink>
           <NuxtLink to="/components/data-table" class="nav-item" active-class="active">Data Table</NuxtLink>
