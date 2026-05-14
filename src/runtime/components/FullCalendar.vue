@@ -43,15 +43,28 @@
             <!-- Default rendering if events are passed via props -->
             <div class="event-badges" v-if="getEventsForDay(day).length">
               <div 
-                v-for="(event, idx) in getEventsForDay(day).slice(0, 3)" 
+                v-for="(event, idx) in getEventsForDay(day).slice(0, isExpanded(day) ? undefined : maxBadges)" 
                 :key="idx" 
                 class="event-badge"
                 :style="{ backgroundColor: event.color || 'var(--maya-primary-muted)', color: event.textColor || 'var(--maya-primary)' }"
               >
                 <span class="event-title">{{ event.title }}</span>
               </div>
-              <div v-if="getEventsForDay(day).length > 3" class="event-more">
-                +{{ getEventsForDay(day).length - 3 }} more
+              
+              <div 
+                v-if="!isExpanded(day) && getEventsForDay(day).length > maxBadges" 
+                class="event-more"
+                @click.stop="toggleExpand(day)"
+              >
+                +{{ getEventsForDay(day).length - maxBadges }} more
+              </div>
+              
+              <div 
+                v-if="isExpanded(day) && getEventsForDay(day).length > maxBadges" 
+                class="event-more is-expanded"
+                @click.stop="toggleExpand(day)"
+              >
+                Show less
               </div>
             </div>
           </slot>
@@ -101,6 +114,10 @@ const props = defineProps({
     type: Array,
     default: () => []
     // Example event: { date: Date|String, title: 'Meeting', time: '10:00 AM', color: '#ff0000', description: '...' }
+  },
+  maxBadges: {
+    type: Number,
+    default: 3
   }
 })
 
@@ -163,6 +180,17 @@ const getEventsForDay = (day) => {
 // Expandable Card state
 const isCardOpen = ref(false)
 const selectedDay = ref(1)
+
+// Inline Badges Expansion state
+const expandedDays = ref([])
+const isExpanded = (day) => expandedDays.value.includes(day)
+const toggleExpand = (day) => {
+  if (isExpanded(day)) {
+    expandedDays.value = expandedDays.value.filter(d => d !== day)
+  } else {
+    expandedDays.value.push(day)
+  }
+}
 
 const selectedDate = computed(() => getDate(selectedDay.value))
 const selectedDayEvents = computed(() => getEventsForDay(selectedDay.value))
@@ -256,8 +284,9 @@ const openDayCard = (day) => {
 }
 
 .calendar-cell.is-empty {
-  background: var(--maya-bg-root);
-  opacity: 0.5;
+  background-image: var(--maya-pattern-stripes);
+  background-color: var(--maya-bg-root);
+  opacity: 0.6;
   cursor: default;
 }
 
@@ -312,6 +341,13 @@ const openDayCard = (day) => {
   color: var(--maya-text-muted);
   padding-left: 2px;
   margin-top: 2px;
+  cursor: pointer;
+  transition: color 150ms var(--maya-ease);
+}
+
+.event-more:hover {
+  color: var(--maya-text-primary);
+  text-decoration: underline;
 }
 
 /* Day Card / Dialog Content */
