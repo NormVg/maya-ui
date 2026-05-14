@@ -98,27 +98,9 @@
 
         <div class="nav-group">
           <div class="nav-group-title">Screens</div>
-          <NuxtLink to="/screens/sidebar-demo" class="nav-item nav-item--screen" active-class="active">
-            Sidebar Demo
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; opacity: 0.5;">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </NuxtLink>
-          <NuxtLink to="/screens/topbar-demo" class="nav-item nav-item--screen" active-class="active">
-            Topbar Demo
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; opacity: 0.5;">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </NuxtLink>
-          <NuxtLink to="/screens/app-shell-demo" class="nav-item nav-item--screen" active-class="active">
-            App Shell Demo
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; opacity: 0.5;">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </NuxtLink>
+          <NuxtLink to="/screens/app-shell" class="nav-item" active-class="active">App Shell</NuxtLink>
+          <NuxtLink to="/screens/sidebar" class="nav-item" active-class="active">Sidebar</NuxtLink>
+          <NuxtLink to="/screens/topbar" class="nav-item" active-class="active">Topbar</NuxtLink>
         </div>
       </nav>
     </aside>
