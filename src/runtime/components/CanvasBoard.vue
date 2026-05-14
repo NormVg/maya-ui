@@ -18,7 +18,7 @@
         <slot name="node" :node="node" :index="index">
           <!-- Default Node -->
           <div class="default-node">
-            {{ node.label || \`Node \${node.id}\` }}
+            {{ node.label || `Node ${node.id}` }}
           </div>
         </slot>
       </div>
