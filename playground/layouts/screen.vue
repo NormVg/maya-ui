@@ -14,12 +14,22 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 
 function goBack() {
-  router.back()
+  if (window.history.length > 1 && document.referrer) {
+    router.back()
+  } else {
+    // If opened in a new tab, there is no history to go back to.
+    window.close()
+    
+    // Fallback in case window.close() is blocked
+    const fallbackPath = route.path.replace('-demo', '')
+    router.push(fallbackPath)
+  }
 }
 </script>
 
