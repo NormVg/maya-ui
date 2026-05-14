@@ -215,7 +215,7 @@ const openDayCard = (day) => {
 
 .calendar-grid-header {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   border-bottom: 1px solid var(--maya-border);
   background: var(--maya-bg-root);
 }
@@ -228,11 +228,13 @@ const openDayCard = (day) => {
   color: var(--maya-text-muted);
   text-align: center;
   letter-spacing: 0.05em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   grid-auto-rows: minmax(120px, 1fr);
   flex: 1;
   background: var(--maya-border); /* acts as grid lines */
