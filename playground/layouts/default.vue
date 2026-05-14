@@ -70,7 +70,14 @@
           <NuxtLink to="/components/panels" class="nav-item" active-class="active">Preview Card & Carousel</NuxtLink>
           <NuxtLink to="/components/empty-state" class="nav-item" active-class="active">Empty State</NuxtLink>
           <NuxtLink to="/components/visualisation" class="nav-item" active-class="active">Visualisation</NuxtLink>
+          <NuxtLink to="/components/full-calendar" class="nav-item" active-class="active">Full Calendar</NuxtLink>
           <NuxtLink to="/components/code" class="nav-item" active-class="active">Code & Prose</NuxtLink>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Interactive Elements</div>
+          <NuxtLink to="/components/sortable-list" class="nav-item" active-class="active">Sortable List</NuxtLink>
+          <NuxtLink to="/components/canvas-board" class="nav-item" active-class="active">Canvas Board</NuxtLink>
         </div>
 
         <div class="nav-group">
