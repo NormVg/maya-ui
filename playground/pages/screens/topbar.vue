@@ -8,7 +8,7 @@
     <MayaPreviewCode title="Live Demo" description="View the Topbar layout in a full-screen environment." lang="vue" :code="demoCode">
       <template #preview>
         <div class="demo-launcher">
-          <MayaBtn variant="primary" as="a" href="/screens/topbar-demo" target="_blank">
+          <MayaBtn variant="primary" @click="openDemo('/screens/topbar-demo')">
             Open Full Screen Demo
             <svg class="ml-2" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -26,6 +26,10 @@
 
 <script setup>
 import ApiTable from '~/components/ApiTable.vue'
+
+const openDemo = (url) => {
+  window.open(url, '_blank')
+}
 
 const demoCode = `<template>
   <MayaAppShell>
