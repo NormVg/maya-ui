@@ -37,7 +37,7 @@ const nodes = ref([
   { id: 2, label: 'Processing Unit', x: 250, y: 120 },
   { id: 3, label: 'Output Sink', x: 100, y: 250 },
 ])
-</script>`
+<\/script>`
 
 const canvasProps = [
   { name: 'v-model', type: 'Array', default: '[]', description: 'Array of nodes containing { id, x, y }.' },

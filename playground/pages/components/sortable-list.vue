@@ -40,7 +40,7 @@ const items = ref([
   { id: 2, label: 'Write Documentation' },
   { id: 3, label: 'Fix Navigation Bug' }
 ])
-</script>`
+<\/script>`
 
 const sortableProps = [
   { name: 'v-model', type: 'Array', default: '[]', description: 'The array of items to render and sort.' },
