@@ -50,18 +50,8 @@ const bgParallaxStyle = computed(() => ({
   <section class="hero-section">
     <!-- Full bleed shader background with parallax -->
     <div class="shader-bg" :style="bgParallaxStyle">
-      <MayaDitherShader
-        shape="warp"
-        type="4x4"
-        :size="3"
-        :speed="0.15"
-        :scale="1.2"
-        :themeAware="true"
-        colorFront="#1d4ed8"
-        colorBack="#030712"
-        colorFrontLight="#93c5fd"
-        colorBackLight="#f8fafc"
-      />
+      <MayaDitherShader shape="warp" type="4x4" :size="3" :speed="0.15" :scale="1.2" :themeAware="true"
+        colorFront="#3D536B" colorBack="#030712" colorFrontLight="#93c5fd" colorBackLight="#f8fafc" />
     </div>
 
     <!-- Soft radial vignette so text is readable without a solid white overlay -->
@@ -69,7 +59,7 @@ const bgParallaxStyle = computed(() => ({
 
     <div class="hero-container" :style="parallaxStyle">
       <div class="hero-content">
-        <h1 class="hero-title">Build interfaces<br/>that feel alive.</h1>
+        <h1 class="hero-title">Build interfaces<br />that feel alive.</h1>
 
         <p class="hero-subtitle">
           97+ premium Nuxt components with spring physics, dark-first tokens,
@@ -77,21 +67,19 @@ const bgParallaxStyle = computed(() => ({
         </p>
 
         <div class="hero-commands">
-          <MayaInlineCode
-            v-for="command in installCommands"
-            :key="command"
-            class="hero-command"
-            :code="command"
-            lang="bash"
-            :copyable="true"
-          />
+          <MayaInlineCode v-for="command in installCommands" :key="command" class="hero-command" :code="command"
+            lang="bash" :copyable="true" />
         </div>
 
         <div class="hero-actions">
           <MayaBtn variant="primary" size="lg" @click="handleGetStarted">
             Get Started
             <template #suffix>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </template>
           </MayaBtn>
           <MayaBtn variant="outline" size="lg" @click="handleBrowse">
@@ -101,11 +89,21 @@ const bgParallaxStyle = computed(() => ({
 
         <div class="hero-github-links">
           <a href="#" @click.prevent="handleLink('https://github.com/TheAlphaOnes/maya-ui')" class="gh-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
             Star on GitHub
           </a>
           <a href="#" @click.prevent="handleLink('https://github.com/TheAlphaOnes/maya-ui/issues/new')" class="gh-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
             Open an Issue
           </a>
         </div>
@@ -232,8 +230,15 @@ const bgParallaxStyle = computed(() => ({
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 600px) {
@@ -257,7 +262,8 @@ const bgParallaxStyle = computed(() => ({
     flex-direction: column;
     width: 100%;
   }
-  .hero-actions > * {
+
+  .hero-actions>* {
     width: 100%;
   }
 }
