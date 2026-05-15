@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   mayaUi: {},
   site: {
-    url: 'https://maya-ui.be', // Placeholder URL
+    url: 'https://ui.taohq.org/', // Placeholder URL
     name: 'Maya UI',
     description: 'A premium, highly customizable Vue & Nuxt component library.',
     defaultLocale: 'en',
