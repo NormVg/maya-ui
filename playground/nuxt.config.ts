@@ -19,9 +19,9 @@ export default defineNuxtConfig({
     blockNonSeoBots: false,
   },
 
-  // Sitemap
+  // Sitemap — disabled for module playground
   sitemap: {
-    zeroRuntime: true,
+    enabled: false,
   },
 
   // OG Image — dynamic via nuxt-og-image
