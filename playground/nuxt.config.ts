@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
   ogImage: {
+    zeroRuntime: true,
     defaults: {
       width: 1200,
       height: 630,
