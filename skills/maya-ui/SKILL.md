@@ -1,7 +1,7 @@
 ---
 name: maya-ui
 description: >
-  How to install, configure, and use Maya UI — a Nuxt 3 module that auto-registers 90+
+  How to install, configure, and use Maya UI — a Nuxt module that auto-registers 90+
   premium Vue components globally under the `Maya` prefix (e.g. `<MayaBtn>`, `<MayaDialog>`,
   `<MayaToast>`). Use this skill whenever the user is working in a Nuxt project and wants to
   add UI components, build forms, dialogs, dashboards, data tables, or any interactive
@@ -14,15 +14,13 @@ description: >
 
 # Maya UI — Agent Reference
 
-Maya UI is a **Nuxt 3 module** that provides 90+ polished, theme-aware Vue components. All components auto-register globally with the `Maya` prefix. No per-file imports are needed — just install and use.
+Maya UI is a **Nuxt module** that provides 90+ polished, theme-aware Vue components. All components auto-register globally with the `Maya` prefix. No per-file imports needed — just install and use.
 
 ---
 
 ## Quick Setup
 
 ```bash
-npm install @thenormvg/maya-ui
-# or
 pnpm add @thenormvg/maya-ui
 ```
 
@@ -36,7 +34,18 @@ export default defineNuxtConfig({
 The module automatically:
 - Registers all `<Maya*>` components globally
 - Auto-imports all composables (`useToast`, `useMayaSound`)
-- Injects the full CSS design token system
+- Injects the full CSS design token system (dark & light themes)
+
+---
+
+## ⚠️ Critical Rules for Agents
+
+1. **Never manually import** `<Maya*>` components — they are globally auto-registered.
+2. **Never manually import** composables like `useToast` — they are auto-imported.
+3. **Components have ZERO outer margins.** You MUST add spacing yourself using CSS `gap`, `margin`, or wrapper `padding`. See `references/spacing-patterns.md`.
+4. For toasts to render, place `<MayaToaster />` **once** in `app.vue`.
+5. Use `--maya-*` CSS variables for any custom styling. Never hardcode colors.
+6. Icons: use `lucide-vue-next`. Pass icon components as props (e.g. `:icon="CheckCircleIcon"`).
 
 ---
 
@@ -49,15 +58,7 @@ Dark mode is the default. Toggle via `data-theme` on `<html>`:
 <html data-theme="light">  <!-- light mode -->
 ```
 
-Use `<MayaThemeToggle />` for a built-in animated toggle. To customize the accent color globally, override these CSS variables anywhere:
-
-```css
-:root {
-  --maya-accent: #6366f1;
-  --maya-accent-hover: #818cf8;
-  --maya-accent-muted: rgba(99, 102, 241, 0.15);
-}
-```
+Use `<MayaThemeToggle />` for a built-in animated toggle.
 
 ---
 
@@ -69,38 +70,37 @@ Many components accept an `intent` prop for semantic coloring. Always prefer int
 'default' | 'success' | 'warning' | 'danger' | 'info'
 ```
 
----
-
-## Key Conventions
-
-- **Never manually import** `<Maya*>` components in `<script setup>` — they are globally auto-registered.
-- **Never manually import** composables like `useToast` — they are auto-imported.
-- For toasts to render, place `<MayaToaster />` **once** in `app.vue`.
-- Use `--maya-*` CSS variables for custom styling to stay theme-compatible.
-- Icons: the library uses `lucide-vue-next` throughout. Pass icon components as props (e.g. `:icon="CheckCircleIcon"`).
-- Options for `<MayaSelect>` accept either plain strings/numbers or `{ value, label, disabled? }` objects.
+Components supporting intent: `MayaBtn`, `MayaAlert`, `MayaBadge`, `MayaCard`, `MayaBanner`, `MayaStatusDot`.
 
 ---
 
 ## Reference Files
 
-Consult these files for full prop tables, events, slots, and examples per category. Read only what you need:
+**Read the file relevant to your task. DO NOT load all files at once.**
 
-| Category | File | Components |
+| Category | File | What's Inside |
 |---|---|---|
-| Design Tokens | `references/design-tokens.md` | All CSS variables, animations, spacing |
-| Buttons & Actions | `references/buttons-actions.md` | Btn, Toggle, ToggleGroup, BtnGroup |
-| Forms & Inputs | `references/forms-inputs.md` | Input, Select, Checkbox, Radio, Switch, Combobox, FileUpload, ColorPicker, Calendar, OTP |
-| Overlays & Feedback | `references/overlays-feedback.md` | Dialog, AlertDialog, Sheet, Popover, HoverCard, Tooltip, Toast, Alert, Banner |
-| Navigation | `references/navigation.md` | Tabs, Dropdown, Breadcrumb, Command, ContextMenu, Menubar, NavigationMenu, Pagination |
-| Layout | `references/layout.md` | Card, AppShell, Accordion, Collapsible, BentoGrid, ScrollArea, Resizable, Separator, AspectRatio |
-| Data Display | `references/data-display.md` | Table, DataTable, Badge, Avatar, Carousel, CodeBlock, Prose, EmptyState, ChatBubble |
-| Status & Loaders | `references/status-loaders.md` | Spinner, Skeleton, LoadingDots, PixelLoader, DotOrbit, StatusDot, Progress, Meter |
+| **Spacing & Composition** | `references/spacing-patterns.md` | **READ THIS FIRST.** Page layout gaps, component spacing rules, common layout patterns |
+| Design Tokens | `references/design-tokens.md` | All CSS variables, backgrounds, text, borders, shadows, animation |
+| Buttons & Actions | `references/buttons-actions.md` | MayaBtn, MayaToggle, MayaToggleGroup, MayaBtnGroup |
+| Forms & Inputs | `references/forms-inputs.md` | MayaInput, MayaSelect, MayaCheckbox, MayaRadio, MayaSwitch, MayaCombobox, MayaFileUpload, MayaColorPicker, MayaCalendar, MayaInputOTP |
+| Overlays & Feedback | `references/overlays-feedback.md` | MayaDialog, MayaAlertDialog, MayaSheet, MayaPopover, MayaHoverCard, MayaTooltip, MayaToast, MayaAlert, MayaBanner |
+| Navigation | `references/navigation.md` | MayaTabs, MayaDropdownMenu, MayaBreadcrumb, MayaCommand, MayaContextMenu, MayaMenubar, MayaNavigationMenu, MayaPagination |
+| Layout | `references/layout.md` | MayaCard, MayaAppShell, MayaAccordion, MayaCollapsible, MayaBentoGrid, MayaScrollArea, MayaResizable, MayaSeparator, MayaAspectRatio |
+| Data Display | `references/data-display.md` | MayaTable, MayaDataTable, MayaBadge, MayaAvatar, MayaCarousel, MayaCodeBlock, MayaProse, MayaEmptyState, MayaChatBubble |
+| Status & Loaders | `references/status-loaders.md` | MayaSpinner, MayaSkeleton, MayaLoadingDots, MayaPixelLoader, MayaDotOrbit, MayaStatusDot, MayaProgress, MayaMeter |
 | Composables | `references/composables.md` | useToast(), useMayaSound() |
 
 ---
 
-## Most Common Patterns (quick reference)
+## Quick Cheatsheet
+
+### Page Container
+```html
+<div style="max-width: 800px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 32px;">
+  <!-- page sections go here -->
+</div>
+```
 
 ### Button
 ```html
@@ -108,18 +108,13 @@ Consult these files for full prop tables, events, slots, and examples per catego
 <MayaBtn variant="secondary" size="sm" intent="danger" :disabled="false">Delete</MayaBtn>
 ```
 
-### Form Group
+### Form Field
 ```html
-<MayaFormGroup label="Email" hint="Required">
-  <MayaInput v-model="email" placeholder="you@example.com" />
-</MayaFormGroup>
-```
-
-### Select
-```html
-<MayaSelect v-model="role" :options="['Admin', 'User']" placeholder="Pick role" />
-<!-- Or with objects: -->
-<MayaSelect v-model="role" :options="[{ value: 'admin', label: 'Admin' }]" />
+<div style="display: flex; flex-direction: column; gap: 16px;">
+  <MayaInput v-model="name" label="Name" placeholder="Jane Doe" />
+  <MayaSelect v-model="role" :options="['Admin', 'User']" placeholder="Pick role" />
+  <MayaTextarea v-model="bio" label="Bio" placeholder="Tell us about yourself" />
+</div>
 ```
 
 ### Dialog
@@ -139,7 +134,7 @@ toast({ title: 'Saved!', intent: 'success', duration: 4000 })
 
 ### Tabs
 ```html
-<MayaTabs v-model="tab">
+<MayaTabs default-value="a">
   <MayaTabsList>
     <MayaTabsTrigger value="a">Tab A</MayaTabsTrigger>
     <MayaTabsTrigger value="b">Tab B</MayaTabsTrigger>
@@ -154,6 +149,17 @@ toast({ title: 'Saved!', intent: 'success', duration: 4000 })
 <MayaAlert intent="warning" title="Heads up" :icon="AlertTriangleIcon">
   Something needs your attention.
 </MayaAlert>
+```
+
+### Card with Sections
+```html
+<MayaCard>
+  <template #header>Card Header</template>
+  Card body content.
+  <template #footer>
+    <MayaBtn size="sm">Action</MayaBtn>
+  </template>
+</MayaCard>
 ```
 
 For deeper API details on any component, read the relevant reference file listed above.

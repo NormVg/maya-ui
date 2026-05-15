@@ -6,15 +6,52 @@
 
 A surface container with subtle elevation and border. Use as the baseline building block for panels, stat blocks, and content sections.
 
-### Slots
-`default` — card content
+### Props
 
-### Example
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `intent` | `string` | `'default'` | Semantic color: `'default'` \| `'success'` \| `'warning'` \| `'danger'` \| `'info'`. Adds a colored left border accent. |
+| `bordered` | `boolean` | `false` | Adds a stronger border. |
+
+### Slots
+
+| Slot | Description |
+|---|---|
+| `header` | Card header area (above body, separated by border) |
+| `default` | Card body content |
+| `footer` | Card footer area (below body, with surface background) |
+
+### Internal Padding
+- **Header:** `16px 20px` top/sides, `12px` bottom
+- **Body:** `16px 20px`
+- **Footer:** `12px 20px`
+
+### Examples
 
 ```html
-<MayaCard style="padding: 24px;">
-  <h3>Card Title</h3>
+<!-- Simple card -->
+<MayaCard>
   <p>Card body content here.</p>
+</MayaCard>
+
+<!-- Card with header and footer -->
+<MayaCard>
+  <template #header>Profile Settings</template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <MayaInput v-model="name" label="Name" />
+    <MayaInput v-model="email" label="Email" />
+  </div>
+  <template #footer>
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <MayaBtn variant="ghost">Cancel</MayaBtn>
+      <MayaBtn>Save</MayaBtn>
+    </div>
+  </template>
+</MayaCard>
+
+<!-- Intent card -->
+<MayaCard intent="warning">
+  <p>This is a warning card with a colored left border.</p>
 </MayaCard>
 ```
 
@@ -51,13 +88,22 @@ Full-page layout primitive that manages sidebar, topbar, and main content areas.
 
 ## `<MayaAccordion>` / `<MayaAccordionItem>`
 
-Expandable/collapsible content sections. Multiple items can be open simultaneously.
+Expandable/collapsible content sections.
+
+### `<MayaAccordion>` Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `type` | `string` | `'single'` | `'single'` (one open at a time) or `'multiple'` (many open) |
+| `collapsible` | `boolean` | `false` | For `'single'` type: allows closing the currently open item |
+| `modelValue` | `string \| string[]` | `undefined` | Controlled open state. Use `v-model`. |
 
 ### `<MayaAccordionItem>` Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `title` | `string` | required | Header text |
+| `value` | `string` | required | Unique identifier for this item |
 | `defaultOpen` | `boolean` | `false` | Whether this item starts expanded |
 | `disabled` | `boolean` | `false` | |
 
@@ -67,13 +113,20 @@ Expandable/collapsible content sections. Multiple items can be open simultaneous
 ### Example
 
 ```html
-<MayaAccordion>
-  <MayaAccordionItem title="What is Maya UI?" :defaultOpen="true">
-    Maya UI is a premium Nuxt 3 component library with 90+ auto-registered components.
+<!-- Single mode (one at a time, collapsible) -->
+<MayaAccordion type="single" collapsible>
+  <MayaAccordionItem title="What is Maya UI?" value="what">
+    Maya UI is a premium Nuxt component library with 90+ auto-registered components.
   </MayaAccordionItem>
-  <MayaAccordionItem title="How do I install it?">
-    Run <code>npm install maya-ui</code> and add it to your nuxt.config.ts modules.
+  <MayaAccordionItem title="How do I install it?" value="install">
+    Run <code>pnpm add @thenormvg/maya-ui</code> and add it to your nuxt.config.ts modules.
   </MayaAccordionItem>
+</MayaAccordion>
+
+<!-- Multiple mode -->
+<MayaAccordion type="multiple">
+  <MayaAccordionItem title="Section A" value="a">Content A</MayaAccordionItem>
+  <MayaAccordionItem title="Section B" value="b">Content B</MayaAccordionItem>
 </MayaAccordion>
 ```
 
