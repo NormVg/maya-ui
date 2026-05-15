@@ -1,7 +1,33 @@
+<script setup>
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+
+const scrollY = ref(0)
+const handleScroll = () => {
+  scrollY.value = window.scrollY
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const parallaxStyle = computed(() => ({
+  transform: `translate3d(0, ${scrollY.value * 0.2}px, 0)`,
+  opacity: Math.max(0, 1 - scrollY.value / 700)
+}))
+
+const bgParallaxStyle = computed(() => ({
+  transform: `translate3d(0, ${scrollY.value * 0.5}px, 0)`
+}))
+</script>
+
 <template>
   <section class="hero-section">
-    <!-- Full bleed shader background -->
-    <div class="shader-bg">
+    <!-- Full bleed shader background with parallax -->
+    <div class="shader-bg" :style="bgParallaxStyle">
       <MayaDitherShader
         shape="warp"
         type="4x4"
@@ -19,7 +45,7 @@
     <!-- Soft radial vignette so text is readable without a solid white overlay -->
     <div class="shader-vignette"></div>
 
-    <div class="hero-container">
+    <div class="hero-container" :style="parallaxStyle">
       <div class="hero-content">
         <div class="hero-install-wrap">
           <MayaInlineCode code="pnpm add -D @thenormvg/maya-ui" lang="bash" :copyable="true" />

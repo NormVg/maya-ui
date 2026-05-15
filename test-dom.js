@@ -1,0 +1,1 @@
+fetch('http://localhost:3000/components/button').then(res => res.text()).then(text => console.log('DitherShader:', text.includes('DitherShader'), 'Build interfaces:', text.includes('Build interfaces')));

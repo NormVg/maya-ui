@@ -1,0 +1,27 @@
+{
+  "skill_name": "maya-ui",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a modern login form component. It should use a MayaCard as the container, and include inputs for Email and Password (MayaInput), a 'Remember me' checkbox (MayaCheckbox), and a Submit button (MayaBtn). Make sure to use proper form grouping.",
+      "expected_output": "A Vue component containing a MayaCard with the requested Maya form inputs inside MayaFormGroups, properly spaced.",
+      "files": [],
+      "assertions": [
+        "The output contains a MayaCard component.",
+        "The output contains MayaFormGroup components.",
+        "The output contains MayaInput, MayaCheckbox, and MayaBtn components."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a dashboard layout frame. It should have a MayaTopbar and a MayaSidebar inside a MayaAppShell. In the main content area, add a grid containing 3 MayaBentoItems.",
+      "expected_output": "A Vue component structured with MayaAppShell, MayaTopbar, MayaSidebar, and a grid of MayaBentoItems.",
+      "files": [],
+      "assertions": [
+        "The output contains a MayaAppShell component.",
+        "The output contains MayaTopbar and MayaSidebar inside named templates of MayaAppShell.",
+        "The output contains a MayaBentoGrid with exactly 3 MayaBentoItem components."
+      ]
+    }
+  ]
+}

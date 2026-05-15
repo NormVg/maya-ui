@@ -1,0 +1,10 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-2-dashboard",
+  "prompt": "I need a dashboard layout frame. It should have a MayaTopbar and a MayaSidebar inside a MayaAppShell. In the main content area, add a grid containing 3 MayaBentoItems.",
+  "assertions": [
+    "The output contains a MayaAppShell component.",
+    "The output contains MayaTopbar and MayaSidebar inside named templates of MayaAppShell.",
+    "The output contains a MayaBentoGrid with exactly 3 MayaBentoItem components."
+  ]
+}
