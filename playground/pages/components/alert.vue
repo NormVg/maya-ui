@@ -77,6 +77,18 @@
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+useSeoMeta({
+  title: 'Alert — Maya UI',
+  description: 'Provide contextual feedback messages for typical user actions with various semantic states.',
+})
+
+defineOgImage('OgImageMaya', {
+  title: 'Alert Component',
+  description: 'Clear and concise feedback for your users.',
+})
+
 import {
   RocketIcon,
   InfoIcon,

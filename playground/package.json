@@ -10,5 +10,8 @@
   "dependencies": {
     "maya-ui": "latest",
     "nuxt": "^4.4.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/seo": "^5.1.3"
   }
 }

@@ -31,6 +31,17 @@
 </template>
 
 <script setup>
+import ApiTable from '~/components/ApiTable.vue'
+
+useSeoMeta({
+  title: 'Toast — Maya UI',
+  description: 'Premium toast notifications with stacking logic and smooth exit animations.',
+})
+
+defineOgImage('OgImageMaya', {
+  title: 'Toast Component',
+  description: 'Elegant notifications that stack beautifully.',
+})
 import { SparklesIcon, CheckCircleIcon, AlertTriangleIcon, AlertOctagonIcon, InfoIcon, BellIcon } from 'lucide-vue-next'
 
 const { toast } = useToast()

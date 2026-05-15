@@ -56,6 +56,16 @@
 <script setup>
 definePageMeta({ layout: 'landing' })
 
+useSeoMeta({
+  title: 'Maya UI — The Premium Nuxt Component Library',
+  description: 'Highly opinionated on motion and structure, completely unopinionated on styling. Dark-first, pure CSS tokens, engineered for Nuxt.',
+})
+
+defineOgImage('OgImageMaya', {
+  title: 'Maya UI',
+  description: 'A highly crafted, premium component library for Nuxt developers.',
+})
+
 const features = [
   {
     title: 'State-of-the-art Motion',

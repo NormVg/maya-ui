@@ -100,6 +100,16 @@
 <script setup>
 import { ref } from 'vue'
 
+useSeoMeta({
+  title: 'Accordion — Maya UI',
+  description: 'A premium accordion component for organizing content into collapsible sections with smooth animations.',
+})
+
+defineOgImage('OgImageMaya', {
+  title: 'Accordion Component',
+  description: 'Organize content with style using the Maya Accordion.',
+})
+
 const isCollapsibleOpen = ref(false)
 
 const accordionProps = [
