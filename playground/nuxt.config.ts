@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     defaults: {
       width: 1200,
       height: 630,
-      cacheMaxAgeSeconds: 60 * 60 * 24 * 7,
     },
   },
   app: {
