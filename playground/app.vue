@@ -1,10 +1,4 @@
-<template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
-</template>
-
-<script setup>
+<script setup lang="ts">
 const site = useSiteConfig()
 
 useSeoMeta({
@@ -23,7 +17,7 @@ useSchemaOrg([
   defineOrganization({
     name: 'Maya UI',
     url: site.url,
-    logo: '/favicon.ico',
+    logo: `${site.url}/favicon.ico`,
     sameAs: [
       'https://github.com/NormVg/maya-ui',
     ],
@@ -34,3 +28,9 @@ useSchemaOrg([
   }),
 ])
 </script>
+
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>

@@ -1,132 +1,98 @@
+<script setup lang="ts">
+defineProps<{
+  title?: string
+  description?: string
+}>()
+</script>
+
 <template>
   <div
     style="
-      height: 100%;
-      width: 100%;
+      width: 1200px;
+      height: 630px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       justify-content: space-between;
-      background-color: #0a0a0a;
-      padding: 80px;
-      position: relative;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 72px 80px;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
     "
   >
-    <!-- Background Decorators -->
+    <!-- Background texture bars (mirrors Maya UI aesthetic) -->
     <div
       style="
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 1px;
-        background-color: rgba(255, 255, 255, 0.1);
-      "
-    />
-    <div
-      style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 1px;
-        background-color: rgba(255, 255, 255, 0.1);
-      "
-    />
-    <div
-      style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.1);
-      "
-    />
-    <div
-      style="
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        opacity: 0.06;
         position: absolute;
         bottom: 0;
         left: 0;
-        right: 0;
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.1);
+        width: 1200px;
+        height: 200px;
       "
-    />
-
-    <!-- Header -->
-    <div style="display: flex; align-items: center; gap: 12px">
-      <div
-        style="
-          width: 32px;
-          height: 32px;
-          background-color: #ededed;
-          border-radius: 4px;
-        "
-      />
-      <span
-        style="
-          font-size: 32px;
-          font-weight: 700;
-          color: #ededed;
-          letter-spacing: -1px;
-        "
-        >Maya UI</span
-      >
+    >
+      <div style="height: 8px; background: #fff; width: 1200px" />
+      <div style="height: 13px; background: #fff; width: 1200px" />
+      <div style="height: 21px; background: #fff; width: 1200px" />
+      <div style="height: 34px; background: #fff; width: 1200px" />
+      <div style="height: 55px; background: #fff; width: 1200px" />
     </div>
 
-    <!-- Main Content -->
-    <div style="display: flex; flex-direction: column; gap: 24px">
-      <h1
-        style="
-          font-size: 96px;
-          font-weight: 800;
-          color: #ffffff;
-          margin: 0;
-          letter-spacing: -4px;
-          line-height: 1;
-        "
-      >
-        {{ title }}
-      </h1>
-      <p
-        style="
-          font-size: 32px;
-          color: #888888;
-          margin: 0;
-          max-width: 800px;
-          line-height: 1.4;
-        "
-      >
-        {{ description }}
-      </p>
+    <!-- Top: wordmark -->
+    <div
+      style="
+        font-family: 'Inter', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        color: rgba(255,255,255,0.5);
+      "
+    >
+      maya ui
     </div>
 
-    <!-- Footer / Badge -->
-    <div style="display: flex; align-items: center; gap: 16px">
+    <!-- Middle: title -->
+    <div style="flex: 1; display: flex; align-items: center;">
       <div
         style="
-          padding: 8px 16px;
-          background-color: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 99px;
-          display: flex;
+          font-size: 72px;
+          font-weight: 400;
+          line-height: 1.05;
+          letter-spacing: -0.02em;
+          max-width: 900px;
+          color: #fff;
         "
       >
-        <span style="font-size: 18px; color: #ededed; font-weight: 600"
-          >v1.0.4</span
-        >
+        {{ title || 'A premium, highly customizable component library.' }}
       </div>
-      <span style="font-size: 18px; color: #555555"
-        >Premium Nuxt Component Library</span
+    </div>
+
+    <!-- Bottom: description + domain -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div
+        style="
+          font-size: 24px;
+          line-height: 1.4;
+          color: rgba(255,255,255,0.55);
+          max-width: 700px;
+        "
       >
+        {{ description || 'Dark-first, pure CSS tokens, engineered for Nuxt.' }}
+      </div>
+      <div
+        style="
+          font-size: 20px;
+          color: rgba(255,255,255,0.4);
+          white-space: nowrap;
+          margin-left: 40px;
+        "
+      >
+        ui.taohq.org
+      </div>
     </div>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  title: String,
-  description: String,
-})
-</script>
