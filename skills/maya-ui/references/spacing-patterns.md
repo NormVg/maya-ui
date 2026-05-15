@@ -178,6 +178,41 @@ A typical page section: title, description, then content.
 
 ---
 
+## Parallax Hero Section
+
+A premium pattern for landing pages using scroll-based relative motion:
+
+```vue
+<script setup>
+const scrollY = ref(0)
+const handleScroll = () => { scrollY.value = window.scrollY }
+onMounted(() => { window.addEventListener('scroll', handleScroll, { passive: true }) })
+onUnmounted(() => { window.removeEventListener('scroll', handleScroll) })
+
+const parallaxStyle = computed(() => ({
+  transform: `translate3d(0, ${scrollY.value * 0.2}px, 0)`,
+  opacity: Math.max(0, 1 - scrollY.value / 700)
+}))
+</script>
+
+<template>
+  <section style="position: relative; min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <!-- Background Layer (fast parallax) -->
+    <div :style="{ transform: `translate3d(0, ${scrollY * 0.5}px, 0)`, position: 'absolute', inset: 0 }">
+      <MayaDitherShader ... />
+    </div>
+
+    <!-- Content Layer (slow parallax + fade) -->
+    <div :style="parallaxStyle" style="position: relative; z-index: 10; text-align: center;">
+      <h1>Hero Title</h1>
+      <p>Hero description.</p>
+    </div>
+  </section>
+</template>
+```
+
+---
+
 ## Alert Stacks
 
 When showing multiple alerts, stack them with gap:

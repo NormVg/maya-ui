@@ -4,13 +4,15 @@
     `maya-btn--${size}`,
     intent !== 'default' ? `maya-btn--intent-${intent}` : '',
     { 'maya-btn--disabled': disabled }
-  ]" :disabled="disabled" @click="$emit('click', $event)">
+  ]" :disabled="disabled" @click="handleClick">
     <slot />
   </button>
 </template>
 
 <script setup>
-defineProps({
+import { useMayaSound } from '../composables/useMayaSound'
+
+const props = defineProps({
   variant: {
     type: String,
     default: 'primary',
@@ -32,7 +34,14 @@ defineProps({
   },
 })
 
-defineEmits(['click'])
+const emit = defineEmits(['click'])
+const { play } = useMayaSound()
+
+function handleClick(e) {
+  if (props.disabled) return
+  play('click', 'soft')
+  emit('click', e)
+}
 </script>
 
 <style scoped>

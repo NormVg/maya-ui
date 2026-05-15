@@ -26,7 +26,17 @@ yarn add -D maya-ui
 
 ---
 
-## 2. Register the Nuxt Module
+## 2. Using with AI Agents (Recommended)
+
+If you are using an AI coding assistant (like Antigravity or Cursor), you can install the **Maya UI Agent Skill**. This provides the agent with full knowledge of all 90+ components, spacing patterns, and design tokens, enabling it to write perfect Maya UI code for you.
+
+\`\`\`bash
+npx skills TheAlphaOnes/maya-ui
+\`\`\`
+
+---
+
+## 3. Register the Nuxt Module
 
 Add \`maya-ui\` to your \`nuxt.config.ts\`:
 
@@ -40,7 +50,7 @@ That's it. All components are now **auto-imported** with the \`Maya\` prefix.
 
 ---
 
-## 3. Start Using Components
+## 4. Start Using Components
 
 No manual imports needed. Use any component directly in your templates:
 
@@ -60,7 +70,7 @@ No manual imports needed. Use any component directly in your templates:
 
 ---
 
-## 4. Customize Tokens
+## 5. Customize Tokens
 
 Maya UI uses CSS custom properties for theming. Override any token in your app's CSS:
 
@@ -80,7 +90,7 @@ Maya UI uses CSS custom properties for theming. Override any token in your app's
 
 ---
 
-## 5. Theme Toggle
+## 6. Theme Toggle
 
 Drop in the theme toggle component for instant dark/light switching with a View Transition animation:
 

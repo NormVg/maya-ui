@@ -21,10 +21,13 @@
 
 <script setup>
 import { useMayaTheme } from '../composables/useMayaTheme'
+import { useMayaSound } from '../composables/useMayaSound'
 
 const { isDark, toggleTheme } = useMayaTheme()
+const { play } = useMayaSound()
 
 async function toggle(e) {
+  play('toggle', 'glass')
   // If View Transitions not supported or reduced motion, just swap
   if (
     !document.startViewTransition ||

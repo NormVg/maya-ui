@@ -1,134 +1,194 @@
 <div align="center">
   <h1>Maya UI</h1>
-  <p>A premium, highly customizable Vue & Nuxt component library.</p>
+  <p><strong>A polished Vue and Nuxt component library for expressive, production-grade interfaces.</strong></p>
+  <p>
+    Dark-first design tokens · Nuxt auto-imports · Motion-rich interactions · Accessible primitives
+  </p>
+  <p>
+    Made with love by <a href="https://taohq.org">TaoHQ</a>
+  </p>
 </div>
 
-<p align="center">
-  <b>Dark-First • Zero Dependencies • Pure CSS Tokens • Deep Nuxt Integration</b>
-</p>
-
 ---
 
-## Why Maya UI?
+## Overview
 
-Maya UI is not just another utility-based component library. It is designed to be **highly opinionated on motion and structure** but **completely unopinionated on styling mechanisms**.
+Maya UI is a component system for teams that want refined interface building blocks without adopting a utility-first styling stack. It ships a broad set of Vue components, Nuxt module integration, CSS variable theming, interactive feedback patterns, code-display utilities, and a local agent skill for AI-assisted development.
 
-- **State-of-the-art Motion** — Fluid, spring-based interactions on buttons, switches, toggles, and modals.
-- **Pure CSS Tokens** — No Tailwind config overhead. The theme strictly relies on standard CSS variables (`var(--maya-bg-surface)`).
-- **Nuxt Auto-Imports** — Zero repetitive `import` statements. `MayaBtn`, `MayaDialog`, `MayaToaster` are automatically available.
-- **Semantic Intent** — Built-in `success`, `warning`, `danger`, and `info` intents across all interactive elements.
-- **Cinematic Theme Toggling** — Uses the native Document View Transition API for instant, buttery-smooth light/dark mode circular reveals.
+The library is designed around a consistent visual language: compact controls, tactile motion, layered surfaces, semantic intent colors, and practical defaults that still remain easy to override.
 
----
+## Highlights
+
+- **Nuxt-native setup**: register the module once and use globally auto-imported `Maya*` components across your app.
+- **CSS token architecture**: customize color, radius, typography, spacing, borders, shadows, and motion with standard CSS variables.
+- **Rich component coverage**: form controls, overlays, navigation, data display, status feedback, layout primitives, media, and code presentation.
+- **Motion and sound hooks**: built-in interaction feedback through Maya composables and component states.
+- **Dark-first, theme-aware UI**: includes theme primitives and defaults tuned for both dark and light surfaces.
+- **Agent-ready docs**: ships a structured `skills/maya-ui` reference for coding agents and AI-assisted workflows.
 
 ## Installation
 
-Install the library using your preferred package manager:
+Install the package:
 
 ```bash
 pnpm add -D @thenormvg/maya-ui
 ```
 
-Add the module to your `nuxt.config.ts`:
+Add Maya UI to your Nuxt config:
 
-```typescript
+```ts
 export default defineNuxtConfig({
   modules: ['@thenormvg/maya-ui'],
 })
 ```
 
-You're done! All components prefixing with `Maya` are now accessible in your `.vue` files.
+Use components directly in your Vue files:
 
----
+```vue
+<template>
+  <MayaCard>
+    <MayaField label="Project name">
+      <MayaInput placeholder="Maya UI" />
+    </MayaField>
 
-## Component Ecosystem
+    <MayaBtn intent="success">
+      Save changes
+    </MayaBtn>
+  </MayaCard>
+</template>
+```
 
-Maya UI includes over **40 distinct components** grouped by functionality, all following the exact same aesthetic language.
+The module automatically registers components with the `Maya` prefix and injects the default `maya.css` design tokens.
 
-### Controls & Inputs
-- `MayaBtn`, `MayaToggle`, `MayaToggleGroup`, `MayaSwitch`
-- `MayaInput`, `MayaTextarea`, `MayaNumberField`, `MayaInputOtp`
-- `MayaCheckbox`, `MayaRadio`, `MayaSelect`, `MayaCombobox`
-- `MayaDateChooser`
+## Agent Skill Install
 
-### Layouts & Containers
-- `MayaCard`, `MayaPreviewCard`, `MayaCarousel`, `MayaBadge`, `MayaAvatar`, `MayaTable`
-- `MayaAccordion`, `MayaCollapsible`
-- `MayaField`, `MayaLabel`, `MayaFieldset`
-- `MayaScrollArea`, `MayaResizable`, `MayaSheet` (Drawer)
+Give your coding assistant the Maya UI component reference, token system, and usage patterns:
 
-### Navigation & Menus
-- `MayaBreadcrumb`, `MayaMenubar`, `MayaSidebar`, `MayaTopbar`
-- `MayaDropdownMenu`, `MayaContextMenu`, `MayaCommand`
+```bash
+npx skills TheAlphaOnes/maya-ui
+```
 
-### Feedback & Overlays
-- `MayaAlert`, `MayaAlertDialog`, `MayaDialog`, `MayaBanner`
-- `MayaPopover`, `MayaHoverCard`, `MayaTooltip`
-- `MayaToast`, `MayaSonner` (Stackable notifications wrapper)
-- `MayaSpinner`, `MayaSkeleton`, `MayaPixelLoader`, `MayaDotOrbit`
+The skill helps agents generate Maya UI screens with the right component names, props, spacing, and design conventions.
 
-### Code Documentation
-- `MayaCodeBlock`, `MayaInlineCode`, `MayaPreviewCode`, `MayaProse`
+## Component Library
 
----
+Maya UI includes a wide runtime component set, grouped by product workflow.
 
-## Built-in Agent Skill
+### Actions And Inputs
 
-Maya UI ships with a first-class AI Agent skill inside the `skills/maya-ui` directory. 
+`MayaBtn`, `MayaBtnGroup`, `MayaInput`, `MayaTextarea`, `MayaNumberField`, `MayaCheckbox`, `MayaCheckboxGroup`, `MayaRadio`, `MayaRadioGroup`, `MayaSwitch`, `MayaToggle`, `MayaToggleGroup`, `MayaSelect`, `MayaNativeSelect`, `MayaCombobox`, `MayaMultiSelect`, `MayaInputOTP`, `MayaColorPicker`, `MayaDateChooser`, `MayaFileUpload`
 
-If you use AI coding assistants (like Claude, Gemini, or custom agents), you can give them access to this folder. It provides a highly optimized, token-efficient reference of the entire 90+ component library, all design tokens, and best practices. 
+### Layout And Structure
 
-Instead of hallucinating props or importing components manually, your agent will write perfect Maya UI code out of the box.
+`MayaAppShell`, `MayaCard`, `MayaBentoGrid`, `MayaBentoItem`, `MayaAspectRatio`, `MayaResizable`, `MayaScrollArea`, `MayaSeparator`, `MayaSidebar`, `MayaTopbar`, `MayaField`, `MayaFieldset`, `MayaForm`, `MayaFormGroup`, `MayaLabel`, `MayaInputGroup`
 
----
+### Navigation And Menus
 
-## Theming & Customization
+`MayaBreadcrumb`, `MayaTabs`, `MayaTabsList`, `MayaTabsTrigger`, `MayaTabsContent`, `MayaMenubar`, `MayaNavigationMenu`, `MayaDropdownMenu`, `MayaDropdownItem`, `MayaDropdownSeparator`, `MayaContextMenu`, `MayaCommand`, `MayaPagination`
 
-Maya UI relies purely on native CSS custom properties. By default, it injects a highly tuned `maya.css` stylesheet, but overriding it is as simple as defining root variables in your project.
+### Feedback And Overlays
+
+`MayaAlert`, `MayaAlertDialog`, `MayaBanner`, `MayaDialog`, `MayaModal`, `MayaSheet`, `MayaPopover`, `MayaHoverCard`, `MayaTooltip`, `MayaToast`, `MayaToaster`, `MayaEmptyState`, `MayaSkeleton`, `MayaSpinner`, `MayaLoadingDots`, `MayaPixelLoader`, `MayaDotOrbit`, `MayaProgress`, `MayaMeter`, `MayaStatusDot`
+
+### Data, Media, And Display
+
+`MayaTable`, `MayaDataTable`, `MayaCalendar`, `MayaFullCalendar`, `MayaAvatar`, `MayaAvatarGroup`, `MayaBadge`, `MayaCarousel`, `MayaCarouselItem`, `MayaPreviewCard`, `MayaColorPanels`, `MayaCanvasBoard`, `MayaSortableList`, `MayaShowMore`, `MayaAudioPlayer`, `MayaVideoPlayer`, `MayaDitherShader`, `MayaChatBubble`
+
+### Code And Documentation
+
+`MayaCodeBlock`, `MayaInlineCode`, `MayaPreviewCode`, `MayaProse`, `MayaKbd`
+
+## Composables
+
+Maya UI also auto-imports supporting composables:
+
+```ts
+const toast = useToast()
+const { play } = useMayaSound()
+const theme = useMayaTheme()
+```
+
+Use them for product feedback, interaction sounds, toast workflows, and theme-aware UI behavior.
+
+## Theming
+
+Maya UI uses native CSS custom properties. Override tokens anywhere in your app CSS:
 
 ```css
 :root {
-  /* Core Colors */
   --maya-bg-root: #09090b;
-  --maya-text-primary: #ededed;
+  --maya-bg-surface: #111113;
+  --maya-text-primary: #f4f4f5;
+  --maya-text-secondary: #a1a1aa;
 
-  /* Accent Theming */
   --maya-accent: #6366f1;
   --maya-accent-hover: #818cf8;
   --maya-accent-text: #ffffff;
 
-  /* Form & Radius */
+  --maya-radius-sm: 6px;
   --maya-radius-md: 8px;
-  --maya-radius-full: 9999px;
+  --maya-radius-lg: 12px;
 
-  /* Typography */
-  --maya-font-sans: "Inter", "Geist", sans-serif;
-  --maya-font-mono: "Fira Code", monospace;
+  --maya-font-sans: "Inter", "Geist", system-ui, sans-serif;
+  --maya-font-mono: "Fira Code", "SFMono-Regular", monospace;
 }
 ```
 
----
+Because the theme is token-based, you can customize Maya UI without changing component source, build configuration, or a utility framework preset.
 
-## Local Development Playground
+## Agent Skill
 
-Maya UI features a beautifully crafted playground mapped to the actual documentation UI.
+This repository includes a first-party agent skill at:
+
+```txt
+skills/maya-ui
+```
+
+The skill contains component references, design tokens, spacing rules, usage guidance, and implementation notes. It is intended for coding assistants that need accurate local context for generating Maya UI screens without guessing props or patterns.
+
+## Local Development
+
+Install dependencies:
 
 ```bash
-# Install dependencies
 pnpm install
+```
 
-# Generate Nuxt definitions
+Prepare the Nuxt module and playground:
+
+```bash
 pnpm run dev:prepare
+```
 
-# Start playground
+Start the playground:
+
+```bash
 pnpm run dev
 ```
 
-Navigate to `http://localhost:3000` to interact with all the components live in the browser.
+Build the playground:
 
----
+```bash
+pnpm run dev:build
+```
+
+Run tests:
+
+```bash
+pnpm run test
+```
+
+## Project Scripts
+
+| Script | Description |
+| --- | --- |
+| `pnpm run dev` | Builds the module stub and starts the Nuxt playground. |
+| `pnpm run dev:prepare` | Generates Nuxt/module build artifacts for local development. |
+| `pnpm run dev:build` | Builds the playground for production. |
+| `pnpm run lint` | Runs ESLint across the repository. |
+| `pnpm run test` | Runs the Vitest suite. |
+| `pnpm run test:types` | Runs Vue and TypeScript type checks. |
 
 ## License
 
-[MIT](./LICENSE) © 2026
-
+[MIT](./LICENSE) © 2026 TaoHQ. Made with love by TaoHQ.

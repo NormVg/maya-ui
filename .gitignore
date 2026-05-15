@@ -9,6 +9,15 @@ node_modules
 .tmp
 .cache
 
+# Local/tooling dot-directories
+/.agent/
+/.agents/
+/.github/
+/.info2ai/
+/.kiro/
+/.trae/
+/.vscode/
+
 # Yarn
 **/.yarn/cache
 **/.yarn/*state*

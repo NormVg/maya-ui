@@ -1,10 +1,32 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 
+const { play } = useMayaSound()
+
 const scrollY = ref(0)
 const handleScroll = () => {
   scrollY.value = window.scrollY
 }
+
+const handleGetStarted = () => {
+  play('success', 'glass')
+  useRouter().push('/install')
+}
+
+const handleBrowse = () => {
+  play('click', 'soft')
+  useRouter().push('/components/button')
+}
+
+const handleLink = (url) => {
+  play('click', 'minimal')
+  window.open(url, '_blank', 'noopener')
+}
+
+const installCommands = [
+  'pnpm add -D @thenormvg/maya-ui',
+  'npx skills TheAlphaOnes/maya-ui'
+]
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
@@ -47,10 +69,6 @@ const bgParallaxStyle = computed(() => ({
 
     <div class="hero-container" :style="parallaxStyle">
       <div class="hero-content">
-        <div class="hero-install-wrap">
-          <MayaInlineCode code="pnpm add -D @thenormvg/maya-ui" lang="bash" :copyable="true" />
-        </div>
-
         <h1 class="hero-title">Build interfaces<br/>that feel alive.</h1>
 
         <p class="hero-subtitle">
@@ -58,24 +76,35 @@ const bgParallaxStyle = computed(() => ({
           and zero config. Just install and build.
         </p>
 
+        <div class="hero-commands">
+          <MayaInlineCode
+            v-for="command in installCommands"
+            :key="command"
+            class="hero-command"
+            :code="command"
+            lang="bash"
+            :copyable="true"
+          />
+        </div>
+
         <div class="hero-actions">
-          <MayaBtn variant="primary" size="lg" @click="$router.push('/install')">
+          <MayaBtn variant="primary" size="lg" @click="handleGetStarted">
             Get Started
             <template #suffix>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </template>
           </MayaBtn>
-          <MayaBtn variant="outline" size="lg" @click="$router.push('/components/button')">
+          <MayaBtn variant="outline" size="lg" @click="handleBrowse">
             Browse Components
           </MayaBtn>
         </div>
 
         <div class="hero-github-links">
-          <a href="https://github.com/TheAlphaOnes/maya-ui" target="_blank" rel="noopener" class="gh-link">
+          <a href="#" @click.prevent="handleLink('https://github.com/TheAlphaOnes/maya-ui')" class="gh-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             Star on GitHub
           </a>
-          <a href="https://github.com/TheAlphaOnes/maya-ui/issues/new" target="_blank" rel="noopener" class="gh-link">
+          <a href="#" @click.prevent="handleLink('https://github.com/TheAlphaOnes/maya-ui/issues/new')" class="gh-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
             Open an Issue
           </a>
@@ -118,12 +147,6 @@ const bgParallaxStyle = computed(() => ({
   align-items: center;
 }
 
-.hero-install-wrap {
-  margin-bottom: 32px;
-  animation: fadeUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
 .hero-title {
   font-size: clamp(3.5rem, 8vw, 5.5rem);
   font-weight: 800;
@@ -131,7 +154,7 @@ const bgParallaxStyle = computed(() => ({
   line-height: 1.05;
   margin: 0 0 24px;
   color: var(--maya-text-primary);
-  animation: fadeUp 0.6s ease-out 0.08s forwards;
+  animation: fadeUp 0.6s ease-out forwards;
   opacity: 0;
 }
 
@@ -139,10 +162,41 @@ const bgParallaxStyle = computed(() => ({
   font-size: clamp(1.125rem, 2vw, 1.25rem);
   color: var(--maya-text-secondary);
   max-width: 540px;
-  margin: 0 0 40px;
+  margin: 0 0 30px;
   line-height: 1.6;
+  animation: fadeUp 0.6s ease-out 0.08s forwards;
+  opacity: 0;
+}
+
+.hero-commands {
+  width: min(100%, 520px);
+  margin: 0 0 34px;
+  display: grid;
+  gap: 8px;
   animation: fadeUp 0.6s ease-out 0.16s forwards;
   opacity: 0;
+}
+
+.hero-command {
+  width: 100%;
+  min-width: 0;
+  justify-content: space-between;
+  padding: 10px 10px 10px 14px;
+  border-radius: var(--maya-radius-md);
+  background: color-mix(in srgb, var(--maya-bg-raised) 86%, transparent);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.hero-command :deep(.maya-inline-code-text) {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  text-align: left;
+}
+
+.hero-command :deep(.maya-inline-code-text)::-webkit-scrollbar {
+  display: none;
 }
 
 .hero-actions {
@@ -183,6 +237,22 @@ const bgParallaxStyle = computed(() => ({
 }
 
 @media (max-width: 600px) {
+  .hero-section {
+    padding-inline: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 17vw, 4rem);
+  }
+
+  .hero-commands {
+    margin-bottom: 28px;
+  }
+
+  .hero-command {
+    font-size: 0.8125rem;
+  }
+
   .hero-actions {
     flex-direction: column;
     width: 100%;

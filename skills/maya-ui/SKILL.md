@@ -24,6 +24,8 @@ Maya UI is a **Nuxt module** that provides 90+ polished, theme-aware Vue compone
 pnpm add @thenormvg/maya-ui
 ```
 
+> **AI Agents:** To give your coding assistant full knowledge of this library, run: `npx skills TheAlphaOnes/maya-ui`
+
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({

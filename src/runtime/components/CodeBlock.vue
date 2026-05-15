@@ -23,6 +23,9 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useShiki } from '../composables/useShiki'
+import { useMayaSound } from '../composables/useMayaSound'
+
+const { play } = useMayaSound()
 
 const props = defineProps({
   code: { type: String, default: '' },
@@ -47,6 +50,7 @@ watch(() => [props.code, props.lang], doHighlight)
 watch(currentTheme, doHighlight)
 
 function copy() {
+  play('tick', 'crisp')
   navigator.clipboard.writeText(props.code)
   copied.value = true
   setTimeout(() => { copied.value = false }, 1500)

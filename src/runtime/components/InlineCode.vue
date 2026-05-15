@@ -20,6 +20,9 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useShiki } from '../composables/useShiki'
+import { useMayaSound } from '../composables/useMayaSound'
+
+const { play } = useMayaSound()
 
 const props = defineProps({
   code: { type: String, default: '' },
@@ -50,6 +53,7 @@ watch(() => [props.code, props.lang], doHighlight)
 watch(currentTheme, doHighlight)
 
 function copy() {
+  play('tick', 'soft')
   navigator.clipboard.writeText(props.code)
   copied.value = true
   setTimeout(() => { copied.value = false }, 1500)
@@ -83,19 +87,24 @@ function copy() {
 
 .maya-inline-code-copy {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
   background: none;
   border: none;
   color: var(--maya-text-muted);
   cursor: pointer;
-  padding: 2px;
+  padding: 0;
   border-radius: var(--maya-radius-sm);
   transition:
     color var(--maya-duration) var(--maya-ease),
     transform var(--maya-duration-bouncy) var(--maya-ease-bouncy);
   flex-shrink: 0;
+}
+
+.maya-inline-code-copy svg {
+  display: block;
 }
 
 .maya-inline-code-copy::after {

@@ -12,6 +12,7 @@ All tokens are CSS custom properties defined in `maya.css` and injected automati
 | `--maya-bg-surface` | `#111111` | `#f8f8f8` | Cards, panels, inputs |
 | `--maya-bg-raised` | `#191919` | `#f0f0f0` | Dropdowns, popovers, elevated surfaces |
 | `--maya-bg-overlay` | `rgba(0,0,0,0.6)` | `rgba(0,0,0,0.3)` | Modal backdrop scrim |
+| `--maya-bg-topbar` | `rgba(10,10,10,0.6)` | `rgba(255,255,255,0.6)` | Translucent topbar with glass effect |
 
 ---
 

@@ -12,6 +12,13 @@ useSeoMeta({
   twitterDescription: 'A premium, highly customizable Vue & Nuxt component library built for speed and aesthetics.',
   twitterImage: 'https://ui.taohq.org/og-image.png',
 })
+
+useHead({
+  link: [
+    { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+    { rel: 'icon', href: '/favicon.ico', sizes: '32x32' }
+  ]
+})
 </script>
 
 <template>
