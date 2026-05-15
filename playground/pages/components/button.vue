@@ -161,10 +161,7 @@ useSeoMeta({
   description: 'A premium interactive button component with support for multiple variants, sizes, and semantic intent colors.',
 })
 
-defineOgImage('OgImageMaya', {
-  title: 'Button Component',
-  description: 'The primary interactive element for Maya UI. Supports variants and semantic intent colors.',
-})
+
 
 const buttonProps = [
   { name: 'variant', type: 'String', default: '"primary"', description: 'The visual style. Options: "primary", "secondary", "ghost", "outline".' },

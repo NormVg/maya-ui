@@ -84,10 +84,7 @@ useSeoMeta({
   description: 'Provide contextual feedback messages for typical user actions with various semantic states.',
 })
 
-defineOgImage('OgImageMaya', {
-  title: 'Alert Component',
-  description: 'Clear and concise feedback for your users.',
-})
+
 
 import {
   RocketIcon,

@@ -1,32 +1,17 @@
 <script setup lang="ts">
-const site = useSiteConfig()
-
 useSeoMeta({
   title: 'Maya UI — Premium Nuxt Component Library',
-  description: 'A premium, highly customizable Vue & Nuxt component library built for speed and aesthetics.',
+  description: 'A premium, highly customizable Vue & Nuxt component library built for speed and aesthetics. Dark-first, pure CSS tokens, engineered for Nuxt.',
+  ogTitle: 'Maya UI — Premium Nuxt Component Library',
+  ogDescription: 'A premium, highly customizable Vue & Nuxt component library built for speed and aesthetics.',
+  ogImage: 'https://ui.taohq.org/og-image.png',
+  ogUrl: 'https://ui.taohq.org',
   ogType: 'website',
   twitterCard: 'summary_large_image',
+  twitterTitle: 'Maya UI — Premium Nuxt Component Library',
+  twitterDescription: 'A premium, highly customizable Vue & Nuxt component library built for speed and aesthetics.',
+  twitterImage: 'https://ui.taohq.org/og-image.png',
 })
-
-defineOgImage('OgImageMaya', {
-  title: 'Maya UI',
-  description: 'A premium, highly customizable Vue & Nuxt component library.',
-})
-
-useSchemaOrg([
-  defineOrganization({
-    name: 'Maya UI',
-    url: site.url,
-    logo: `${site.url}/favicon.ico`,
-    sameAs: [
-      'https://github.com/NormVg/maya-ui',
-    ],
-  }),
-  defineWebSite({
-    name: site.name,
-    description: site.description,
-  }),
-])
 </script>
 
 <template>

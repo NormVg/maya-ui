@@ -54,3 +54,6 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Skilld references (recreated by `skilld install`)
+.skilld
