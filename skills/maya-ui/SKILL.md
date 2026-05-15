@@ -80,7 +80,8 @@ Components supporting intent: `MayaBtn`, `MayaAlert`, `MayaBadge`, `MayaCard`, `
 
 | Category | File | What's Inside |
 |---|---|---|
-| **Spacing & Composition** | `references/spacing-patterns.md` | **READ THIS FIRST.** Page layout gaps, component spacing rules, common layout patterns |
+| **Component Index** | `references/components-index.md` | **COMPLETE LIST** of all 90+ components categorized with links |
+| **Spacing & Composition** | `references/spacing-patterns.md` | **READ THIS FIRST.** Page layout gaps, component spacing rules, responsive screens |
 | Design Tokens | `references/design-tokens.md` | All CSS variables, backgrounds, text, borders, shadows, animation |
 | Buttons & Actions | `references/buttons-actions.md` | MayaBtn, MayaToggle, MayaToggleGroup, MayaBtnGroup |
 | Forms & Inputs | `references/forms-inputs.md` | MayaInput, MayaSelect, MayaCheckbox, MayaRadio, MayaSwitch, MayaCombobox, MayaFileUpload, MayaColorPicker, MayaCalendar, MayaInputOTP |

@@ -278,3 +278,140 @@ Truncates long content behind a "Show more" toggle.
 | `maxHeight` | `string` | `'120px'` | Height when collapsed |
 | `labelShow` | `string` | `'Show more'` | Toggle button label (collapsed) |
 | `labelHide` | `string` | `'Show less'` | Toggle button label (expanded) |
+
+---
+
+## `<MayaSortableList>`
+
+A draggable, reorderable list component.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `modelValue` | `Array` | required | The array of items. Use `v-model`. |
+| `itemKey` | `String \| Function` | `null` | Key for each item to maintain stability |
+
+### Events
+`@update:modelValue`, `@change` (emits `{ list, movedItem, oldIndex, newIndex }`)
+
+### Slots
+`item` — custom rendering for each list item. Receives `{ item, index }`.
+
+### Example
+
+```html
+<MayaSortableList v-model="tasks" itemKey="id">
+  <template #item="{ item }">
+    <MayaCard style="padding: 12px; margin-bottom: 8px;">
+      {{ item.title }}
+    </MayaCard>
+  </template>
+</MayaSortableList>
+```
+
+---
+
+## `<MayaFullCalendar>`
+
+A full-page or widget-sized interactive calendar view that displays events and expandable day cards.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `events` | `Array` | `[]` | Array of `{ date, title, time?, color?, description? }` |
+| `maxBadges` | `Number` | `3` | Max event badges to show per day cell before "+ more" |
+
+### Slots
+| Slot | Description |
+|---|---|
+| `day` | Custom rendering for the day cell |
+| `day-card` | Custom rendering for the expanded day details dialog |
+| `day-card-actions` | Actions appended to the expanded day dialog footer |
+
+---
+
+## `<MayaAudioPlayer>`
+
+A custom-styled audio player with play/pause, progress track, and timestamps.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | required | Audio file URL |
+
+### Example
+```html
+<MayaAudioPlayer src="/audio/track.mp3" />
+```
+
+---
+
+## `<MayaVideoPlayer>`
+
+A custom-styled video player with a hover overlay, progress tracking, and fullscreen support.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | required | Video file URL |
+| `poster` | `string` | `''` | Video poster thumbnail |
+
+### Example
+```html
+<MayaVideoPlayer src="/video/promo.mp4" poster="/images/promo-poster.jpg" />
+```
+
+---
+
+## `<MayaCanvasBoard>`
+
+An interactive, pannable workspace canvas where you can drag and position nodes freely. Perfect for flowcharts, mind maps, or visual builders.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `modelValue` | `Array` | required | Array of nodes. Each node must have `{ id, x, y }` |
+
+### Events
+`@update:modelValue`, `@node-move`
+
+### Slots
+`node` — custom rendering for nodes. Receives `{ node, index }`.
+
+---
+
+## `<MayaDitherShader>`
+
+A highly advanced WebGL background component that generates procedural dithered shapes, gradients, and animations using three.js.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `colorFront` | `string` | `'#ED00B5'` | CSS hex for the foreground/ink |
+| `colorBack` | `string` | `'#000000'` | CSS hex for the background |
+| `shape` | `string` | `'simplex'` | `'simplex'` `'warp'` `'dots'` `'wave'` `'ripple'` `'swirl'` `'sphere'` |
+| `type` | `string` | `'8x8'` | Dithering type: `'random'` `'2x2'` `'4x4'` `'8x8'` |
+| `size` | `number` | `3` | Pixel size of the dithering grid |
+| `fit` | `string` | `'none'` | `'none'` `'contain'` `'cover'` |
+| `scale` | `number` | `1` | Zoom scale |
+| `speed` | `number` | `1` | Animation speed multiplier |
+| `rotation`, `offsetX`, `offsetY`, `originX`, `originY` | `number` | - | Transformation options |
+
+### Example
+
+```html
+<MayaDitherShader
+  shape="swirl"
+  type="4x4"
+  :size="4"
+  colorFront="#00FF00"
+  colorBack="#000000"
+  style="width: 100%; height: 400px;"
+/>
+```

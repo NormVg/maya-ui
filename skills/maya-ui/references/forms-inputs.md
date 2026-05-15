@@ -258,25 +258,101 @@ Attaches a prefix or suffix addon to an input (e.g. `$`, `@username`, a button).
 
 ---
 
-## `<MayaFormGroup>`
+---
 
-Wraps a field with a label, hint text, and optional error message. Connects `<MayaLabel>` semantically.
+## `<MayaChoiceBox>`
+
+An advanced, styled selection tile that can act as a radio or checkbox depending on the `type` prop. Useful for premium pricing tiers, settings options, or visual lists.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `modelValue` | `any` | `false` | Use `v-model` |
+| `value` | `any` | `true` | The underlying value of this choice |
+| `type` | `string` | `'checkbox'` | `'checkbox'` (multiple) or `'radio'` (single) |
+| `name` | `string` | `undefined` | Native input name |
+| `title` | `string` | `''` | Title text (also available as `#title` slot) |
+| `description` | `string` | `''` | Description text (also available as `#description` slot) |
+| `disabled` | `boolean` | `false` | |
+
+### Example
+
+```html
+<!-- Radio Mode -->
+<div style="display: flex; flex-direction: column; gap: 12px;">
+  <MayaChoiceBox v-model="plan" value="basic" type="radio" title="Basic Plan" description="$9/month" />
+  <MayaChoiceBox v-model="plan" value="pro" type="radio" title="Pro Plan" description="$29/month" />
+</div>
+
+<!-- Checkbox Mode -->
+<MayaChoiceBox v-model="addons" value="support" type="checkbox">
+  <template #title>Premium Support</template>
+  <template #description>24/7 priority support channel</template>
+</MayaChoiceBox>
+```
+
+---
+
+## `<MayaForm>`
+
+A wrapper for forms that manages spacing between children.
+
+### Events
+`@submit`
+
+### Example
+```html
+<MayaForm @submit="onSubmit">
+  <MayaField label="Name">...</MayaField>
+  <MayaBtn type="submit">Save</MayaBtn>
+</MayaForm>
+```
+
+---
+
+## `<MayaFieldset>`
+
+Accessible fieldset container for grouping related form controls with a shared legend and description.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `legend` | `string` | `''` | Legend title (also available as `#legend` slot) |
+| `description` | `string` | `''` | Description text (also available as `#description` slot) |
+| `disabled` | `boolean` | `false` | Disables all inputs within |
+
+### Example
+
+```html
+<MayaFieldset legend="Notifications" description="Choose how you want to be notified.">
+  <MayaCheckbox v-model="email" label="Email" />
+  <MayaCheckbox v-model="sms" label="SMS" />
+</MayaFieldset>
+```
+
+---
+
+## `<MayaField>` & `<MayaFormGroup>`
+
+Wraps an input control with a label, hint text, and optional error message. Automatically connects the `<MayaLabel>` semantically. Both components share identical APIs.
 
 ### Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | `''` | Label text |
-| `hint` | `string` | `''` | Helper/hint text below label |
+| `description` | `string` | `''` | Helper/hint text below label (called `hint` on FormGroup) |
 | `error` | `string` | `''` | Error message (highlights red) |
 | `required` | `boolean` | `false` | Shows asterisk on label |
 
 ### Example
 
 ```html
-<MayaFormGroup label="Password" hint="At least 8 characters" :required="true" :error="errors.password">
+<MayaField label="Password" description="At least 8 characters" :required="true" :error="errors.password">
   <MayaInput v-model="password" type="password" />
-</MayaFormGroup>
+</MayaField>
 ```
 
 ---
@@ -322,6 +398,27 @@ Full HSL color picker with hex input, hue slider, and saturation/lightness canva
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `modelValue` | `string` | `'#000000'` | Hex color string. Use `v-model`. |
+
+---
+
+## `<MayaColorPanels>`
+
+A grid of selectable color swatches. Perfect for themes, labels, or product color options.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `modelValue` | `string` | `''` | Selected color hex. Use `v-model`. |
+| `colors` | `Array` | `[...]` | Array of `{ value, label? }` color objects |
+| `cols` | `string \| number` | `'auto'` | Grid column count (`2`, `3`, `4`, `6`, `8`, or `'auto'`) |
+| `showLabel` | `boolean` | `false` | Display color label beneath the swatch |
+
+### Example
+
+```html
+<MayaColorPanels v-model="themeColor" :cols="4" :showLabel="true" />
+```
 
 ---
 

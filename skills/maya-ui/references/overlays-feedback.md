@@ -99,6 +99,39 @@ A pre-structured confirmation dialog with title, description, and built-in Cance
 
 ---
 
+## `<MayaModal>`
+
+A standard, styled modal similar to Dialog but using a slightly different API/structure out of the box (with a close button, header, and footer).
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `modelValue` \| `open` | `boolean` | `false` | Open state. Use `v-model` or `v-model:open`. |
+| `title` | `string` | `''` | Modal heading |
+| `description` | `string` | `''` | Supporting description |
+| `maxWidth` | `string` | `'480px'` | Maximum width |
+| `closeOnClickOutside` | `boolean` | `true` | Close when clicking the backdrop |
+| `hideCloseButton` | `boolean` | `false` | Hide the × button |
+
+### Slots
+`header`, `default` (body content), `footer`.
+
+### Example
+
+```html
+<MayaModal v-model="isOpen" title="Settings" description="Update your preferences here.">
+  <div style="padding: 16px 0;">
+    <MayaInput label="Username" />
+  </div>
+  <template #footer>
+    <MayaBtn @click="isOpen = false">Done</MayaBtn>
+  </template>
+</MayaModal>
+```
+
+---
+
 ## `<MayaSheet>`
 
 A drawer that slides in from any screen edge. Shares the same teleport + scroll-lock mechanics as Dialog.

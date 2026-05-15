@@ -194,6 +194,57 @@ When showing multiple alerts, stack them with gap:
 
 ---
 
+## Responsive Screens (Breakpoints)
+
+Maya UI does NOT ship with a utility-class framework like Tailwind, meaning there are no `md:`, `lg:`, etc. classes out of the box. You must use standard CSS media queries for your screens.
+
+We recommend standardizing your screens around these breakpoints in your scoped CSS:
+
+| Screen Size | Breakpoint | Typical Device |
+|---|---|---|
+| Mobile | (default) | Phones |
+| Tablet | `@media (min-width: 768px)` | iPads, large tablets |
+| Desktop | `@media (min-width: 1024px)` | Laptops, small desktops |
+| Wide | `@media (min-width: 1280px)` | Large monitors |
+
+### Example Responsive Layout
+
+When building layouts that change based on screen size, change `flex-direction` or `grid-template-columns` using standard media queries:
+
+```vue
+<template>
+  <div class="responsive-grid">
+    <MayaCard>Item 1</MayaCard>
+    <MayaCard>Item 2</MayaCard>
+  </div>
+</template>
+
+<style scoped>
+/* Mobile first: 1 column */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Tablet screen: 2 columns */
+@media (min-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop screen: 4 columns */
+@media (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+</style>
+```
+
+---
+
 ## Component Internal Padding Reference
 
 These are the **internal** padding values that components use. Match your surrounding spacing accordingly:
