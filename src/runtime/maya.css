@@ -37,6 +37,7 @@
   --maya-bg-surface: #111111;
   --maya-bg-raised: #191919;
   --maya-bg-overlay: rgba(0, 0, 0, 0.6);
+  --maya-bg-topbar: rgba(10, 10, 10, 0.6);
 
   --maya-text-primary: #ededed;
   --maya-text-secondary: #888888;
@@ -149,6 +150,7 @@
   --maya-bg-surface: #f8f8f8;
   --maya-bg-raised: #f0f0f0;
   --maya-bg-overlay: rgba(0, 0, 0, 0.3);
+  --maya-bg-topbar: rgba(255, 255, 255, 0.6);
 
   --maya-text-primary: #171717;
   --maya-text-secondary: #6b6b6b;

@@ -276,12 +276,23 @@ Lightweight hover tooltip for short single-line text. For richer hover content, 
 
 Toasts are imperative — triggered via the `useToast()` composable, not via component props.
 
-**Setup (once in `app.vue`):**
+**🚨 CRITICAL SETUP (MUST DO):**
+You MUST place exactly ONE instance of `<MayaToaster />` globally in the application layout (e.g., at the bottom of `app.vue` or `layouts/default.vue`). **NEVER** place `<MayaToaster />` in individual pages or components, as that will duplicate the toaster and break the stacking logic.
+
 ```html
-<MayaToaster />
+<!-- In layouts/default.vue or app.vue -->
+<template>
+  <div>
+    <slot />
+    <!-- Global Toaster MUST be at the root of the layout -->
+    <MayaToaster />
+  </div>
+</template>
 ```
 
 **Usage:**
+`useToast()` is auto-imported by Nuxt. **Do NOT import it manually.**
+
 ```ts
 const { toast, dismiss } = useToast()
 

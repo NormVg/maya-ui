@@ -31,6 +31,7 @@
           <NuxtLink to="/components/textarea" class="nav-item" active-class="active">Textarea</NuxtLink>
           <NuxtLink to="/components/number-field" class="nav-item" active-class="active">Number Field</NuxtLink>
           <NuxtLink to="/components/checkbox" class="nav-item" active-class="active">Checkbox</NuxtLink>
+          <NuxtLink to="/components/checkbox-group" class="nav-item" active-class="active">Checkbox Group</NuxtLink>
           <NuxtLink to="/components/radio" class="nav-item" active-class="active">Radio</NuxtLink>
           <NuxtLink to="/components/controls" class="nav-item" active-class="active">Toggle & Switch</NuxtLink>
           <NuxtLink to="/components/input-otp" class="nav-item" active-class="active">Input OTP</NuxtLink>
@@ -72,6 +73,8 @@
           <NuxtLink to="/components/visualisation" class="nav-item" active-class="active">Visualisation</NuxtLink>
           <NuxtLink to="/components/full-calendar" class="nav-item" active-class="active">Full Calendar</NuxtLink>
           <NuxtLink to="/components/code" class="nav-item" active-class="active">Code & Prose</NuxtLink>
+          <NuxtLink to="/components/show-more" class="nav-item" active-class="active">Show More</NuxtLink>
+          <NuxtLink to="/components/video-player" class="nav-item" active-class="active">Video Player</NuxtLink>
         </div>
 
         <div class="nav-group">
@@ -98,6 +101,7 @@
         <div class="nav-group">
           <div class="nav-group-title">Layout & Utilities</div>
           <NuxtLink to="/components/scroll-area" class="nav-item" active-class="active">Scroll Area</NuxtLink>
+          <NuxtLink to="/components/aspect-ratio" class="nav-item" active-class="active">Aspect Ratio</NuxtLink>
           <NuxtLink to="/components/resizable" class="nav-item" active-class="active">Resizable</NuxtLink>
           <NuxtLink to="/components/base-ui" class="nav-item" active-class="active">Base UI (Label / Separator)</NuxtLink>
           <NuxtLink to="/components/theme-toggle" class="nav-item" active-class="active">Theme Toggle</NuxtLink>

@@ -22,7 +22,8 @@ export default defineNuxtModule<ModuleOptions>({
     // Auto-import composables (explicitly for better reliability)
     addImports([
       { name: 'useToast', from: resolver.resolve('./runtime/composables/useToast') },
-      { name: 'useMayaSound', from: resolver.resolve('./runtime/composables/useMayaSound') }
+      { name: 'useMayaSound', from: resolver.resolve('./runtime/composables/useMayaSound') },
+      { name: 'useMayaTheme', from: resolver.resolve('./runtime/composables/useMayaTheme') }
     ])
 
     // Inject global CSS tokens

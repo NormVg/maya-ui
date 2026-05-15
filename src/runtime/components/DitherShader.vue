@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, toRefs } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch, toRefs } from 'vue'
 import * as THREE from 'three'
 
 // ── Shape & Type enums ────────────────────────────────────────
@@ -43,6 +43,12 @@ const props = withDefaults(
     colorFront?: string
     /** Background color - CSS hex string */
     colorBack?: string
+    /** Foreground color for light mode (used when themeAware is true) */
+    colorFrontLight?: string
+    /** Background color for light mode (used when themeAware is true) */
+    colorBackLight?: string
+    /** Auto-swap colors based on Maya's data-theme attribute */
+    themeAware?: boolean
     /** Shape pattern: simplex | warp | dots | wave | ripple | swirl | sphere */
     shape?: DitheringShape
     /** Dither type: random | 2x2 | 4x4 | 8x8 */
@@ -73,6 +79,9 @@ const props = withDefaults(
   {
     colorFront: '#ED00B5',
     colorBack: '#000000',
+    colorFrontLight: '',
+    colorBackLight: '',
+    themeAware: false,
     shape: 'simplex',
     type: '8x8',
     size: 3,
@@ -90,9 +99,28 @@ const props = withDefaults(
 )
 
 const {
-  colorFront, colorBack, shape, type, size, fit, scale, rotation,
+  colorFront, colorBack, colorFrontLight, colorBackLight, themeAware,
+  shape, type, size, fit, scale, rotation,
   offsetX, offsetY, originX, originY, worldWidth, worldHeight, speed,
 } = toRefs(props)
+
+// ── Theme-aware color resolution ──────────────────────────────
+import { useMayaTheme } from '../composables/useMayaTheme'
+const { isLight: isLightTheme } = useMayaTheme()
+
+const resolvedFront = computed(() => {
+  if (themeAware.value && isLightTheme.value && colorFrontLight.value) {
+    return colorFrontLight.value
+  }
+  return colorFront.value
+})
+
+const resolvedBack = computed(() => {
+  if (themeAware.value && isLightTheme.value && colorBackLight.value) {
+    return colorBackLight.value
+  }
+  return colorBack.value
+})
 
 // ── Helpers ───────────────────────────────────────────────────
 function hexToRGBA(hex: string): [number, number, number, number] {
@@ -534,9 +562,11 @@ onMounted(() => {
   const scene = new THREE.Scene()
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
 
+
+
   // ── Initial uniform values ──
-  const [fr, fg, fb, fa] = hexToRGBA(colorFront.value)
-  const [br, bg, bb, ba] = hexToRGBA(colorBack.value)
+  const [fr, fg, fb, fa] = hexToRGBA(resolvedFront.value)
+  const [br, bg, bb, ba] = hexToRGBA(resolvedBack.value)
 
   uniforms = {
     uTime: { value: 0 },
@@ -618,12 +648,12 @@ watch(originX, (v) => { if (uniforms) uniforms.uOriginX.value = v })
 watch(originY, (v) => { if (uniforms) uniforms.uOriginY.value = v })
 watch(worldWidth, (v) => { if (uniforms) uniforms.uWorldWidth.value = v })
 watch(worldHeight, (v) => { if (uniforms) uniforms.uWorldHeight.value = v })
-watch(colorFront, (v) => {
+watch(resolvedFront, (v) => {
   if (!uniforms) return
   const [r, g, b, a] = hexToRGBA(v)
   uniforms.uColorFront.value.set(r, g, b, a)
 })
-watch(colorBack, (v) => {
+watch(resolvedBack, (v) => {
   if (!uniforms) return
   const [r, g, b, a] = hexToRGBA(v)
   uniforms.uColorBack.value.set(r, g, b, a)

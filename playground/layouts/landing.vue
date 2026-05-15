@@ -5,6 +5,7 @@
       <nav class="landing-nav">
         <NuxtLink to="/install" class="landing-nav-link">Docs</NuxtLink>
         <NuxtLink to="/components/button" class="landing-nav-link">Components</NuxtLink>
+        <a href="https://github.com/TheAlphaOnes/maya-ui" target="_blank" class="landing-nav-link">GitHub</a>
         <MayaThemeToggle />
       </nav>
     </header>
@@ -28,10 +29,14 @@
   justify-content: space-between;
   padding: 0 40px;
   border-bottom: 1px dashed var(--maya-dash-color);
-  background: var(--maya-bg-root);
-  position: sticky;
+  background: var(--maya-bg-topbar);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 100;
   transition: background-color 0.2s ease;
 }
 
@@ -62,18 +67,11 @@
 
 .landing-main {
   flex: 1;
-  max-width: 860px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 40px 80px;
 }
 
 @media (max-width: 768px) {
   .landing-topbar {
     padding: 0 20px;
-  }
-  .landing-main {
-    padding: 0 20px 40px;
   }
 }
 </style>

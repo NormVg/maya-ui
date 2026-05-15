@@ -20,26 +20,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { useMayaTheme } from '../composables/useMayaTheme'
 
-const isDark = ref(true)
-
-onMounted(() => {
-  try {
-    const saved = localStorage.getItem('maya-theme')
-    if (saved === 'light') isDark.value = false
-    else if (!saved && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      isDark.value = false
-    }
-  } catch { }
-  applyTheme()
-})
-
-function applyTheme() {
-  const theme = isDark.value ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-theme', theme)
-  try { localStorage.setItem('maya-theme', theme) } catch { }
-}
+const { isDark, toggleTheme } = useMayaTheme()
 
 async function toggle(e) {
   // If View Transitions not supported or reduced motion, just swap
@@ -47,8 +30,7 @@ async function toggle(e) {
     !document.startViewTransition ||
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   ) {
-    isDark.value = !isDark.value
-    applyTheme()
+    toggleTheme()
     return
   }
 
@@ -62,8 +44,7 @@ async function toggle(e) {
 
   // Start the view transition
   const transition = document.startViewTransition(() => {
-    isDark.value = !isDark.value
-    applyTheme()
+    toggleTheme()
   })
 
   // Wait for the old snapshot to be taken
